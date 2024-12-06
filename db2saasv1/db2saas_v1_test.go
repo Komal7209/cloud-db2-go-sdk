@@ -245,7 +245,7 @@ var _ = Describe(`Db2saasV1`, func() {
 					// Set mock response
 					res.Header().Set("Content-type", "application/json")
 					res.WriteHeader(200)
-					fmt.Fprintf(res, "%s", `{"public": {"hostname": "84792aeb-2a9c-4dee-bfad-2e529f16945d-useast-private.bt1ibm.dev.db2.ibmappdomain.cloud", "databaseName": "bluedb", "host_ros": "84792aeb-2a9c-4dee-bfad-2e529f16945d-useast-private.bt1ibm.dev.db2.ibmappdomain.cloud:30515", "certificateBase64": "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURIVENDQWdXZ0F3SUJBZ0lVTGRpR1U2QzdZajMwcS9VUVB3ek5ka2YyakJjd0RRWUpLb1pJaHZjTkFRRUwKQlFBd0hqRWNNQm9HQTFVRUF3d1RTVUpOSUVOc2IzVmtJRVJoZEdGaVlYTmxjekFlRncweU1EQTRNRFl3T1RReQpNVEZhRncwek1EQTRNRFF3T1RReU1URmFNQjR4SERBYUJnTlZCQU1NRTBsQ1RTQkRiRzkxWkNCRVlYUmhZbUZ6ClpYTXdnZ0VpTUEwR0NTcUdTSWIzRFFFQkFRVUFBNElCRHdBd2dnRUtBb0lCQVFDb1NIdS9TWkd5NHc0bHB0elQKbFVRQTV6Q0krTldhblQ0czAvTXFkQmJwRW9FWjYxLy9VQVFPaHVTUG85M05obG1NQWZUWENpUi9jVkxuQmxBMQpuZnEzcC9pWm1VMnJwSUxnUmdLeTdsNEZSMVVPaGlRa3RnN3d6Q0J1M2k0bTRJQkZ0NVVvRng5djl6eFkrK0tSCnNnYXhmK28yMEoxLzZBSHFwem5GaWJuTDdLcGlZMUs1c25BdHFwTUVsNHMyR3dlZXQ0dEFjZ3hRSlRVR3hvamsKUDMvUmtxSUI1RFBNSXJ0ZFMrWWpBdlM0alBpREVRT0FvZDg5aDBOays3bkpldllJT0lRVTN0OC81YlNYRDFFVwp3bmRqdHlkeC95Qlo5YlZ4bms4eWI1S1NCVUNpaHJsL1AxVmdNdStLb2w2M0ZZMmdSbndwb3FEOVRNWkJkeTRYCk5PRUZBZ01CQUFHalV6QlJNQjBHQTFVZERnUVdCQlNldmNpblMvR0VwdmlmZkQ0ZUtPU0FNSGljUmpBZkJnTlYKSFNNRUdEQVdnQlNldmNpblMvR0VwdmlmZkQ0ZUtPU0FNSGljUmpBUEJnTlZIUk1CQWY4RUJUQURBUUgvTUEwRwpDU3FHU0liM0RRRUJDd1VBQTRJQkFRQk1XRHV2Z0JKVk5JYUp2NkFzL3FybWZKbVJObU80clhVcXhiTXdJdEZ1Ciswb1RIOTZMWU1OSjgyS1hXOFc1K0ZUOXJ2TjdzQzhRQzBYVzFIWkM4dlgvdE96dmluL1lqVW5nUlducUFBQXEKL0U4TnRtMFpuMEs4cnRzanJtaklLKzlwNjRObE1ENWJjcUpDMGZFSkpBQVpBSUozejRNSHhsTDhnc0plS0JyOApvcWhhejJOaXJtSEZ3Z3RDc0htVlI4UCt5TUtrN24xVlhlcmpHYWhORkQ2MzhGRnRoSHNvNmV0NGQ5NEpLTXFPCmt1cWhFOCtMcTZlalRWUTRYdldaUG4wVWlZQkVpTjFsT1JaZ0h5d3JvNjJ5Z2dFekhCaXF5dEI2SEN6TllyYXoKVElQUTNGanhGQXNYU3NhVzZPL2VteERNSDN4ZUZ5WmRZWWw5bGMxSnFVWW4KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=", "sslPort": "30450", "ssl": true, "databaseVersion": "11.5.0"}, "private": {"hostname": "84792aeb-2a9c-4dee-bfad-2e529f16945d-useast.bt1ibm.dev.db2.ibmappdomain.cloud", "databaseName": "bluedb", "host_ros": "84792aeb-2a9c-4dee-bfad-2e529f16945d-useast.bt1ibm.dev.db2.ibmappdomain.cloud:30515", "certificateBase64": "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURIVENDQWdXZ0F3SUJBZ0lVTGRpR1U2QzdZajMwcS9VUVB3ek5ka2YyakJjd0RRWUpLb1pJaHZjTkFRRUwKQlFBd0hqRWNNQm9HQTFVRUF3d1RTVUpOSUVOc2IzVmtJRVJoZEdGaVlYTmxjekFlRncweU1EQTRNRFl3T1RReQpNVEZhRncwek1EQTRNRFF3T1RReU1URmFNQjR4SERBYUJnTlZCQU1NRTBsQ1RTQkRiRzkxWkNCRVlYUmhZbUZ6ClpYTXdnZ0VpTUEwR0NTcUdTSWIzRFFFQkFRVUFBNElCRHdBd2dnRUtBb0lCQVFDb1NIdS9TWkd5NHc0bHB0elQKbFVRQTV6Q0krTldhblQ0czAvTXFkQmJwRW9FWjYxLy9VQVFPaHVTUG85M05obG1NQWZUWENpUi9jVkxuQmxBMQpuZnEzcC9pWm1VMnJwSUxnUmdLeTdsNEZSMVVPaGlRa3RnN3d6Q0J1M2k0bTRJQkZ0NVVvRng5djl6eFkrK0tSCnNnYXhmK28yMEoxLzZBSHFwem5GaWJuTDdLcGlZMUs1c25BdHFwTUVsNHMyR3dlZXQ0dEFjZ3hRSlRVR3hvamsKUDMvUmtxSUI1RFBNSXJ0ZFMrWWpBdlM0alBpREVRT0FvZDg5aDBOays3bkpldllJT0lRVTN0OC81YlNYRDFFVwp3bmRqdHlkeC95Qlo5YlZ4bms4eWI1S1NCVUNpaHJsL1AxVmdNdStLb2w2M0ZZMmdSbndwb3FEOVRNWkJkeTRYCk5PRUZBZ01CQUFHalV6QlJNQjBHQTFVZERnUVdCQlNldmNpblMvR0VwdmlmZkQ0ZUtPU0FNSGljUmpBZkJnTlYKSFNNRUdEQVdnQlNldmNpblMvR0VwdmlmZkQ0ZUtPU0FNSGljUmpBUEJnTlZIUk1CQWY4RUJUQURBUUgvTUEwRwpDU3FHU0liM0RRRUJDd1VBQTRJQkFRQk1XRHV2Z0JKVk5JYUp2NkFzL3FybWZKbVJObU80clhVcXhiTXdJdEZ1Ciswb1RIOTZMWU1OSjgyS1hXOFc1K0ZUOXJ2TjdzQzhRQzBYVzFIWkM4dlgvdE96dmluL1lqVW5nUlducUFBQXEKL0U4TnRtMFpuMEs4cnRzanJtaklLKzlwNjRObE1ENWJjcUpDMGZFSkpBQVpBSUozejRNSHhsTDhnc0plS0JyOApvcWhhejJOaXJtSEZ3Z3RDc0htVlI4UCt5TUtrN24xVlhlcmpHYWhORkQ2MzhGRnRoSHNvNmV0NGQ5NEpLTXFPCmt1cWhFOCtMcTZlalRWUTRYdldaUG4wVWlZQkVpTjFsT1JaZ0h5d3JvNjJ5Z2dFekhCaXF5dEI2SEN6TllyYXoKVElQUTNGanhGQXNYU3NhVzZPL2VteERNSDN4ZUZ5WmRZWWw5bGMxSnFVWW4KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=", "sslPort": "30450", "ssl": true, "databaseVersion": "11.5.0"}}`)
+					fmt.Fprintf(res, "%s", `{"public": {"hostname": "84792aeb-2a9c-4dee-bfad-2e529f16945d-useast-private.bt1ibm.dev.db2.ibmappdomain.cloud", "databaseName": "bluedb", "sslPort": "30450", "ssl": true, "databaseVersion": "11.5.0"}, "private": {"hostname": "84792aeb-2a9c-4dee-bfad-2e529f16945d-useast.bt1ibm.dev.db2.ibmappdomain.cloud", "databaseName": "bluedb", "sslPort": "30450", "ssl": true, "databaseVersion": "11.5.0", "private_serviceName": "us-south-private.db2oc.test.saas.ibm.com:32764", "cloud_service_offering": "dashdb-for-transactions", "vpe_service_crn": "crn:v1:staging:public:dashdb-for-transactions:us-south:::endpoint:feea41a1-ff88-4541-8865-0698ccb7c5dc-us-south-private.bt1ibm.dev.db2.ibmappdomain.cloud", "db_vpc_endpoint_service": "feea41a1-ff88-4541-8865-0698ccb7c5dc-ussouth-private.bt1ibm.dev.db2.ibmappdomain.cloud:32679"}}`)
 				}))
 			})
 			It(`Invoke GetDb2SaasConnectionInfo successfully with retries`, func() {
@@ -302,7 +302,7 @@ var _ = Describe(`Db2saasV1`, func() {
 					// Set mock response
 					res.Header().Set("Content-type", "application/json")
 					res.WriteHeader(200)
-					fmt.Fprintf(res, "%s", `{"public": {"hostname": "84792aeb-2a9c-4dee-bfad-2e529f16945d-useast-private.bt1ibm.dev.db2.ibmappdomain.cloud", "databaseName": "bluedb", "host_ros": "84792aeb-2a9c-4dee-bfad-2e529f16945d-useast-private.bt1ibm.dev.db2.ibmappdomain.cloud:30515", "certificateBase64": "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURIVENDQWdXZ0F3SUJBZ0lVTGRpR1U2QzdZajMwcS9VUVB3ek5ka2YyakJjd0RRWUpLb1pJaHZjTkFRRUwKQlFBd0hqRWNNQm9HQTFVRUF3d1RTVUpOSUVOc2IzVmtJRVJoZEdGaVlYTmxjekFlRncweU1EQTRNRFl3T1RReQpNVEZhRncwek1EQTRNRFF3T1RReU1URmFNQjR4SERBYUJnTlZCQU1NRTBsQ1RTQkRiRzkxWkNCRVlYUmhZbUZ6ClpYTXdnZ0VpTUEwR0NTcUdTSWIzRFFFQkFRVUFBNElCRHdBd2dnRUtBb0lCQVFDb1NIdS9TWkd5NHc0bHB0elQKbFVRQTV6Q0krTldhblQ0czAvTXFkQmJwRW9FWjYxLy9VQVFPaHVTUG85M05obG1NQWZUWENpUi9jVkxuQmxBMQpuZnEzcC9pWm1VMnJwSUxnUmdLeTdsNEZSMVVPaGlRa3RnN3d6Q0J1M2k0bTRJQkZ0NVVvRng5djl6eFkrK0tSCnNnYXhmK28yMEoxLzZBSHFwem5GaWJuTDdLcGlZMUs1c25BdHFwTUVsNHMyR3dlZXQ0dEFjZ3hRSlRVR3hvamsKUDMvUmtxSUI1RFBNSXJ0ZFMrWWpBdlM0alBpREVRT0FvZDg5aDBOays3bkpldllJT0lRVTN0OC81YlNYRDFFVwp3bmRqdHlkeC95Qlo5YlZ4bms4eWI1S1NCVUNpaHJsL1AxVmdNdStLb2w2M0ZZMmdSbndwb3FEOVRNWkJkeTRYCk5PRUZBZ01CQUFHalV6QlJNQjBHQTFVZERnUVdCQlNldmNpblMvR0VwdmlmZkQ0ZUtPU0FNSGljUmpBZkJnTlYKSFNNRUdEQVdnQlNldmNpblMvR0VwdmlmZkQ0ZUtPU0FNSGljUmpBUEJnTlZIUk1CQWY4RUJUQURBUUgvTUEwRwpDU3FHU0liM0RRRUJDd1VBQTRJQkFRQk1XRHV2Z0JKVk5JYUp2NkFzL3FybWZKbVJObU80clhVcXhiTXdJdEZ1Ciswb1RIOTZMWU1OSjgyS1hXOFc1K0ZUOXJ2TjdzQzhRQzBYVzFIWkM4dlgvdE96dmluL1lqVW5nUlducUFBQXEKL0U4TnRtMFpuMEs4cnRzanJtaklLKzlwNjRObE1ENWJjcUpDMGZFSkpBQVpBSUozejRNSHhsTDhnc0plS0JyOApvcWhhejJOaXJtSEZ3Z3RDc0htVlI4UCt5TUtrN24xVlhlcmpHYWhORkQ2MzhGRnRoSHNvNmV0NGQ5NEpLTXFPCmt1cWhFOCtMcTZlalRWUTRYdldaUG4wVWlZQkVpTjFsT1JaZ0h5d3JvNjJ5Z2dFekhCaXF5dEI2SEN6TllyYXoKVElQUTNGanhGQXNYU3NhVzZPL2VteERNSDN4ZUZ5WmRZWWw5bGMxSnFVWW4KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=", "sslPort": "30450", "ssl": true, "databaseVersion": "11.5.0"}, "private": {"hostname": "84792aeb-2a9c-4dee-bfad-2e529f16945d-useast.bt1ibm.dev.db2.ibmappdomain.cloud", "databaseName": "bluedb", "host_ros": "84792aeb-2a9c-4dee-bfad-2e529f16945d-useast.bt1ibm.dev.db2.ibmappdomain.cloud:30515", "certificateBase64": "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURIVENDQWdXZ0F3SUJBZ0lVTGRpR1U2QzdZajMwcS9VUVB3ek5ka2YyakJjd0RRWUpLb1pJaHZjTkFRRUwKQlFBd0hqRWNNQm9HQTFVRUF3d1RTVUpOSUVOc2IzVmtJRVJoZEdGaVlYTmxjekFlRncweU1EQTRNRFl3T1RReQpNVEZhRncwek1EQTRNRFF3T1RReU1URmFNQjR4SERBYUJnTlZCQU1NRTBsQ1RTQkRiRzkxWkNCRVlYUmhZbUZ6ClpYTXdnZ0VpTUEwR0NTcUdTSWIzRFFFQkFRVUFBNElCRHdBd2dnRUtBb0lCQVFDb1NIdS9TWkd5NHc0bHB0elQKbFVRQTV6Q0krTldhblQ0czAvTXFkQmJwRW9FWjYxLy9VQVFPaHVTUG85M05obG1NQWZUWENpUi9jVkxuQmxBMQpuZnEzcC9pWm1VMnJwSUxnUmdLeTdsNEZSMVVPaGlRa3RnN3d6Q0J1M2k0bTRJQkZ0NVVvRng5djl6eFkrK0tSCnNnYXhmK28yMEoxLzZBSHFwem5GaWJuTDdLcGlZMUs1c25BdHFwTUVsNHMyR3dlZXQ0dEFjZ3hRSlRVR3hvamsKUDMvUmtxSUI1RFBNSXJ0ZFMrWWpBdlM0alBpREVRT0FvZDg5aDBOays3bkpldllJT0lRVTN0OC81YlNYRDFFVwp3bmRqdHlkeC95Qlo5YlZ4bms4eWI1S1NCVUNpaHJsL1AxVmdNdStLb2w2M0ZZMmdSbndwb3FEOVRNWkJkeTRYCk5PRUZBZ01CQUFHalV6QlJNQjBHQTFVZERnUVdCQlNldmNpblMvR0VwdmlmZkQ0ZUtPU0FNSGljUmpBZkJnTlYKSFNNRUdEQVdnQlNldmNpblMvR0VwdmlmZkQ0ZUtPU0FNSGljUmpBUEJnTlZIUk1CQWY4RUJUQURBUUgvTUEwRwpDU3FHU0liM0RRRUJDd1VBQTRJQkFRQk1XRHV2Z0JKVk5JYUp2NkFzL3FybWZKbVJObU80clhVcXhiTXdJdEZ1Ciswb1RIOTZMWU1OSjgyS1hXOFc1K0ZUOXJ2TjdzQzhRQzBYVzFIWkM4dlgvdE96dmluL1lqVW5nUlducUFBQXEKL0U4TnRtMFpuMEs4cnRzanJtaklLKzlwNjRObE1ENWJjcUpDMGZFSkpBQVpBSUozejRNSHhsTDhnc0plS0JyOApvcWhhejJOaXJtSEZ3Z3RDc0htVlI4UCt5TUtrN24xVlhlcmpHYWhORkQ2MzhGRnRoSHNvNmV0NGQ5NEpLTXFPCmt1cWhFOCtMcTZlalRWUTRYdldaUG4wVWlZQkVpTjFsT1JaZ0h5d3JvNjJ5Z2dFekhCaXF5dEI2SEN6TllyYXoKVElQUTNGanhGQXNYU3NhVzZPL2VteERNSDN4ZUZ5WmRZWWw5bGMxSnFVWW4KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=", "sslPort": "30450", "ssl": true, "databaseVersion": "11.5.0"}}`)
+					fmt.Fprintf(res, "%s", `{"public": {"hostname": "84792aeb-2a9c-4dee-bfad-2e529f16945d-useast-private.bt1ibm.dev.db2.ibmappdomain.cloud", "databaseName": "bluedb", "sslPort": "30450", "ssl": true, "databaseVersion": "11.5.0"}, "private": {"hostname": "84792aeb-2a9c-4dee-bfad-2e529f16945d-useast.bt1ibm.dev.db2.ibmappdomain.cloud", "databaseName": "bluedb", "sslPort": "30450", "ssl": true, "databaseVersion": "11.5.0", "private_serviceName": "us-south-private.db2oc.test.saas.ibm.com:32764", "cloud_service_offering": "dashdb-for-transactions", "vpe_service_crn": "crn:v1:staging:public:dashdb-for-transactions:us-south:::endpoint:feea41a1-ff88-4541-8865-0698ccb7c5dc-us-south-private.bt1ibm.dev.db2.ibmappdomain.cloud", "db_vpc_endpoint_service": "feea41a1-ff88-4541-8865-0698ccb7c5dc-ussouth-private.bt1ibm.dev.db2.ibmappdomain.cloud:32679"}}`)
 				}))
 			})
 			It(`Invoke GetDb2SaasConnectionInfo successfully`, func() {
@@ -1840,8 +1840,8 @@ var _ = Describe(`Db2saasV1`, func() {
 					// Verify the contents of the request
 					Expect(req.URL.EscapedPath()).To(Equal(putDb2SaasAutoscalePath))
 					Expect(req.Method).To(Equal("PUT"))
-					Expect(req.Header["X-Deployment-Id"]).ToNot(BeNil())
-					Expect(req.Header["X-Deployment-Id"][0]).To(Equal(fmt.Sprintf("%v", "testString")))
+					Expect(req.Header["X-Db-Profile"]).ToNot(BeNil())
+					Expect(req.Header["X-Db-Profile"][0]).To(Equal(fmt.Sprintf("%v", "testString")))
 					res.Header().Set("Content-type", "application/json")
 					res.WriteHeader(200)
 					fmt.Fprint(res, `} this is not valid json {`)
@@ -1857,7 +1857,7 @@ var _ = Describe(`Db2saasV1`, func() {
 
 				// Construct an instance of the PutDb2SaasAutoscaleOptions model
 				putDb2SaasAutoscaleOptionsModel := new(db2saasv1.PutDb2SaasAutoscaleOptions)
-				putDb2SaasAutoscaleOptionsModel.XDeploymentID = core.StringPtr("testString")
+				putDb2SaasAutoscaleOptionsModel.XDbProfile = core.StringPtr("testString")
 				putDb2SaasAutoscaleOptionsModel.AutoScalingEnabled = core.StringPtr("true")
 				putDb2SaasAutoscaleOptionsModel.AutoScalingThreshold = core.Int64Ptr(int64(90))
 				putDb2SaasAutoscaleOptionsModel.AutoScalingOverTimePeriod = core.Float64Ptr(float64(5))
@@ -1909,8 +1909,8 @@ var _ = Describe(`Db2saasV1`, func() {
 					}
 					fmt.Fprintf(GinkgoWriter, "  Request body: %s", bodyBuf.String())
 
-					Expect(req.Header["X-Deployment-Id"]).ToNot(BeNil())
-					Expect(req.Header["X-Deployment-Id"][0]).To(Equal(fmt.Sprintf("%v", "testString")))
+					Expect(req.Header["X-Db-Profile"]).ToNot(BeNil())
+					Expect(req.Header["X-Db-Profile"][0]).To(Equal(fmt.Sprintf("%v", "testString")))
 					// Sleep a short time to support a timeout test
 					time.Sleep(100 * time.Millisecond)
 
@@ -1931,7 +1931,7 @@ var _ = Describe(`Db2saasV1`, func() {
 
 				// Construct an instance of the PutDb2SaasAutoscaleOptions model
 				putDb2SaasAutoscaleOptionsModel := new(db2saasv1.PutDb2SaasAutoscaleOptions)
-				putDb2SaasAutoscaleOptionsModel.XDeploymentID = core.StringPtr("testString")
+				putDb2SaasAutoscaleOptionsModel.XDbProfile = core.StringPtr("testString")
 				putDb2SaasAutoscaleOptionsModel.AutoScalingEnabled = core.StringPtr("true")
 				putDb2SaasAutoscaleOptionsModel.AutoScalingThreshold = core.Int64Ptr(int64(90))
 				putDb2SaasAutoscaleOptionsModel.AutoScalingOverTimePeriod = core.Float64Ptr(float64(5))
@@ -1989,8 +1989,8 @@ var _ = Describe(`Db2saasV1`, func() {
 					}
 					fmt.Fprintf(GinkgoWriter, "  Request body: %s", bodyBuf.String())
 
-					Expect(req.Header["X-Deployment-Id"]).ToNot(BeNil())
-					Expect(req.Header["X-Deployment-Id"][0]).To(Equal(fmt.Sprintf("%v", "testString")))
+					Expect(req.Header["X-Db-Profile"]).ToNot(BeNil())
+					Expect(req.Header["X-Db-Profile"][0]).To(Equal(fmt.Sprintf("%v", "testString")))
 					// Set mock response
 					res.Header().Set("Content-type", "application/json")
 					res.WriteHeader(200)
@@ -2013,7 +2013,7 @@ var _ = Describe(`Db2saasV1`, func() {
 
 				// Construct an instance of the PutDb2SaasAutoscaleOptions model
 				putDb2SaasAutoscaleOptionsModel := new(db2saasv1.PutDb2SaasAutoscaleOptions)
-				putDb2SaasAutoscaleOptionsModel.XDeploymentID = core.StringPtr("testString")
+				putDb2SaasAutoscaleOptionsModel.XDbProfile = core.StringPtr("testString")
 				putDb2SaasAutoscaleOptionsModel.AutoScalingEnabled = core.StringPtr("true")
 				putDb2SaasAutoscaleOptionsModel.AutoScalingThreshold = core.Int64Ptr(int64(90))
 				putDb2SaasAutoscaleOptionsModel.AutoScalingOverTimePeriod = core.Float64Ptr(float64(5))
@@ -2038,7 +2038,7 @@ var _ = Describe(`Db2saasV1`, func() {
 
 				// Construct an instance of the PutDb2SaasAutoscaleOptions model
 				putDb2SaasAutoscaleOptionsModel := new(db2saasv1.PutDb2SaasAutoscaleOptions)
-				putDb2SaasAutoscaleOptionsModel.XDeploymentID = core.StringPtr("testString")
+				putDb2SaasAutoscaleOptionsModel.XDbProfile = core.StringPtr("testString")
 				putDb2SaasAutoscaleOptionsModel.AutoScalingEnabled = core.StringPtr("true")
 				putDb2SaasAutoscaleOptionsModel.AutoScalingThreshold = core.Int64Ptr(int64(90))
 				putDb2SaasAutoscaleOptionsModel.AutoScalingOverTimePeriod = core.Float64Ptr(float64(5))
@@ -2084,7 +2084,7 @@ var _ = Describe(`Db2saasV1`, func() {
 
 				// Construct an instance of the PutDb2SaasAutoscaleOptions model
 				putDb2SaasAutoscaleOptionsModel := new(db2saasv1.PutDb2SaasAutoscaleOptions)
-				putDb2SaasAutoscaleOptionsModel.XDeploymentID = core.StringPtr("testString")
+				putDb2SaasAutoscaleOptionsModel.XDbProfile = core.StringPtr("testString")
 				putDb2SaasAutoscaleOptionsModel.AutoScalingEnabled = core.StringPtr("true")
 				putDb2SaasAutoscaleOptionsModel.AutoScalingThreshold = core.Int64Ptr(int64(90))
 				putDb2SaasAutoscaleOptionsModel.AutoScalingOverTimePeriod = core.Float64Ptr(float64(5))
@@ -2115,8 +2115,8 @@ var _ = Describe(`Db2saasV1`, func() {
 					// Verify the contents of the request
 					Expect(req.URL.EscapedPath()).To(Equal(getDb2SaasAutoscalePath))
 					Expect(req.Method).To(Equal("GET"))
-					Expect(req.Header["X-Deployment-Id"]).ToNot(BeNil())
-					Expect(req.Header["X-Deployment-Id"][0]).To(Equal(fmt.Sprintf("%v", "testString")))
+					Expect(req.Header["X-Db-Profile"]).ToNot(BeNil())
+					Expect(req.Header["X-Db-Profile"][0]).To(Equal(fmt.Sprintf("%v", "testString")))
 					res.Header().Set("Content-type", "application/json")
 					res.WriteHeader(200)
 					fmt.Fprint(res, `} this is not valid json {`)
@@ -2132,7 +2132,7 @@ var _ = Describe(`Db2saasV1`, func() {
 
 				// Construct an instance of the GetDb2SaasAutoscaleOptions model
 				getDb2SaasAutoscaleOptionsModel := new(db2saasv1.GetDb2SaasAutoscaleOptions)
-				getDb2SaasAutoscaleOptionsModel.XDeploymentID = core.StringPtr("testString")
+				getDb2SaasAutoscaleOptionsModel.XDbProfile = core.StringPtr("testString")
 				getDb2SaasAutoscaleOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Expect response parsing to fail since we are receiving a text/plain response
 				result, response, operationErr := db2saasService.GetDb2SaasAutoscale(getDb2SaasAutoscaleOptionsModel)
@@ -2163,8 +2163,8 @@ var _ = Describe(`Db2saasV1`, func() {
 					Expect(req.URL.EscapedPath()).To(Equal(getDb2SaasAutoscalePath))
 					Expect(req.Method).To(Equal("GET"))
 
-					Expect(req.Header["X-Deployment-Id"]).ToNot(BeNil())
-					Expect(req.Header["X-Deployment-Id"][0]).To(Equal(fmt.Sprintf("%v", "testString")))
+					Expect(req.Header["X-Db-Profile"]).ToNot(BeNil())
+					Expect(req.Header["X-Db-Profile"][0]).To(Equal(fmt.Sprintf("%v", "testString")))
 					// Sleep a short time to support a timeout test
 					time.Sleep(100 * time.Millisecond)
 
@@ -2185,7 +2185,7 @@ var _ = Describe(`Db2saasV1`, func() {
 
 				// Construct an instance of the GetDb2SaasAutoscaleOptions model
 				getDb2SaasAutoscaleOptionsModel := new(db2saasv1.GetDb2SaasAutoscaleOptions)
-				getDb2SaasAutoscaleOptionsModel.XDeploymentID = core.StringPtr("testString")
+				getDb2SaasAutoscaleOptionsModel.XDbProfile = core.StringPtr("testString")
 				getDb2SaasAutoscaleOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with a Context to test a timeout error
@@ -2222,8 +2222,8 @@ var _ = Describe(`Db2saasV1`, func() {
 					Expect(req.URL.EscapedPath()).To(Equal(getDb2SaasAutoscalePath))
 					Expect(req.Method).To(Equal("GET"))
 
-					Expect(req.Header["X-Deployment-Id"]).ToNot(BeNil())
-					Expect(req.Header["X-Deployment-Id"][0]).To(Equal(fmt.Sprintf("%v", "testString")))
+					Expect(req.Header["X-Db-Profile"]).ToNot(BeNil())
+					Expect(req.Header["X-Db-Profile"][0]).To(Equal(fmt.Sprintf("%v", "testString")))
 					// Set mock response
 					res.Header().Set("Content-type", "application/json")
 					res.WriteHeader(200)
@@ -2246,7 +2246,7 @@ var _ = Describe(`Db2saasV1`, func() {
 
 				// Construct an instance of the GetDb2SaasAutoscaleOptions model
 				getDb2SaasAutoscaleOptionsModel := new(db2saasv1.GetDb2SaasAutoscaleOptions)
-				getDb2SaasAutoscaleOptionsModel.XDeploymentID = core.StringPtr("testString")
+				getDb2SaasAutoscaleOptionsModel.XDbProfile = core.StringPtr("testString")
 				getDb2SaasAutoscaleOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation with valid options model (positive test)
@@ -2266,7 +2266,7 @@ var _ = Describe(`Db2saasV1`, func() {
 
 				// Construct an instance of the GetDb2SaasAutoscaleOptions model
 				getDb2SaasAutoscaleOptionsModel := new(db2saasv1.GetDb2SaasAutoscaleOptions)
-				getDb2SaasAutoscaleOptionsModel.XDeploymentID = core.StringPtr("testString")
+				getDb2SaasAutoscaleOptionsModel.XDbProfile = core.StringPtr("testString")
 				getDb2SaasAutoscaleOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				// Invoke operation with empty URL (negative test)
 				err := db2saasService.SetServiceURL("")
@@ -2307,7 +2307,7 @@ var _ = Describe(`Db2saasV1`, func() {
 
 				// Construct an instance of the GetDb2SaasAutoscaleOptions model
 				getDb2SaasAutoscaleOptionsModel := new(db2saasv1.GetDb2SaasAutoscaleOptions)
-				getDb2SaasAutoscaleOptionsModel.XDeploymentID = core.StringPtr("testString")
+				getDb2SaasAutoscaleOptionsModel.XDbProfile = core.StringPtr("testString")
 				getDb2SaasAutoscaleOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 
 				// Invoke operation
@@ -2351,12 +2351,12 @@ var _ = Describe(`Db2saasV1`, func() {
 			})
 			It(`Invoke NewGetDb2SaasAutoscaleOptions successfully`, func() {
 				// Construct an instance of the GetDb2SaasAutoscaleOptions model
-				xDeploymentID := "testString"
-				getDb2SaasAutoscaleOptionsModel := db2saasService.NewGetDb2SaasAutoscaleOptions(xDeploymentID)
-				getDb2SaasAutoscaleOptionsModel.SetXDeploymentID("testString")
+				xDbProfile := "testString"
+				getDb2SaasAutoscaleOptionsModel := db2saasService.NewGetDb2SaasAutoscaleOptions(xDbProfile)
+				getDb2SaasAutoscaleOptionsModel.SetXDbProfile("testString")
 				getDb2SaasAutoscaleOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(getDb2SaasAutoscaleOptionsModel).ToNot(BeNil())
-				Expect(getDb2SaasAutoscaleOptionsModel.XDeploymentID).To(Equal(core.StringPtr("testString")))
+				Expect(getDb2SaasAutoscaleOptionsModel.XDbProfile).To(Equal(core.StringPtr("testString")))
 				Expect(getDb2SaasAutoscaleOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			})
 			It(`Invoke NewGetDb2SaasConnectionInfoOptions successfully`, func() {
@@ -2477,9 +2477,9 @@ var _ = Describe(`Db2saasV1`, func() {
 			})
 			It(`Invoke NewPutDb2SaasAutoscaleOptions successfully`, func() {
 				// Construct an instance of the PutDb2SaasAutoscaleOptions model
-				xDeploymentID := "testString"
-				putDb2SaasAutoscaleOptionsModel := db2saasService.NewPutDb2SaasAutoscaleOptions(xDeploymentID)
-				putDb2SaasAutoscaleOptionsModel.SetXDeploymentID("testString")
+				xDbProfile := "testString"
+				putDb2SaasAutoscaleOptionsModel := db2saasService.NewPutDb2SaasAutoscaleOptions(xDbProfile)
+				putDb2SaasAutoscaleOptionsModel.SetXDbProfile("testString")
 				putDb2SaasAutoscaleOptionsModel.SetAutoScalingEnabled("true")
 				putDb2SaasAutoscaleOptionsModel.SetAutoScalingThreshold(int64(90))
 				putDb2SaasAutoscaleOptionsModel.SetAutoScalingOverTimePeriod(float64(5))
@@ -2487,7 +2487,7 @@ var _ = Describe(`Db2saasV1`, func() {
 				putDb2SaasAutoscaleOptionsModel.SetAutoScalingAllowPlanLimit("YES")
 				putDb2SaasAutoscaleOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				Expect(putDb2SaasAutoscaleOptionsModel).ToNot(BeNil())
-				Expect(putDb2SaasAutoscaleOptionsModel.XDeploymentID).To(Equal(core.StringPtr("testString")))
+				Expect(putDb2SaasAutoscaleOptionsModel.XDbProfile).To(Equal(core.StringPtr("testString")))
 				Expect(putDb2SaasAutoscaleOptionsModel.AutoScalingEnabled).To(Equal(core.StringPtr("true")))
 				Expect(putDb2SaasAutoscaleOptionsModel.AutoScalingThreshold).To(Equal(core.Int64Ptr(int64(90))))
 				Expect(putDb2SaasAutoscaleOptionsModel.AutoScalingOverTimePeriod).To(Equal(core.Float64Ptr(float64(5))))

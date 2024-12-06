@@ -733,8 +733,8 @@ func (db2saas *Db2saasV1) PutDb2SaasAutoscaleWithContext(ctx context.Context, pu
 	}
 	builder.AddHeader("Accept", "application/json")
 	builder.AddHeader("Content-Type", "application/json")
-	if putDb2SaasAutoscaleOptions.XDeploymentID != nil {
-		builder.AddHeader("x-deployment-id", fmt.Sprint(*putDb2SaasAutoscaleOptions.XDeploymentID))
+	if putDb2SaasAutoscaleOptions.XDbProfile != nil {
+		builder.AddHeader("x-db-profile", fmt.Sprint(*putDb2SaasAutoscaleOptions.XDbProfile))
 	}
 
 	body := make(map[string]interface{})
@@ -822,8 +822,8 @@ func (db2saas *Db2saasV1) GetDb2SaasAutoscaleWithContext(ctx context.Context, ge
 		builder.AddHeader(headerName, headerValue)
 	}
 	builder.AddHeader("Accept", "application/json")
-	if getDb2SaasAutoscaleOptions.XDeploymentID != nil {
-		builder.AddHeader("x-deployment-id", fmt.Sprint(*getDb2SaasAutoscaleOptions.XDeploymentID))
+	if getDb2SaasAutoscaleOptions.XDbProfile != nil {
+		builder.AddHeader("x-db-profile", fmt.Sprint(*getDb2SaasAutoscaleOptions.XDbProfile))
 	}
 
 	request, err := builder.Build()
@@ -934,22 +934,22 @@ func (options *DeleteDb2SaasUserOptions) SetHeaders(param map[string]string) *De
 // GetDb2SaasAutoscaleOptions : The GetDb2SaasAutoscale options.
 type GetDb2SaasAutoscaleOptions struct {
 	// CRN deployment id.
-	XDeploymentID *string `json:"x-deployment-id" validate:"required"`
+	XDbProfile *string `json:"x-db-profile" validate:"required"`
 
 	// Allows users to set headers on API requests.
 	Headers map[string]string
 }
 
 // NewGetDb2SaasAutoscaleOptions : Instantiate GetDb2SaasAutoscaleOptions
-func (*Db2saasV1) NewGetDb2SaasAutoscaleOptions(xDeploymentID string) *GetDb2SaasAutoscaleOptions {
+func (*Db2saasV1) NewGetDb2SaasAutoscaleOptions(xDbProfile string) *GetDb2SaasAutoscaleOptions {
 	return &GetDb2SaasAutoscaleOptions{
-		XDeploymentID: core.StringPtr(xDeploymentID),
+		XDbProfile: core.StringPtr(xDbProfile),
 	}
 }
 
-// SetXDeploymentID : Allow user to set XDeploymentID
-func (_options *GetDb2SaasAutoscaleOptions) SetXDeploymentID(xDeploymentID string) *GetDb2SaasAutoscaleOptions {
-	_options.XDeploymentID = core.StringPtr(xDeploymentID)
+// SetXDbProfile : Allow user to set XDbProfile
+func (_options *GetDb2SaasAutoscaleOptions) SetXDbProfile(xDbProfile string) *GetDb2SaasAutoscaleOptions {
+	_options.XDbProfile = core.StringPtr(xDbProfile)
 	return _options
 }
 
@@ -1292,7 +1292,7 @@ func (options *PostDb2SaasWhitelistOptions) SetHeaders(param map[string]string) 
 // PutDb2SaasAutoscaleOptions : The PutDb2SaasAutoscale options.
 type PutDb2SaasAutoscaleOptions struct {
 	// CRN deployment id.
-	XDeploymentID *string `json:"x-deployment-id" validate:"required"`
+	XDbProfile *string `json:"x-db-profile" validate:"required"`
 
 	// Indicates if automatic scaling is enabled or not.
 	AutoScalingEnabled *string `json:"auto_scaling_enabled,omitempty"`
@@ -1328,15 +1328,15 @@ const (
 )
 
 // NewPutDb2SaasAutoscaleOptions : Instantiate PutDb2SaasAutoscaleOptions
-func (*Db2saasV1) NewPutDb2SaasAutoscaleOptions(xDeploymentID string) *PutDb2SaasAutoscaleOptions {
+func (*Db2saasV1) NewPutDb2SaasAutoscaleOptions(xDbProfile string) *PutDb2SaasAutoscaleOptions {
 	return &PutDb2SaasAutoscaleOptions{
-		XDeploymentID: core.StringPtr(xDeploymentID),
+		XDbProfile: core.StringPtr(xDbProfile),
 	}
 }
 
-// SetXDeploymentID : Allow user to set XDeploymentID
-func (_options *PutDb2SaasAutoscaleOptions) SetXDeploymentID(xDeploymentID string) *PutDb2SaasAutoscaleOptions {
-	_options.XDeploymentID = core.StringPtr(xDeploymentID)
+// SetXDbProfile : Allow user to set XDbProfile
+func (_options *PutDb2SaasAutoscaleOptions) SetXDbProfile(xDbProfile string) *PutDb2SaasAutoscaleOptions {
+	_options.XDbProfile = core.StringPtr(xDbProfile)
 	return _options
 }
 
@@ -1488,15 +1488,19 @@ type SuccessConnectionInfoPrivate struct {
 
 	DatabaseName *string `json:"databaseName,omitempty"`
 
-	HostRos *string `json:"host_ros,omitempty"`
-
-	CertificateBase64 *string `json:"certificateBase64,omitempty"`
-
 	SslPort *string `json:"sslPort,omitempty"`
 
 	Ssl *bool `json:"ssl,omitempty"`
 
 	DatabaseVersion *string `json:"databaseVersion,omitempty"`
+
+	PrivateServiceName *string `json:"private_serviceName,omitempty"`
+
+	CloudServiceOffering *string `json:"cloud_service_offering,omitempty"`
+
+	VpeServiceCrn *string `json:"vpe_service_crn,omitempty"`
+
+	DbVpcEndpointService *string `json:"db_vpc_endpoint_service,omitempty"`
 }
 
 // UnmarshalSuccessConnectionInfoPrivate unmarshals an instance of SuccessConnectionInfoPrivate from the specified map of raw messages.
@@ -1510,16 +1514,6 @@ func UnmarshalSuccessConnectionInfoPrivate(m map[string]json.RawMessage, result 
 	err = core.UnmarshalPrimitive(m, "databaseName", &obj.DatabaseName)
 	if err != nil {
 		err = core.SDKErrorf(err, "", "databaseName-error", common.GetComponentInfo())
-		return
-	}
-	err = core.UnmarshalPrimitive(m, "host_ros", &obj.HostRos)
-	if err != nil {
-		err = core.SDKErrorf(err, "", "host_ros-error", common.GetComponentInfo())
-		return
-	}
-	err = core.UnmarshalPrimitive(m, "certificateBase64", &obj.CertificateBase64)
-	if err != nil {
-		err = core.SDKErrorf(err, "", "certificateBase64-error", common.GetComponentInfo())
 		return
 	}
 	err = core.UnmarshalPrimitive(m, "sslPort", &obj.SslPort)
@@ -1537,6 +1531,26 @@ func UnmarshalSuccessConnectionInfoPrivate(m map[string]json.RawMessage, result 
 		err = core.SDKErrorf(err, "", "databaseVersion-error", common.GetComponentInfo())
 		return
 	}
+	err = core.UnmarshalPrimitive(m, "private_serviceName", &obj.PrivateServiceName)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "private_serviceName-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "cloud_service_offering", &obj.CloudServiceOffering)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "cloud_service_offering-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "vpe_service_crn", &obj.VpeServiceCrn)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "vpe_service_crn-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "db_vpc_endpoint_service", &obj.DbVpcEndpointService)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "db_vpc_endpoint_service-error", common.GetComponentInfo())
+		return
+	}
 	reflect.ValueOf(result).Elem().Set(reflect.ValueOf(obj))
 	return
 }
@@ -1546,10 +1560,6 @@ type SuccessConnectionInfoPublic struct {
 	Hostname *string `json:"hostname,omitempty"`
 
 	DatabaseName *string `json:"databaseName,omitempty"`
-
-	HostRos *string `json:"host_ros,omitempty"`
-
-	CertificateBase64 *string `json:"certificateBase64,omitempty"`
 
 	SslPort *string `json:"sslPort,omitempty"`
 
@@ -1569,16 +1579,6 @@ func UnmarshalSuccessConnectionInfoPublic(m map[string]json.RawMessage, result i
 	err = core.UnmarshalPrimitive(m, "databaseName", &obj.DatabaseName)
 	if err != nil {
 		err = core.SDKErrorf(err, "", "databaseName-error", common.GetComponentInfo())
-		return
-	}
-	err = core.UnmarshalPrimitive(m, "host_ros", &obj.HostRos)
-	if err != nil {
-		err = core.SDKErrorf(err, "", "host_ros-error", common.GetComponentInfo())
-		return
-	}
-	err = core.UnmarshalPrimitive(m, "certificateBase64", &obj.CertificateBase64)
-	if err != nil {
-		err = core.SDKErrorf(err, "", "certificateBase64-error", common.GetComponentInfo())
 		return
 	}
 	err = core.UnmarshalPrimitive(m, "sslPort", &obj.SslPort)
