@@ -214,7 +214,7 @@ var _ = Describe(`Db2saasV1 Integration Tests`, func() {
 		})
 		It(`PutDb2SaasAutoscale(putDb2SaasAutoscaleOptions *PutDb2SaasAutoscaleOptions)`, func() {
 			putDb2SaasAutoscaleOptions := &db2saasv1.PutDb2SaasAutoscaleOptions{
-				XDeploymentID:         core.StringPtr("testString"),
+				XDbProfile:            core.StringPtr("testString"),
 				AutoScalingThreshold:  core.Int64Ptr(int64(90)),
 				AutoScalingPauseLimit: core.Int64Ptr(int64(70)),
 			}
@@ -232,7 +232,7 @@ var _ = Describe(`Db2saasV1 Integration Tests`, func() {
 		})
 		It(`GetDb2SaasAutoscale(getDb2SaasAutoscaleOptions *GetDb2SaasAutoscaleOptions)`, func() {
 			getDb2SaasAutoscaleOptions := &db2saasv1.GetDb2SaasAutoscaleOptions{
-				XDeploymentID: core.StringPtr("testString"),
+				XDbProfile: core.StringPtr("testString"),
 			}
 
 			successAutoScaling, response, err := db2saasService.GetDb2SaasAutoscale(getDb2SaasAutoscaleOptions)
