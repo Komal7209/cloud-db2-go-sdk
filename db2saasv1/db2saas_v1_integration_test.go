@@ -1,7 +1,7 @@
 //go:build integration
 
 /**
- * (C) Copyright IBM Corp. 2024.
+ * (C) Copyright IBM Corp. 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -214,7 +214,7 @@
 		 })
 		 It(`PutDb2SaasAutoscale(putDb2SaasAutoscaleOptions *PutDb2SaasAutoscaleOptions)`, func() {
 			 putDb2SaasAutoscaleOptions := &db2saasv1.PutDb2SaasAutoscaleOptions{
-				 XDbProfile: core.StringPtr("crn:v1:staging:public:dashdb-for-transactions:us-south:a/e7e3e87b512f474381c0684a5ecbba03:69db420f-33d5-4953-8bd8-1950abd356f6::"),
+				 XDbProfile: core.StringPtr("crn%3Av1%3Astaging%3Apublic%3Adashdb-for-transactions%3Aus-south%3Aa%2Fe7e3e87b512f474381c0684a5ecbba03%3A39269573-e43f-43e8-8b93-09f44c2ff875%3A%3A"),
 				 AutoScalingThreshold: core.Int64Ptr(int64(90)),
 				 AutoScalingPauseLimit: core.Int64Ptr(int64(70)),
 			 }
@@ -232,13 +232,86 @@
 		 })
 		 It(`GetDb2SaasAutoscale(getDb2SaasAutoscaleOptions *GetDb2SaasAutoscaleOptions)`, func() {
 			 getDb2SaasAutoscaleOptions := &db2saasv1.GetDb2SaasAutoscaleOptions{
-				 XDbProfile: core.StringPtr("crn:v1:staging:public:dashdb-for-transactions:us-south:a/e7e3e87b512f474381c0684a5ecbba03:69db420f-33d5-4953-8bd8-1950abd356f6::"),
+				 XDbProfile: core.StringPtr("crn%3Av1%3Astaging%3Apublic%3Adashdb-for-transactions%3Aus-south%3Aa%2Fe7e3e87b512f474381c0684a5ecbba03%3A39269573-e43f-43e8-8b93-09f44c2ff875%3A%3A"),
 			 }
  
 			 successAutoScaling, response, err := db2saasService.GetDb2SaasAutoscale(getDb2SaasAutoscaleOptions)
 			 Expect(err).To(BeNil())
 			 Expect(response.StatusCode).To(Equal(200))
 			 Expect(successAutoScaling).ToNot(BeNil())
+		 })
+	 })
+ 
+	 Describe(`PostDb2SaasDbConfiguration - Set database and database manager configuration`, func() {
+		 BeforeEach(func() {
+			 shouldSkipTest()
+		 })
+		 It(`PostDb2SaasDbConfiguration(postDb2SaasDbConfigurationOptions *PostDb2SaasDbConfigurationOptions)`, func() {
+			 createCustomSettingsRegistryModel := &db2saasv1.CreateCustomSettingsRegistry{
+				 DB2SELECTIVITY: core.StringPtr("ALL"),
+				 DB2ANTIJOIN: core.StringPtr("EXTEND"),
+			 }
+ 
+			 createCustomSettingsDbModel := &db2saasv1.CreateCustomSettingsDb{
+				 SORTHEAP: core.StringPtr("50000 AUTOMATIC"),
+			 }
+ 
+			 postDb2SaasDbConfigurationOptions := &db2saasv1.PostDb2SaasDbConfigurationOptions{
+				 XDeploymentID: core.StringPtr("crn:v1:staging:public:dashdb-for-transactions:us-south:a/e7e3e87b512f474381c0684a5ecbba03:69db420f-33d5-4953-8bd8-1950abd356f6::"),
+			 }
+ 
+			 successPostCustomSettings, response, err := db2saasService.PostDb2SaasDbConfiguration(postDb2SaasDbConfigurationOptions)
+			 Expect(err).To(BeNil())
+			 Expect(response.StatusCode).To(Equal(200))
+			 Expect(successPostCustomSettings).ToNot(BeNil())
+		 })
+	 })
+ 
+	 Describe(`GetDb2SaasTuneableParam - Retrieves the values of tunable parameters of the DB2 instance`, func() {
+		 BeforeEach(func() {
+			 shouldSkipTest()
+		 })
+		 It(`GetDb2SaasTuneableParam(getDb2SaasTuneableParamOptions *GetDb2SaasTuneableParamOptions)`, func() {
+			 getDb2SaasTuneableParamOptions := &db2saasv1.GetDb2SaasTuneableParamOptions{
+				 XDeploymentID: core.StringPtr("crn:v1:staging:public:dashdb-for-transactions:us-south:a/e7e3e87b512f474381c0684a5ecbba03:69db420f-33d5-4953-8bd8-1950abd356f6::"),
+			 }
+ 
+			 successTuneableParams, response, err := db2saasService.GetDb2SaasTuneableParam(getDb2SaasTuneableParamOptions)
+			 Expect(err).To(BeNil())
+			 Expect(response.StatusCode).To(Equal(200))
+			 Expect(successTuneableParams).ToNot(BeNil())
+		 })
+	 })
+ 
+	 Describe(`GetDb2SaasBackup - Get Db2 instance backup information`, func() {
+		 BeforeEach(func() {
+			 shouldSkipTest()
+		 })
+		 It(`GetDb2SaasBackup(getDb2SaasBackupOptions *GetDb2SaasBackupOptions)`, func() {
+			 getDb2SaasBackupOptions := &db2saasv1.GetDb2SaasBackupOptions{
+				 XDeploymentID: core.StringPtr("crn:v1:staging:public:dashdb-for-transactions:us-south:a/e7e3e87b512f474381c0684a5ecbba03:69db420f-33d5-4953-8bd8-1950abd356f6::"),
+			 }
+ 
+			 successGetBackups, response, err := db2saasService.GetDb2SaasBackup(getDb2SaasBackupOptions)
+			 Expect(err).To(BeNil())
+			 Expect(response.StatusCode).To(Equal(200))
+			 Expect(successGetBackups).ToNot(BeNil())
+		 })
+	 })
+ 
+	 Describe(`PostDb2SaasBackup - Create backup of an instance`, func() {
+		 BeforeEach(func() {
+			 shouldSkipTest()
+		 })
+		 It(`PostDb2SaasBackup(postDb2SaasBackupOptions *PostDb2SaasBackupOptions)`, func() {
+			 postDb2SaasBackupOptions := &db2saasv1.PostDb2SaasBackupOptions{
+				 XDeploymentID: core.StringPtr("crn:v1:staging:public:dashdb-for-transactions:us-south:a/e7e3e87b512f474381c0684a5ecbba03:69db420f-33d5-4953-8bd8-1950abd356f6::"),
+			 }
+ 
+			 successGetBackup, response, err := db2saasService.PostDb2SaasBackup(postDb2SaasBackupOptions)
+			 Expect(err).To(BeNil())
+			 Expect(response.StatusCode).To(Equal(200))
+			 Expect(successGetBackup).ToNot(BeNil())
 		 })
 	 })
  

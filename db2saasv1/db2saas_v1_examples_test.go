@@ -1,7 +1,7 @@
 //go:build examples
 
 /**
- * (C) Copyright IBM Corp. 2024.
+ * (C) Copyright IBM Corp. 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -254,7 +254,7 @@
 			 // begin-put_db2_saas_autoscale
  
 			 putDb2SaasAutoscaleOptions := db2saasService.NewPutDb2SaasAutoscaleOptions(
-				 "crn:v1:staging:public:dashdb-for-transactions:us-south:a/e7e3e87b512f474381c0684a5ecbba03:69db420f-33d5-4953-8bd8-1950abd356f6::",
+				 "crn%3Av1%3Astaging%3Apublic%3Adashdb-for-transactions%3Aus-south%3Aa%2Fe7e3e87b512f474381c0684a5ecbba03%3A39269573-e43f-43e8-8b93-09f44c2ff875%3A%3A",
 			 )
  
 			 successUpdateAutoScale, response, err := db2saasService.PutDb2SaasAutoscale(putDb2SaasAutoscaleOptions)
@@ -275,7 +275,7 @@
 			 // begin-get_db2_saas_autoscale
  
 			 getDb2SaasAutoscaleOptions := db2saasService.NewGetDb2SaasAutoscaleOptions(
-				 "crn:v1:staging:public:dashdb-for-transactions:us-south:a/e7e3e87b512f474381c0684a5ecbba03:69db420f-33d5-4953-8bd8-1950abd356f6::",
+				 "crn%3Av1%3Astaging%3Apublic%3Adashdb-for-transactions%3Aus-south%3Aa%2Fe7e3e87b512f474381c0684a5ecbba03%3A39269573-e43f-43e8-8b93-09f44c2ff875%3A%3A",
 			 )
  
 			 successAutoScaling, response, err := db2saasService.GetDb2SaasAutoscale(getDb2SaasAutoscaleOptions)
@@ -290,6 +290,90 @@
 			 Expect(err).To(BeNil())
 			 Expect(response.StatusCode).To(Equal(200))
 			 Expect(successAutoScaling).ToNot(BeNil())
+		 })
+		 It(`PostDb2SaasDbConfiguration request example`, func() {
+			 fmt.Println("\nPostDb2SaasDbConfiguration() result:")
+			 // begin-post_db2_saas_db_configuration
+ 
+			 postDb2SaasDbConfigurationOptions := db2saasService.NewPostDb2SaasDbConfigurationOptions(
+				 "crn:v1:staging:public:dashdb-for-transactions:us-south:a/e7e3e87b512f474381c0684a5ecbba03:69db420f-33d5-4953-8bd8-1950abd356f6::",
+			 )
+ 
+			 successPostCustomSettings, response, err := db2saasService.PostDb2SaasDbConfiguration(postDb2SaasDbConfigurationOptions)
+			 if err != nil {
+				 panic(err)
+			 }
+			 b, _ := json.MarshalIndent(successPostCustomSettings, "", "  ")
+			 fmt.Println(string(b))
+ 
+			 // end-post_db2_saas_db_configuration
+ 
+			 Expect(err).To(BeNil())
+			 Expect(response.StatusCode).To(Equal(200))
+			 Expect(successPostCustomSettings).ToNot(BeNil())
+		 })
+		 It(`GetDb2SaasTuneableParam request example`, func() {
+			 fmt.Println("\nGetDb2SaasTuneableParam() result:")
+			 // begin-get_db2_saas_tuneable_param
+ 
+			 getDb2SaasTuneableParamOptions := db2saasService.NewGetDb2SaasTuneableParamOptions(
+				 "crn:v1:staging:public:dashdb-for-transactions:us-south:a/e7e3e87b512f474381c0684a5ecbba03:69db420f-33d5-4953-8bd8-1950abd356f6::",
+			 )
+ 
+			 successTuneableParams, response, err := db2saasService.GetDb2SaasTuneableParam(getDb2SaasTuneableParamOptions)
+			 if err != nil {
+				 panic(err)
+			 }
+			 b, _ := json.MarshalIndent(successTuneableParams, "", "  ")
+			 fmt.Println(string(b))
+ 
+			 // end-get_db2_saas_tuneable_param
+ 
+			 Expect(err).To(BeNil())
+			 Expect(response.StatusCode).To(Equal(200))
+			 Expect(successTuneableParams).ToNot(BeNil())
+		 })
+		 It(`GetDb2SaasBackup request example`, func() {
+			 fmt.Println("\nGetDb2SaasBackup() result:")
+			 // begin-get_db2_saas_backup
+ 
+			 getDb2SaasBackupOptions := db2saasService.NewGetDb2SaasBackupOptions(
+				 "crn:v1:staging:public:dashdb-for-transactions:us-south:a/e7e3e87b512f474381c0684a5ecbba03:69db420f-33d5-4953-8bd8-1950abd356f6::",
+			 )
+ 
+			 successGetBackups, response, err := db2saasService.GetDb2SaasBackup(getDb2SaasBackupOptions)
+			 if err != nil {
+				 panic(err)
+			 }
+			 b, _ := json.MarshalIndent(successGetBackups, "", "  ")
+			 fmt.Println(string(b))
+ 
+			 // end-get_db2_saas_backup
+ 
+			 Expect(err).To(BeNil())
+			 Expect(response.StatusCode).To(Equal(200))
+			 Expect(successGetBackups).ToNot(BeNil())
+		 })
+		 It(`PostDb2SaasBackup request example`, func() {
+			 fmt.Println("\nPostDb2SaasBackup() result:")
+			 // begin-post_db2_saas_backup
+ 
+			 postDb2SaasBackupOptions := db2saasService.NewPostDb2SaasBackupOptions(
+				 "crn:v1:staging:public:dashdb-for-transactions:us-south:a/e7e3e87b512f474381c0684a5ecbba03:69db420f-33d5-4953-8bd8-1950abd356f6::",
+			 )
+ 
+			 successGetBackup, response, err := db2saasService.PostDb2SaasBackup(postDb2SaasBackupOptions)
+			 if err != nil {
+				 panic(err)
+			 }
+			 b, _ := json.MarshalIndent(successGetBackup, "", "  ")
+			 fmt.Println(string(b))
+ 
+			 // end-post_db2_saas_backup
+ 
+			 Expect(err).To(BeNil())
+			 Expect(response.StatusCode).To(Equal(200))
+			 Expect(successGetBackup).ToNot(BeNil())
 		 })
 		 It(`DeleteDb2SaasUser request example`, func() {
 			 fmt.Println("\nDeleteDb2SaasUser() result:")

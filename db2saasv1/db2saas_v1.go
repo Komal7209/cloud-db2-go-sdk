@@ -1,5 +1,5 @@
 /**
- * (C) Copyright IBM Corp. 2024.
+ * (C) Copyright IBM Corp. 2025.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -850,8 +850,409 @@ func (db2saas *Db2saasV1) GetDb2SaasAutoscaleWithContext(ctx context.Context, ge
 
 	return
 }
+
+// PostDb2SaasDbConfiguration : Set database and database manager configuration
+func (db2saas *Db2saasV1) PostDb2SaasDbConfiguration(postDb2SaasDbConfigurationOptions *PostDb2SaasDbConfigurationOptions) (result *SuccessPostCustomSettings, response *core.DetailedResponse, err error) {
+	result, response, err = db2saas.PostDb2SaasDbConfigurationWithContext(context.Background(), postDb2SaasDbConfigurationOptions)
+	err = core.RepurposeSDKProblem(err, "")
+	return
+}
+
+// PostDb2SaasDbConfigurationWithContext is an alternate form of the PostDb2SaasDbConfiguration method which supports a Context parameter
+func (db2saas *Db2saasV1) PostDb2SaasDbConfigurationWithContext(ctx context.Context, postDb2SaasDbConfigurationOptions *PostDb2SaasDbConfigurationOptions) (result *SuccessPostCustomSettings, response *core.DetailedResponse, err error) {
+	err = core.ValidateNotNil(postDb2SaasDbConfigurationOptions, "postDb2SaasDbConfigurationOptions cannot be nil")
+	if err != nil {
+		err = core.SDKErrorf(err, "", "unexpected-nil-param", common.GetComponentInfo())
+		return
+	}
+	err = core.ValidateStruct(postDb2SaasDbConfigurationOptions, "postDb2SaasDbConfigurationOptions")
+	if err != nil {
+		err = core.SDKErrorf(err, "", "struct-validation-error", common.GetComponentInfo())
+		return
+	}
+
+	builder := core.NewRequestBuilder(core.POST)
+	builder = builder.WithContext(ctx)
+	builder.EnableGzipCompression = db2saas.GetEnableGzipCompression()
+	_, err = builder.ResolveRequestURL(db2saas.Service.Options.URL, `/manage/deployments/custom_setting`, nil)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "url-resolve-error", common.GetComponentInfo())
+		return
+	}
+
+	for headerName, headerValue := range postDb2SaasDbConfigurationOptions.Headers {
+		builder.AddHeader(headerName, headerValue)
+	}
+
+	sdkHeaders := common.GetSdkHeaders("db2saas", "V1", "PostDb2SaasDbConfiguration")
+	for headerName, headerValue := range sdkHeaders {
+		builder.AddHeader(headerName, headerValue)
+	}
+	builder.AddHeader("Accept", "application/json")
+	builder.AddHeader("Content-Type", "application/json")
+	if postDb2SaasDbConfigurationOptions.XDeploymentID != nil {
+		builder.AddHeader("x-deployment-id", fmt.Sprint(*postDb2SaasDbConfigurationOptions.XDeploymentID))
+	}
+
+	body := make(map[string]interface{})
+	if postDb2SaasDbConfigurationOptions.Registry != nil {
+		body["registry"] = postDb2SaasDbConfigurationOptions.Registry
+	}
+	if postDb2SaasDbConfigurationOptions.Db != nil {
+		body["db"] = postDb2SaasDbConfigurationOptions.Db
+	}
+	_, err = builder.SetBodyContentJSON(body)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "set-json-body-error", common.GetComponentInfo())
+		return
+	}
+
+	request, err := builder.Build()
+	if err != nil {
+		err = core.SDKErrorf(err, "", "build-error", common.GetComponentInfo())
+		return
+	}
+
+	var rawResponse map[string]json.RawMessage
+	response, err = db2saas.Service.Request(request, &rawResponse)
+	if err != nil {
+		core.EnrichHTTPProblem(err, "post_db2_saas_db_configuration", getServiceComponentInfo())
+		err = core.SDKErrorf(err, "", "http-request-err", common.GetComponentInfo())
+		return
+	}
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalSuccessPostCustomSettings)
+		if err != nil {
+			err = core.SDKErrorf(err, "", "unmarshal-resp-error", common.GetComponentInfo())
+			return
+		}
+		response.Result = result
+	}
+
+	return
+}
+
+// GetDb2SaasTuneableParam : Retrieves the values of tunable parameters of the DB2 instance
+func (db2saas *Db2saasV1) GetDb2SaasTuneableParam(getDb2SaasTuneableParamOptions *GetDb2SaasTuneableParamOptions) (result *SuccessTuneableParams, response *core.DetailedResponse, err error) {
+	result, response, err = db2saas.GetDb2SaasTuneableParamWithContext(context.Background(), getDb2SaasTuneableParamOptions)
+	err = core.RepurposeSDKProblem(err, "")
+	return
+}
+
+// GetDb2SaasTuneableParamWithContext is an alternate form of the GetDb2SaasTuneableParam method which supports a Context parameter
+func (db2saas *Db2saasV1) GetDb2SaasTuneableParamWithContext(ctx context.Context, getDb2SaasTuneableParamOptions *GetDb2SaasTuneableParamOptions) (result *SuccessTuneableParams, response *core.DetailedResponse, err error) {
+	err = core.ValidateNotNil(getDb2SaasTuneableParamOptions, "getDb2SaasTuneableParamOptions cannot be nil")
+	if err != nil {
+		err = core.SDKErrorf(err, "", "unexpected-nil-param", common.GetComponentInfo())
+		return
+	}
+	err = core.ValidateStruct(getDb2SaasTuneableParamOptions, "getDb2SaasTuneableParamOptions")
+	if err != nil {
+		err = core.SDKErrorf(err, "", "struct-validation-error", common.GetComponentInfo())
+		return
+	}
+
+	builder := core.NewRequestBuilder(core.GET)
+	builder = builder.WithContext(ctx)
+	builder.EnableGzipCompression = db2saas.GetEnableGzipCompression()
+	_, err = builder.ResolveRequestURL(db2saas.Service.Options.URL, `/manage/tuneable_param`, nil)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "url-resolve-error", common.GetComponentInfo())
+		return
+	}
+
+	for headerName, headerValue := range getDb2SaasTuneableParamOptions.Headers {
+		builder.AddHeader(headerName, headerValue)
+	}
+
+	sdkHeaders := common.GetSdkHeaders("db2saas", "V1", "GetDb2SaasTuneableParam")
+	for headerName, headerValue := range sdkHeaders {
+		builder.AddHeader(headerName, headerValue)
+	}
+	builder.AddHeader("Accept", "application/json")
+	if getDb2SaasTuneableParamOptions.XDeploymentID != nil {
+		builder.AddHeader("x-deployment-id", fmt.Sprint(*getDb2SaasTuneableParamOptions.XDeploymentID))
+	}
+
+	request, err := builder.Build()
+	if err != nil {
+		err = core.SDKErrorf(err, "", "build-error", common.GetComponentInfo())
+		return
+	}
+
+	var rawResponse map[string]json.RawMessage
+	response, err = db2saas.Service.Request(request, &rawResponse)
+	if err != nil {
+		core.EnrichHTTPProblem(err, "get_db2_saas_tuneable_param", getServiceComponentInfo())
+		err = core.SDKErrorf(err, "", "http-request-err", common.GetComponentInfo())
+		return
+	}
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalSuccessTuneableParams)
+		if err != nil {
+			err = core.SDKErrorf(err, "", "unmarshal-resp-error", common.GetComponentInfo())
+			return
+		}
+		response.Result = result
+	}
+
+	return
+}
+
+// GetDb2SaasBackup : Get Db2 instance backup information
+func (db2saas *Db2saasV1) GetDb2SaasBackup(getDb2SaasBackupOptions *GetDb2SaasBackupOptions) (result *SuccessGetBackups, response *core.DetailedResponse, err error) {
+	result, response, err = db2saas.GetDb2SaasBackupWithContext(context.Background(), getDb2SaasBackupOptions)
+	err = core.RepurposeSDKProblem(err, "")
+	return
+}
+
+// GetDb2SaasBackupWithContext is an alternate form of the GetDb2SaasBackup method which supports a Context parameter
+func (db2saas *Db2saasV1) GetDb2SaasBackupWithContext(ctx context.Context, getDb2SaasBackupOptions *GetDb2SaasBackupOptions) (result *SuccessGetBackups, response *core.DetailedResponse, err error) {
+	err = core.ValidateNotNil(getDb2SaasBackupOptions, "getDb2SaasBackupOptions cannot be nil")
+	if err != nil {
+		err = core.SDKErrorf(err, "", "unexpected-nil-param", common.GetComponentInfo())
+		return
+	}
+	err = core.ValidateStruct(getDb2SaasBackupOptions, "getDb2SaasBackupOptions")
+	if err != nil {
+		err = core.SDKErrorf(err, "", "struct-validation-error", common.GetComponentInfo())
+		return
+	}
+
+	builder := core.NewRequestBuilder(core.GET)
+	builder = builder.WithContext(ctx)
+	builder.EnableGzipCompression = db2saas.GetEnableGzipCompression()
+	_, err = builder.ResolveRequestURL(db2saas.Service.Options.URL, `/manage/backups`, nil)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "url-resolve-error", common.GetComponentInfo())
+		return
+	}
+
+	for headerName, headerValue := range getDb2SaasBackupOptions.Headers {
+		builder.AddHeader(headerName, headerValue)
+	}
+
+	sdkHeaders := common.GetSdkHeaders("db2saas", "V1", "GetDb2SaasBackup")
+	for headerName, headerValue := range sdkHeaders {
+		builder.AddHeader(headerName, headerValue)
+	}
+	builder.AddHeader("Accept", "application/json")
+	if getDb2SaasBackupOptions.XDeploymentID != nil {
+		builder.AddHeader("x-deployment-id", fmt.Sprint(*getDb2SaasBackupOptions.XDeploymentID))
+	}
+
+	request, err := builder.Build()
+	if err != nil {
+		err = core.SDKErrorf(err, "", "build-error", common.GetComponentInfo())
+		return
+	}
+
+	var rawResponse map[string]json.RawMessage
+	response, err = db2saas.Service.Request(request, &rawResponse)
+	if err != nil {
+		core.EnrichHTTPProblem(err, "get_db2_saas_backup", getServiceComponentInfo())
+		err = core.SDKErrorf(err, "", "http-request-err", common.GetComponentInfo())
+		return
+	}
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalSuccessGetBackups)
+		if err != nil {
+			err = core.SDKErrorf(err, "", "unmarshal-resp-error", common.GetComponentInfo())
+			return
+		}
+		response.Result = result
+	}
+
+	return
+}
+
+// PostDb2SaasBackup : Create backup of an instance
+func (db2saas *Db2saasV1) PostDb2SaasBackup(postDb2SaasBackupOptions *PostDb2SaasBackupOptions) (result *SuccessGetBackup, response *core.DetailedResponse, err error) {
+	result, response, err = db2saas.PostDb2SaasBackupWithContext(context.Background(), postDb2SaasBackupOptions)
+	err = core.RepurposeSDKProblem(err, "")
+	return
+}
+
+// PostDb2SaasBackupWithContext is an alternate form of the PostDb2SaasBackup method which supports a Context parameter
+func (db2saas *Db2saasV1) PostDb2SaasBackupWithContext(ctx context.Context, postDb2SaasBackupOptions *PostDb2SaasBackupOptions) (result *SuccessGetBackup, response *core.DetailedResponse, err error) {
+	err = core.ValidateNotNil(postDb2SaasBackupOptions, "postDb2SaasBackupOptions cannot be nil")
+	if err != nil {
+		err = core.SDKErrorf(err, "", "unexpected-nil-param", common.GetComponentInfo())
+		return
+	}
+	err = core.ValidateStruct(postDb2SaasBackupOptions, "postDb2SaasBackupOptions")
+	if err != nil {
+		err = core.SDKErrorf(err, "", "struct-validation-error", common.GetComponentInfo())
+		return
+	}
+
+	builder := core.NewRequestBuilder(core.POST)
+	builder = builder.WithContext(ctx)
+	builder.EnableGzipCompression = db2saas.GetEnableGzipCompression()
+	_, err = builder.ResolveRequestURL(db2saas.Service.Options.URL, `/manage/backups/backup`, nil)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "url-resolve-error", common.GetComponentInfo())
+		return
+	}
+
+	for headerName, headerValue := range postDb2SaasBackupOptions.Headers {
+		builder.AddHeader(headerName, headerValue)
+	}
+
+	sdkHeaders := common.GetSdkHeaders("db2saas", "V1", "PostDb2SaasBackup")
+	for headerName, headerValue := range sdkHeaders {
+		builder.AddHeader(headerName, headerValue)
+	}
+	builder.AddHeader("Accept", "application/json")
+	if postDb2SaasBackupOptions.XDeploymentID != nil {
+		builder.AddHeader("x-deployment-id", fmt.Sprint(*postDb2SaasBackupOptions.XDeploymentID))
+	}
+
+	request, err := builder.Build()
+	if err != nil {
+		err = core.SDKErrorf(err, "", "build-error", common.GetComponentInfo())
+		return
+	}
+
+	var rawResponse map[string]json.RawMessage
+	response, err = db2saas.Service.Request(request, &rawResponse)
+	if err != nil {
+		core.EnrichHTTPProblem(err, "post_db2_saas_backup", getServiceComponentInfo())
+		err = core.SDKErrorf(err, "", "http-request-err", common.GetComponentInfo())
+		return
+	}
+	if rawResponse != nil {
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalSuccessGetBackup)
+		if err != nil {
+			err = core.SDKErrorf(err, "", "unmarshal-resp-error", common.GetComponentInfo())
+			return
+		}
+		response.Result = result
+	}
+
+	return
+}
 func getServiceComponentInfo() *core.ProblemComponent {
 	return core.NewProblemComponent(DefaultServiceName, "1.0.0")
+}
+
+// Backup : Info of backup.
+type Backup struct {
+	// CRN of the db2 instance.
+	ID *string `json:"id" validate:"required"`
+
+	// Defines the type of execution of backup.
+	Type *string `json:"type" validate:"required"`
+
+	// Status of the backup.
+	Status *string `json:"status" validate:"required"`
+
+	// Timestamp of the backup created.
+	CreatedAt *string `json:"created_at" validate:"required"`
+
+	// Size of the backup or data set.
+	Size *int64 `json:"size" validate:"required"`
+
+	// The duration of the backup operation in seconds.
+	Duration *int64 `json:"duration" validate:"required"`
+}
+
+// UnmarshalBackup unmarshals an instance of Backup from the specified map of raw messages.
+func UnmarshalBackup(m map[string]json.RawMessage, result interface{}) (err error) {
+	obj := new(Backup)
+	err = core.UnmarshalPrimitive(m, "id", &obj.ID)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "id-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "type", &obj.Type)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "type-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "status", &obj.Status)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "status-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "created_at", &obj.CreatedAt)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "created_at-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "size", &obj.Size)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "size-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "duration", &obj.Duration)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "duration-error", common.GetComponentInfo())
+		return
+	}
+	reflect.ValueOf(result).Elem().Set(reflect.ValueOf(obj))
+	return
+}
+
+// CreateCustomSettingsDb : Container for general database settings.
+type CreateCustomSettingsDb struct {
+	// Defines the amount of memory (in kb) that DB2 can use for sorting operations during query execution. It has in
+	// format AUTOMATIC, range(16, 4294967295).
+	SORTHEAP *string `json:"SORTHEAP,omitempty"`
+}
+
+// UnmarshalCreateCustomSettingsDb unmarshals an instance of CreateCustomSettingsDb from the specified map of raw messages.
+func UnmarshalCreateCustomSettingsDb(m map[string]json.RawMessage, result interface{}) (err error) {
+	obj := new(CreateCustomSettingsDb)
+	err = core.UnmarshalPrimitive(m, "SORTHEAP", &obj.SORTHEAP)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "SORTHEAP-error", common.GetComponentInfo())
+		return
+	}
+	reflect.ValueOf(result).Elem().Set(reflect.ValueOf(obj))
+	return
+}
+
+// CreateCustomSettingsRegistry : registry for db2 related configuration settings/configurations.
+type CreateCustomSettingsRegistry struct {
+	// Determines the selectivity of a query.
+	DB2SELECTIVITY *string `json:"DB2_SELECTIVITY,omitempty"`
+
+	// Configures how DB2 handles anti-joins.
+	DB2ANTIJOIN *string `json:"DB2_ANTIJOIN,omitempty"`
+}
+
+// Constants associated with the CreateCustomSettingsRegistry.DB2SELECTIVITY property.
+// Determines the selectivity of a query.
+const (
+	CreateCustomSettingsRegistry_DB2SELECTIVITY_All = "ALL"
+	CreateCustomSettingsRegistry_DB2SELECTIVITY_No = "NO"
+	CreateCustomSettingsRegistry_DB2SELECTIVITY_Yes = "YES"
+)
+
+// Constants associated with the CreateCustomSettingsRegistry.DB2ANTIJOIN property.
+// Configures how DB2 handles anti-joins.
+const (
+	CreateCustomSettingsRegistry_DB2ANTIJOIN_Extend = "EXTEND"
+	CreateCustomSettingsRegistry_DB2ANTIJOIN_No = "NO"
+	CreateCustomSettingsRegistry_DB2ANTIJOIN_Yes = "YES"
+)
+
+// UnmarshalCreateCustomSettingsRegistry unmarshals an instance of CreateCustomSettingsRegistry from the specified map of raw messages.
+func UnmarshalCreateCustomSettingsRegistry(m map[string]json.RawMessage, result interface{}) (err error) {
+	obj := new(CreateCustomSettingsRegistry)
+	err = core.UnmarshalPrimitive(m, "DB2_SELECTIVITY", &obj.DB2SELECTIVITY)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DB2_SELECTIVITY-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DB2_ANTIJOIN", &obj.DB2ANTIJOIN)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DB2_ANTIJOIN-error", common.GetComponentInfo())
+		return
+	}
+	reflect.ValueOf(result).Elem().Set(reflect.ValueOf(obj))
+	return
 }
 
 // CreateUserAuthentication : CreateUserAuthentication struct
@@ -961,7 +1362,7 @@ func (options *GetDb2SaasAllowlistOptions) SetHeaders(param map[string]string) *
 
 // GetDb2SaasAutoscaleOptions : The GetDb2SaasAutoscale options.
 type GetDb2SaasAutoscaleOptions struct {
-	// CRN deployment id.
+	// Encoded CRN deployment id.
 	XDbProfile *string `json:"x-db-profile" validate:"required"`
 
 	// Allows users to set headers on API requests.
@@ -983,6 +1384,34 @@ func (_options *GetDb2SaasAutoscaleOptions) SetXDbProfile(xDbProfile string) *Ge
 
 // SetHeaders : Allow user to set Headers
 func (options *GetDb2SaasAutoscaleOptions) SetHeaders(param map[string]string) *GetDb2SaasAutoscaleOptions {
+	options.Headers = param
+	return options
+}
+
+// GetDb2SaasBackupOptions : The GetDb2SaasBackup options.
+type GetDb2SaasBackupOptions struct {
+	// CRN deployment id.
+	XDeploymentID *string `json:"x-deployment-id" validate:"required"`
+
+	// Allows users to set headers on API requests.
+	Headers map[string]string
+}
+
+// NewGetDb2SaasBackupOptions : Instantiate GetDb2SaasBackupOptions
+func (*Db2saasV1) NewGetDb2SaasBackupOptions(xDeploymentID string) *GetDb2SaasBackupOptions {
+	return &GetDb2SaasBackupOptions{
+		XDeploymentID: core.StringPtr(xDeploymentID),
+	}
+}
+
+// SetXDeploymentID : Allow user to set XDeploymentID
+func (_options *GetDb2SaasBackupOptions) SetXDeploymentID(xDeploymentID string) *GetDb2SaasBackupOptions {
+	_options.XDeploymentID = core.StringPtr(xDeploymentID)
+	return _options
+}
+
+// SetHeaders : Allow user to set Headers
+func (options *GetDb2SaasBackupOptions) SetHeaders(param map[string]string) *GetDb2SaasBackupOptions {
 	options.Headers = param
 	return options
 }
@@ -1021,6 +1450,34 @@ func (_options *GetDb2SaasConnectionInfoOptions) SetXDeploymentID(xDeploymentID 
 
 // SetHeaders : Allow user to set Headers
 func (options *GetDb2SaasConnectionInfoOptions) SetHeaders(param map[string]string) *GetDb2SaasConnectionInfoOptions {
+	options.Headers = param
+	return options
+}
+
+// GetDb2SaasTuneableParamOptions : The GetDb2SaasTuneableParam options.
+type GetDb2SaasTuneableParamOptions struct {
+	// CRN deployment id.
+	XDeploymentID *string `json:"x-deployment-id" validate:"required"`
+
+	// Allows users to set headers on API requests.
+	Headers map[string]string
+}
+
+// NewGetDb2SaasTuneableParamOptions : Instantiate GetDb2SaasTuneableParamOptions
+func (*Db2saasV1) NewGetDb2SaasTuneableParamOptions(xDeploymentID string) *GetDb2SaasTuneableParamOptions {
+	return &GetDb2SaasTuneableParamOptions{
+		XDeploymentID: core.StringPtr(xDeploymentID),
+	}
+}
+
+// SetXDeploymentID : Allow user to set XDeploymentID
+func (_options *GetDb2SaasTuneableParamOptions) SetXDeploymentID(xDeploymentID string) *GetDb2SaasTuneableParamOptions {
+	_options.XDeploymentID = core.StringPtr(xDeploymentID)
+	return _options
+}
+
+// SetHeaders : Allow user to set Headers
+func (options *GetDb2SaasTuneableParamOptions) SetHeaders(param map[string]string) *GetDb2SaasTuneableParamOptions {
 	options.Headers = param
 	return options
 }
@@ -1158,6 +1615,80 @@ func (options *PostDb2SaasAllowlistOptions) SetHeaders(param map[string]string) 
 	return options
 }
 
+// PostDb2SaasBackupOptions : The PostDb2SaasBackup options.
+type PostDb2SaasBackupOptions struct {
+	// CRN deployment id.
+	XDeploymentID *string `json:"x-deployment-id" validate:"required"`
+
+	// Allows users to set headers on API requests.
+	Headers map[string]string
+}
+
+// NewPostDb2SaasBackupOptions : Instantiate PostDb2SaasBackupOptions
+func (*Db2saasV1) NewPostDb2SaasBackupOptions(xDeploymentID string) *PostDb2SaasBackupOptions {
+	return &PostDb2SaasBackupOptions{
+		XDeploymentID: core.StringPtr(xDeploymentID),
+	}
+}
+
+// SetXDeploymentID : Allow user to set XDeploymentID
+func (_options *PostDb2SaasBackupOptions) SetXDeploymentID(xDeploymentID string) *PostDb2SaasBackupOptions {
+	_options.XDeploymentID = core.StringPtr(xDeploymentID)
+	return _options
+}
+
+// SetHeaders : Allow user to set Headers
+func (options *PostDb2SaasBackupOptions) SetHeaders(param map[string]string) *PostDb2SaasBackupOptions {
+	options.Headers = param
+	return options
+}
+
+// PostDb2SaasDbConfigurationOptions : The PostDb2SaasDbConfiguration options.
+type PostDb2SaasDbConfigurationOptions struct {
+	// CRN deployment id.
+	XDeploymentID *string `json:"x-deployment-id" validate:"required"`
+
+	// registry for db2 related configuration settings/configurations.
+	Registry *CreateCustomSettingsRegistry `json:"registry,omitempty"`
+
+	// Container for general database settings.
+	Db *CreateCustomSettingsDb `json:"db,omitempty"`
+
+	// Allows users to set headers on API requests.
+	Headers map[string]string
+}
+
+// NewPostDb2SaasDbConfigurationOptions : Instantiate PostDb2SaasDbConfigurationOptions
+func (*Db2saasV1) NewPostDb2SaasDbConfigurationOptions(xDeploymentID string) *PostDb2SaasDbConfigurationOptions {
+	return &PostDb2SaasDbConfigurationOptions{
+		XDeploymentID: core.StringPtr(xDeploymentID),
+	}
+}
+
+// SetXDeploymentID : Allow user to set XDeploymentID
+func (_options *PostDb2SaasDbConfigurationOptions) SetXDeploymentID(xDeploymentID string) *PostDb2SaasDbConfigurationOptions {
+	_options.XDeploymentID = core.StringPtr(xDeploymentID)
+	return _options
+}
+
+// SetRegistry : Allow user to set Registry
+func (_options *PostDb2SaasDbConfigurationOptions) SetRegistry(registry *CreateCustomSettingsRegistry) *PostDb2SaasDbConfigurationOptions {
+	_options.Registry = registry
+	return _options
+}
+
+// SetDb : Allow user to set Db
+func (_options *PostDb2SaasDbConfigurationOptions) SetDb(db *CreateCustomSettingsDb) *PostDb2SaasDbConfigurationOptions {
+	_options.Db = db
+	return _options
+}
+
+// SetHeaders : Allow user to set Headers
+func (options *PostDb2SaasDbConfigurationOptions) SetHeaders(param map[string]string) *PostDb2SaasDbConfigurationOptions {
+	options.Headers = param
+	return options
+}
+
 // PostDb2SaasUserOptions : The PostDb2SaasUser options.
 type PostDb2SaasUserOptions struct {
 	// CRN deployment id.
@@ -1291,7 +1822,7 @@ func (options *PostDb2SaasUserOptions) SetHeaders(param map[string]string) *Post
 
 // PutDb2SaasAutoscaleOptions : The PutDb2SaasAutoscale options.
 type PutDb2SaasAutoscaleOptions struct {
-	// CRN deployment id.
+	// Encoded CRN deployment id.
 	XDbProfile *string `json:"x-db-profile" validate:"required"`
 
 	// Indicates if automatic scaling is enabled or not.
@@ -1612,6 +2143,58 @@ func UnmarshalSuccessGetAllowlistIPs(m map[string]json.RawMessage, result interf
 	err = core.UnmarshalModel(m, "ip_addresses", &obj.IpAddresses, UnmarshalIpAddress)
 	if err != nil {
 		err = core.SDKErrorf(err, "", "ip_addresses-error", common.GetComponentInfo())
+		return
+	}
+	reflect.ValueOf(result).Elem().Set(reflect.ValueOf(obj))
+	return
+}
+
+// SuccessGetBackup : Success response of post backup.
+type SuccessGetBackup struct {
+	Task *SuccessGetBackupTask `json:"task" validate:"required"`
+}
+
+// UnmarshalSuccessGetBackup unmarshals an instance of SuccessGetBackup from the specified map of raw messages.
+func UnmarshalSuccessGetBackup(m map[string]json.RawMessage, result interface{}) (err error) {
+	obj := new(SuccessGetBackup)
+	err = core.UnmarshalModel(m, "task", &obj.Task, UnmarshalSuccessGetBackupTask)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "task-error", common.GetComponentInfo())
+		return
+	}
+	reflect.ValueOf(result).Elem().Set(reflect.ValueOf(obj))
+	return
+}
+
+// SuccessGetBackupTask : SuccessGetBackupTask struct
+type SuccessGetBackupTask struct {
+	// CRN of the instance.
+	ID *string `json:"id,omitempty"`
+}
+
+// UnmarshalSuccessGetBackupTask unmarshals an instance of SuccessGetBackupTask from the specified map of raw messages.
+func UnmarshalSuccessGetBackupTask(m map[string]json.RawMessage, result interface{}) (err error) {
+	obj := new(SuccessGetBackupTask)
+	err = core.UnmarshalPrimitive(m, "id", &obj.ID)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "id-error", common.GetComponentInfo())
+		return
+	}
+	reflect.ValueOf(result).Elem().Set(reflect.ValueOf(obj))
+	return
+}
+
+// SuccessGetBackups : The details of the backups.
+type SuccessGetBackups struct {
+	Backups []Backup `json:"backups" validate:"required"`
+}
+
+// UnmarshalSuccessGetBackups unmarshals an instance of SuccessGetBackups from the specified map of raw messages.
+func UnmarshalSuccessGetBackups(m map[string]json.RawMessage, result interface{}) (err error) {
+	obj := new(SuccessGetBackups)
+	err = core.UnmarshalModel(m, "backups", &obj.Backups, UnmarshalBackup)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "backups-error", common.GetComponentInfo())
 		return
 	}
 	reflect.ValueOf(result).Elem().Set(reflect.ValueOf(obj))
@@ -2012,6 +2595,1255 @@ func UnmarshalSuccessPostAllowedlistIPs(m map[string]json.RawMessage, result int
 	err = core.UnmarshalPrimitive(m, "status", &obj.Status)
 	if err != nil {
 		err = core.SDKErrorf(err, "", "status-error", common.GetComponentInfo())
+		return
+	}
+	reflect.ValueOf(result).Elem().Set(reflect.ValueOf(obj))
+	return
+}
+
+// SuccessPostCustomSettings : The details of created custom settings of db2.
+type SuccessPostCustomSettings struct {
+	// Describes the operation done.
+	Description *string `json:"description" validate:"required"`
+
+	// CRN of the db2 instance.
+	ID *string `json:"id" validate:"required"`
+
+	// Defines the status of the instance.
+	Status *string `json:"status" validate:"required"`
+}
+
+// UnmarshalSuccessPostCustomSettings unmarshals an instance of SuccessPostCustomSettings from the specified map of raw messages.
+func UnmarshalSuccessPostCustomSettings(m map[string]json.RawMessage, result interface{}) (err error) {
+	obj := new(SuccessPostCustomSettings)
+	err = core.UnmarshalPrimitive(m, "description", &obj.Description)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "description-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "id", &obj.ID)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "id-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "status", &obj.Status)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "status-error", common.GetComponentInfo())
+		return
+	}
+	reflect.ValueOf(result).Elem().Set(reflect.ValueOf(obj))
+	return
+}
+
+// SuccessTuneableParams : Response of tuneable params of the Db2 instance.
+type SuccessTuneableParams struct {
+	TuneableParam *SuccessTuneableParamsTuneableParam `json:"tuneable_param,omitempty"`
+}
+
+// UnmarshalSuccessTuneableParams unmarshals an instance of SuccessTuneableParams from the specified map of raw messages.
+func UnmarshalSuccessTuneableParams(m map[string]json.RawMessage, result interface{}) (err error) {
+	obj := new(SuccessTuneableParams)
+	err = core.UnmarshalModel(m, "tuneable_param", &obj.TuneableParam, UnmarshalSuccessTuneableParamsTuneableParam)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "tuneable_param-error", common.GetComponentInfo())
+		return
+	}
+	reflect.ValueOf(result).Elem().Set(reflect.ValueOf(obj))
+	return
+}
+
+// SuccessTuneableParamsTuneableParam : SuccessTuneableParamsTuneableParam struct
+type SuccessTuneableParamsTuneableParam struct {
+	// Tunable parameters related to the Db2 database instance.
+	Db *SuccessTuneableParamsTuneableParamDb `json:"db,omitempty"`
+
+	// Tunable parameters related to the Db2 instance manager (dbm).
+	Dbm *SuccessTuneableParamsTuneableParamDbm `json:"dbm,omitempty"`
+
+	// Tunable parameters related to the Db2 registry.
+	Registry *SuccessTuneableParamsTuneableParamRegistry `json:"registry,omitempty"`
+}
+
+// UnmarshalSuccessTuneableParamsTuneableParam unmarshals an instance of SuccessTuneableParamsTuneableParam from the specified map of raw messages.
+func UnmarshalSuccessTuneableParamsTuneableParam(m map[string]json.RawMessage, result interface{}) (err error) {
+	obj := new(SuccessTuneableParamsTuneableParam)
+	err = core.UnmarshalModel(m, "db", &obj.Db, UnmarshalSuccessTuneableParamsTuneableParamDb)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "db-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalModel(m, "dbm", &obj.Dbm, UnmarshalSuccessTuneableParamsTuneableParamDbm)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "dbm-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalModel(m, "registry", &obj.Registry, UnmarshalSuccessTuneableParamsTuneableParamRegistry)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "registry-error", common.GetComponentInfo())
+		return
+	}
+	reflect.ValueOf(result).Elem().Set(reflect.ValueOf(obj))
+	return
+}
+
+// SuccessTuneableParamsTuneableParamDb : Tunable parameters related to the Db2 database instance.
+type SuccessTuneableParamsTuneableParamDb struct {
+	ACTSORTMEMLIMIT *string `json:"ACT_SORTMEM_LIMIT,omitempty"`
+
+	ALTCOLLATE *string `json:"ALT_COLLATE,omitempty"`
+
+	APPGROUPMEMSZ *string `json:"APPGROUP_MEM_SZ,omitempty"`
+
+	APPLHEAPSZ *string `json:"APPLHEAPSZ,omitempty"`
+
+	APPLMEMORY *string `json:"APPL_MEMORY,omitempty"`
+
+	APPCTLHEAPSZ *string `json:"APP_CTL_HEAP_SZ,omitempty"`
+
+	ARCHRETRYDELAY *string `json:"ARCHRETRYDELAY,omitempty"`
+
+	AUTHNCACHEDURATION *string `json:"AUTHN_CACHE_DURATION,omitempty"`
+
+	AUTORESTART *string `json:"AUTORESTART,omitempty"`
+
+	AUTOCGSTATS *string `json:"AUTO_CG_STATS,omitempty"`
+
+	AUTOMAINT *string `json:"AUTO_MAINT,omitempty"`
+
+	AUTOREORG *string `json:"AUTO_REORG,omitempty"`
+
+	AUTOREVAL *string `json:"AUTO_REVAL,omitempty"`
+
+	AUTORUNSTATS *string `json:"AUTO_RUNSTATS,omitempty"`
+
+	AUTOSAMPLING *string `json:"AUTO_SAMPLING,omitempty"`
+
+	AUTOSTATSVIEWS *string `json:"AUTO_STATS_VIEWS,omitempty"`
+
+	AUTOSTMTSTATS *string `json:"AUTO_STMT_STATS,omitempty"`
+
+	AUTOTBLMAINT *string `json:"AUTO_TBL_MAINT,omitempty"`
+
+	AVGAPPLS *string `json:"AVG_APPLS,omitempty"`
+
+	CATALOGCACHESZ *string `json:"CATALOGCACHE_SZ,omitempty"`
+
+	CHNGPGSTHRESH *string `json:"CHNGPGS_THRESH,omitempty"`
+
+	CURCOMMIT *string `json:"CUR_COMMIT,omitempty"`
+
+	DATABASEMEMORY *string `json:"DATABASE_MEMORY,omitempty"`
+
+	DBHEAP *string `json:"DBHEAP,omitempty"`
+
+	DBCOLLNAME *string `json:"DB_COLLNAME,omitempty"`
+
+	DBMEMTHRESH *string `json:"DB_MEM_THRESH,omitempty"`
+
+	DDLCOMPRESSIONDEF *string `json:"DDL_COMPRESSION_DEF,omitempty"`
+
+	DDLCONSTRAINTDEF *string `json:"DDL_CONSTRAINT_DEF,omitempty"`
+
+	DECFLTROUNDING *string `json:"DECFLT_ROUNDING,omitempty"`
+
+	DECARITHMETIC *string `json:"DEC_ARITHMETIC,omitempty"`
+
+	DECTOCHARFMT *string `json:"DEC_TO_CHAR_FMT,omitempty"`
+
+	DFTDEGREE *string `json:"DFT_DEGREE,omitempty"`
+
+	DFTEXTENTSZ *string `json:"DFT_EXTENT_SZ,omitempty"`
+
+	DFTLOADRECSES *string `json:"DFT_LOADREC_SES,omitempty"`
+
+	DFTMTTBTYPES *string `json:"DFT_MTTB_TYPES,omitempty"`
+
+	DFTPREFETCHSZ *string `json:"DFT_PREFETCH_SZ,omitempty"`
+
+	DFTQUERYOPT *string `json:"DFT_QUERYOPT,omitempty"`
+
+	DFTREFRESHAGE *string `json:"DFT_REFRESH_AGE,omitempty"`
+
+	DFTSCHEMASDCC *string `json:"DFT_SCHEMAS_DCC,omitempty"`
+
+	DFTSQLMATHWARN *string `json:"DFT_SQLMATHWARN,omitempty"`
+
+	DFTTABLEORG *string `json:"DFT_TABLE_ORG,omitempty"`
+
+	DLCHKTIME *string `json:"DLCHKTIME,omitempty"`
+
+	ENABLEXMLCHAR *string `json:"ENABLE_XMLCHAR,omitempty"`
+
+	EXTENDEDROWSZ *string `json:"EXTENDED_ROW_SZ,omitempty"`
+
+	GROUPHEAPRATIO *string `json:"GROUPHEAP_RATIO,omitempty"`
+
+	INDEXREC *string `json:"INDEXREC,omitempty"`
+
+	LARGEAGGREGATION *string `json:"LARGE_AGGREGATION,omitempty"`
+
+	LOCKLIST *string `json:"LOCKLIST,omitempty"`
+
+	LOCKTIMEOUT *string `json:"LOCKTIMEOUT,omitempty"`
+
+	LOGINDEXBUILD *string `json:"LOGINDEXBUILD,omitempty"`
+
+	LOGAPPLINFO *string `json:"LOG_APPL_INFO,omitempty"`
+
+	LOGDDLSTMTS *string `json:"LOG_DDL_STMTS,omitempty"`
+
+	LOGDISKCAP *string `json:"LOG_DISK_CAP,omitempty"`
+
+	MAXAPPLS *string `json:"MAXAPPLS,omitempty"`
+
+	MAXFILOP *string `json:"MAXFILOP,omitempty"`
+
+	MAXLOCKS *string `json:"MAXLOCKS,omitempty"`
+
+	MINDECDIV3 *string `json:"MIN_DEC_DIV_3,omitempty"`
+
+	MONACTMETRICS *string `json:"MON_ACT_METRICS,omitempty"`
+
+	MONDEADLOCK *string `json:"MON_DEADLOCK,omitempty"`
+
+	MONLCKMSGLVL *string `json:"MON_LCK_MSG_LVL,omitempty"`
+
+	MONLOCKTIMEOUT *string `json:"MON_LOCKTIMEOUT,omitempty"`
+
+	MONLOCKWAIT *string `json:"MON_LOCKWAIT,omitempty"`
+
+	MONLWTHRESH *string `json:"MON_LW_THRESH,omitempty"`
+
+	MONOBJMETRICS *string `json:"MON_OBJ_METRICS,omitempty"`
+
+	MONPKGLISTSZ *string `json:"MON_PKGLIST_SZ,omitempty"`
+
+	MONREQMETRICS *string `json:"MON_REQ_METRICS,omitempty"`
+
+	MONRTNDATA *string `json:"MON_RTN_DATA,omitempty"`
+
+	MONRTNEXECLIST *string `json:"MON_RTN_EXECLIST,omitempty"`
+
+	MONUOWDATA *string `json:"MON_UOW_DATA,omitempty"`
+
+	MONUOWEXECLIST *string `json:"MON_UOW_EXECLIST,omitempty"`
+
+	MONUOWPKGLIST *string `json:"MON_UOW_PKGLIST,omitempty"`
+
+	NCHARMAPPING *string `json:"NCHAR_MAPPING,omitempty"`
+
+	NUMFREQVALUES *string `json:"NUM_FREQVALUES,omitempty"`
+
+	NUMIOCLEANERS *string `json:"NUM_IOCLEANERS,omitempty"`
+
+	NUMIOSERVERS *string `json:"NUM_IOSERVERS,omitempty"`
+
+	NUMLOGSPAN *string `json:"NUM_LOG_SPAN,omitempty"`
+
+	NUMQUANTILES *string `json:"NUM_QUANTILES,omitempty"`
+
+	OPTBUFFPAGE *string `json:"OPT_BUFFPAGE,omitempty"`
+
+	OPTDIRECTWRKLD *string `json:"OPT_DIRECT_WRKLD,omitempty"`
+
+	OPTLOCKLIST *string `json:"OPT_LOCKLIST,omitempty"`
+
+	OPTMAXLOCKS *string `json:"OPT_MAXLOCKS,omitempty"`
+
+	OPTSORTHEAP *string `json:"OPT_SORTHEAP,omitempty"`
+
+	PAGEAGETRGTGCR *string `json:"PAGE_AGE_TRGT_GCR,omitempty"`
+
+	PAGEAGETRGTMCR *string `json:"PAGE_AGE_TRGT_MCR,omitempty"`
+
+	PCKCACHESZ *string `json:"PCKCACHESZ,omitempty"`
+
+	PLSTACKTRACE *string `json:"PL_STACK_TRACE,omitempty"`
+
+	SELFTUNINGMEM *string `json:"SELF_TUNING_MEM,omitempty"`
+
+	SEQDETECT *string `json:"SEQDETECT,omitempty"`
+
+	SHEAPTHRESSHR *string `json:"SHEAPTHRES_SHR,omitempty"`
+
+	SOFTMAX *string `json:"SOFTMAX,omitempty"`
+
+	SORTHEAP *string `json:"SORTHEAP,omitempty"`
+
+	SQLCCFLAGS *string `json:"SQL_CCFLAGS,omitempty"`
+
+	STATHEAPSZ *string `json:"STAT_HEAP_SZ,omitempty"`
+
+	STMTHEAP *string `json:"STMTHEAP,omitempty"`
+
+	STMTCONC *string `json:"STMT_CONC,omitempty"`
+
+	STRINGUNITS *string `json:"STRING_UNITS,omitempty"`
+
+	SYSTIMEPERIODADJ *string `json:"SYSTIME_PERIOD_ADJ,omitempty"`
+
+	TRACKMOD *string `json:"TRACKMOD,omitempty"`
+
+	UTILHEAPSZ *string `json:"UTIL_HEAP_SZ,omitempty"`
+
+	WLMADMISSIONCTRL *string `json:"WLM_ADMISSION_CTRL,omitempty"`
+
+	WLMAGENTLOADTRGT *string `json:"WLM_AGENT_LOAD_TRGT,omitempty"`
+
+	WLMCPULIMIT *string `json:"WLM_CPU_LIMIT,omitempty"`
+
+	WLMCPUSHARES *string `json:"WLM_CPU_SHARES,omitempty"`
+
+	WLMCPUSHAREMODE *string `json:"WLM_CPU_SHARE_MODE,omitempty"`
+}
+
+// UnmarshalSuccessTuneableParamsTuneableParamDb unmarshals an instance of SuccessTuneableParamsTuneableParamDb from the specified map of raw messages.
+func UnmarshalSuccessTuneableParamsTuneableParamDb(m map[string]json.RawMessage, result interface{}) (err error) {
+	obj := new(SuccessTuneableParamsTuneableParamDb)
+	err = core.UnmarshalPrimitive(m, "ACT_SORTMEM_LIMIT", &obj.ACTSORTMEMLIMIT)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "ACT_SORTMEM_LIMIT-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "ALT_COLLATE", &obj.ALTCOLLATE)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "ALT_COLLATE-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "APPGROUP_MEM_SZ", &obj.APPGROUPMEMSZ)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "APPGROUP_MEM_SZ-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "APPLHEAPSZ", &obj.APPLHEAPSZ)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "APPLHEAPSZ-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "APPL_MEMORY", &obj.APPLMEMORY)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "APPL_MEMORY-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "APP_CTL_HEAP_SZ", &obj.APPCTLHEAPSZ)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "APP_CTL_HEAP_SZ-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "ARCHRETRYDELAY", &obj.ARCHRETRYDELAY)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "ARCHRETRYDELAY-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "AUTHN_CACHE_DURATION", &obj.AUTHNCACHEDURATION)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "AUTHN_CACHE_DURATION-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "AUTORESTART", &obj.AUTORESTART)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "AUTORESTART-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "AUTO_CG_STATS", &obj.AUTOCGSTATS)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "AUTO_CG_STATS-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "AUTO_MAINT", &obj.AUTOMAINT)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "AUTO_MAINT-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "AUTO_REORG", &obj.AUTOREORG)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "AUTO_REORG-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "AUTO_REVAL", &obj.AUTOREVAL)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "AUTO_REVAL-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "AUTO_RUNSTATS", &obj.AUTORUNSTATS)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "AUTO_RUNSTATS-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "AUTO_SAMPLING", &obj.AUTOSAMPLING)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "AUTO_SAMPLING-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "AUTO_STATS_VIEWS", &obj.AUTOSTATSVIEWS)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "AUTO_STATS_VIEWS-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "AUTO_STMT_STATS", &obj.AUTOSTMTSTATS)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "AUTO_STMT_STATS-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "AUTO_TBL_MAINT", &obj.AUTOTBLMAINT)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "AUTO_TBL_MAINT-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "AVG_APPLS", &obj.AVGAPPLS)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "AVG_APPLS-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "CATALOGCACHE_SZ", &obj.CATALOGCACHESZ)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "CATALOGCACHE_SZ-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "CHNGPGS_THRESH", &obj.CHNGPGSTHRESH)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "CHNGPGS_THRESH-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "CUR_COMMIT", &obj.CURCOMMIT)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "CUR_COMMIT-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DATABASE_MEMORY", &obj.DATABASEMEMORY)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DATABASE_MEMORY-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DBHEAP", &obj.DBHEAP)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DBHEAP-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DB_COLLNAME", &obj.DBCOLLNAME)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DB_COLLNAME-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DB_MEM_THRESH", &obj.DBMEMTHRESH)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DB_MEM_THRESH-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DDL_COMPRESSION_DEF", &obj.DDLCOMPRESSIONDEF)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DDL_COMPRESSION_DEF-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DDL_CONSTRAINT_DEF", &obj.DDLCONSTRAINTDEF)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DDL_CONSTRAINT_DEF-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DECFLT_ROUNDING", &obj.DECFLTROUNDING)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DECFLT_ROUNDING-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DEC_ARITHMETIC", &obj.DECARITHMETIC)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DEC_ARITHMETIC-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DEC_TO_CHAR_FMT", &obj.DECTOCHARFMT)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DEC_TO_CHAR_FMT-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DFT_DEGREE", &obj.DFTDEGREE)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DFT_DEGREE-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DFT_EXTENT_SZ", &obj.DFTEXTENTSZ)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DFT_EXTENT_SZ-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DFT_LOADREC_SES", &obj.DFTLOADRECSES)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DFT_LOADREC_SES-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DFT_MTTB_TYPES", &obj.DFTMTTBTYPES)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DFT_MTTB_TYPES-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DFT_PREFETCH_SZ", &obj.DFTPREFETCHSZ)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DFT_PREFETCH_SZ-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DFT_QUERYOPT", &obj.DFTQUERYOPT)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DFT_QUERYOPT-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DFT_REFRESH_AGE", &obj.DFTREFRESHAGE)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DFT_REFRESH_AGE-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DFT_SCHEMAS_DCC", &obj.DFTSCHEMASDCC)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DFT_SCHEMAS_DCC-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DFT_SQLMATHWARN", &obj.DFTSQLMATHWARN)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DFT_SQLMATHWARN-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DFT_TABLE_ORG", &obj.DFTTABLEORG)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DFT_TABLE_ORG-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DLCHKTIME", &obj.DLCHKTIME)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DLCHKTIME-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "ENABLE_XMLCHAR", &obj.ENABLEXMLCHAR)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "ENABLE_XMLCHAR-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "EXTENDED_ROW_SZ", &obj.EXTENDEDROWSZ)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "EXTENDED_ROW_SZ-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "GROUPHEAP_RATIO", &obj.GROUPHEAPRATIO)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "GROUPHEAP_RATIO-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "INDEXREC", &obj.INDEXREC)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "INDEXREC-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "LARGE_AGGREGATION", &obj.LARGEAGGREGATION)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "LARGE_AGGREGATION-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "LOCKLIST", &obj.LOCKLIST)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "LOCKLIST-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "LOCKTIMEOUT", &obj.LOCKTIMEOUT)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "LOCKTIMEOUT-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "LOGINDEXBUILD", &obj.LOGINDEXBUILD)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "LOGINDEXBUILD-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "LOG_APPL_INFO", &obj.LOGAPPLINFO)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "LOG_APPL_INFO-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "LOG_DDL_STMTS", &obj.LOGDDLSTMTS)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "LOG_DDL_STMTS-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "LOG_DISK_CAP", &obj.LOGDISKCAP)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "LOG_DISK_CAP-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "MAXAPPLS", &obj.MAXAPPLS)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "MAXAPPLS-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "MAXFILOP", &obj.MAXFILOP)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "MAXFILOP-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "MAXLOCKS", &obj.MAXLOCKS)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "MAXLOCKS-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "MIN_DEC_DIV_3", &obj.MINDECDIV3)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "MIN_DEC_DIV_3-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "MON_ACT_METRICS", &obj.MONACTMETRICS)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "MON_ACT_METRICS-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "MON_DEADLOCK", &obj.MONDEADLOCK)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "MON_DEADLOCK-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "MON_LCK_MSG_LVL", &obj.MONLCKMSGLVL)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "MON_LCK_MSG_LVL-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "MON_LOCKTIMEOUT", &obj.MONLOCKTIMEOUT)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "MON_LOCKTIMEOUT-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "MON_LOCKWAIT", &obj.MONLOCKWAIT)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "MON_LOCKWAIT-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "MON_LW_THRESH", &obj.MONLWTHRESH)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "MON_LW_THRESH-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "MON_OBJ_METRICS", &obj.MONOBJMETRICS)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "MON_OBJ_METRICS-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "MON_PKGLIST_SZ", &obj.MONPKGLISTSZ)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "MON_PKGLIST_SZ-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "MON_REQ_METRICS", &obj.MONREQMETRICS)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "MON_REQ_METRICS-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "MON_RTN_DATA", &obj.MONRTNDATA)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "MON_RTN_DATA-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "MON_RTN_EXECLIST", &obj.MONRTNEXECLIST)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "MON_RTN_EXECLIST-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "MON_UOW_DATA", &obj.MONUOWDATA)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "MON_UOW_DATA-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "MON_UOW_EXECLIST", &obj.MONUOWEXECLIST)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "MON_UOW_EXECLIST-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "MON_UOW_PKGLIST", &obj.MONUOWPKGLIST)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "MON_UOW_PKGLIST-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "NCHAR_MAPPING", &obj.NCHARMAPPING)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "NCHAR_MAPPING-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "NUM_FREQVALUES", &obj.NUMFREQVALUES)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "NUM_FREQVALUES-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "NUM_IOCLEANERS", &obj.NUMIOCLEANERS)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "NUM_IOCLEANERS-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "NUM_IOSERVERS", &obj.NUMIOSERVERS)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "NUM_IOSERVERS-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "NUM_LOG_SPAN", &obj.NUMLOGSPAN)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "NUM_LOG_SPAN-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "NUM_QUANTILES", &obj.NUMQUANTILES)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "NUM_QUANTILES-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "OPT_BUFFPAGE", &obj.OPTBUFFPAGE)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "OPT_BUFFPAGE-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "OPT_DIRECT_WRKLD", &obj.OPTDIRECTWRKLD)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "OPT_DIRECT_WRKLD-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "OPT_LOCKLIST", &obj.OPTLOCKLIST)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "OPT_LOCKLIST-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "OPT_MAXLOCKS", &obj.OPTMAXLOCKS)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "OPT_MAXLOCKS-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "OPT_SORTHEAP", &obj.OPTSORTHEAP)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "OPT_SORTHEAP-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "PAGE_AGE_TRGT_GCR", &obj.PAGEAGETRGTGCR)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "PAGE_AGE_TRGT_GCR-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "PAGE_AGE_TRGT_MCR", &obj.PAGEAGETRGTMCR)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "PAGE_AGE_TRGT_MCR-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "PCKCACHESZ", &obj.PCKCACHESZ)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "PCKCACHESZ-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "PL_STACK_TRACE", &obj.PLSTACKTRACE)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "PL_STACK_TRACE-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "SELF_TUNING_MEM", &obj.SELFTUNINGMEM)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "SELF_TUNING_MEM-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "SEQDETECT", &obj.SEQDETECT)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "SEQDETECT-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "SHEAPTHRES_SHR", &obj.SHEAPTHRESSHR)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "SHEAPTHRES_SHR-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "SOFTMAX", &obj.SOFTMAX)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "SOFTMAX-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "SORTHEAP", &obj.SORTHEAP)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "SORTHEAP-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "SQL_CCFLAGS", &obj.SQLCCFLAGS)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "SQL_CCFLAGS-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "STAT_HEAP_SZ", &obj.STATHEAPSZ)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "STAT_HEAP_SZ-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "STMTHEAP", &obj.STMTHEAP)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "STMTHEAP-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "STMT_CONC", &obj.STMTCONC)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "STMT_CONC-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "STRING_UNITS", &obj.STRINGUNITS)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "STRING_UNITS-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "SYSTIME_PERIOD_ADJ", &obj.SYSTIMEPERIODADJ)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "SYSTIME_PERIOD_ADJ-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "TRACKMOD", &obj.TRACKMOD)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "TRACKMOD-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "UTIL_HEAP_SZ", &obj.UTILHEAPSZ)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "UTIL_HEAP_SZ-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "WLM_ADMISSION_CTRL", &obj.WLMADMISSIONCTRL)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "WLM_ADMISSION_CTRL-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "WLM_AGENT_LOAD_TRGT", &obj.WLMAGENTLOADTRGT)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "WLM_AGENT_LOAD_TRGT-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "WLM_CPU_LIMIT", &obj.WLMCPULIMIT)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "WLM_CPU_LIMIT-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "WLM_CPU_SHARES", &obj.WLMCPUSHARES)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "WLM_CPU_SHARES-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "WLM_CPU_SHARE_MODE", &obj.WLMCPUSHAREMODE)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "WLM_CPU_SHARE_MODE-error", common.GetComponentInfo())
+		return
+	}
+	reflect.ValueOf(result).Elem().Set(reflect.ValueOf(obj))
+	return
+}
+
+// SuccessTuneableParamsTuneableParamDbm : Tunable parameters related to the Db2 instance manager (dbm).
+type SuccessTuneableParamsTuneableParamDbm struct {
+	COMMBANDWIDTH *string `json:"COMM_BANDWIDTH,omitempty"`
+
+	CPUSPEED *string `json:"CPUSPEED,omitempty"`
+
+	DFTMONBUFPOOL *string `json:"DFT_MON_BUFPOOL,omitempty"`
+
+	DFTMONLOCK *string `json:"DFT_MON_LOCK,omitempty"`
+
+	DFTMONSORT *string `json:"DFT_MON_SORT,omitempty"`
+
+	DFTMONSTMT *string `json:"DFT_MON_STMT,omitempty"`
+
+	DFTMONTABLE *string `json:"DFT_MON_TABLE,omitempty"`
+
+	DFTMONTIMESTAMP *string `json:"DFT_MON_TIMESTAMP,omitempty"`
+
+	DFTMONUOW *string `json:"DFT_MON_UOW,omitempty"`
+
+	DIAGLEVEL *string `json:"DIAGLEVEL,omitempty"`
+
+	FEDERATEDASYNC *string `json:"FEDERATED_ASYNC,omitempty"`
+
+	INDEXREC *string `json:"INDEXREC,omitempty"`
+
+	INTRAPARALLEL *string `json:"INTRA_PARALLEL,omitempty"`
+
+	KEEPFENCED *string `json:"KEEPFENCED,omitempty"`
+
+	MAXCONNRETRIES *string `json:"MAX_CONNRETRIES,omitempty"`
+
+	MAXQUERYDEGREE *string `json:"MAX_QUERYDEGREE,omitempty"`
+
+	MONHEAPSZ *string `json:"MON_HEAP_SZ,omitempty"`
+
+	MULTIPARTSIZEMB *string `json:"MULTIPARTSIZEMB,omitempty"`
+
+	NOTIFYLEVEL *string `json:"NOTIFYLEVEL,omitempty"`
+
+	NUMINITAGENTS *string `json:"NUM_INITAGENTS,omitempty"`
+
+	NUMINITFENCED *string `json:"NUM_INITFENCED,omitempty"`
+
+	NUMPOOLAGENTS *string `json:"NUM_POOLAGENTS,omitempty"`
+
+	RESYNCINTERVAL *string `json:"RESYNC_INTERVAL,omitempty"`
+
+	RQRIOBLK *string `json:"RQRIOBLK,omitempty"`
+
+	STARTSTOPTIME *string `json:"START_STOP_TIME,omitempty"`
+
+	UTILIMPACTLIM *string `json:"UTIL_IMPACT_LIM,omitempty"`
+
+	WLMDISPATCHER *string `json:"WLM_DISPATCHER,omitempty"`
+
+	WLMDISPCONCUR *string `json:"WLM_DISP_CONCUR,omitempty"`
+
+	WLMDISPCPUSHARES *string `json:"WLM_DISP_CPU_SHARES,omitempty"`
+
+	WLMDISPMINUTIL *string `json:"WLM_DISP_MIN_UTIL,omitempty"`
+}
+
+// UnmarshalSuccessTuneableParamsTuneableParamDbm unmarshals an instance of SuccessTuneableParamsTuneableParamDbm from the specified map of raw messages.
+func UnmarshalSuccessTuneableParamsTuneableParamDbm(m map[string]json.RawMessage, result interface{}) (err error) {
+	obj := new(SuccessTuneableParamsTuneableParamDbm)
+	err = core.UnmarshalPrimitive(m, "COMM_BANDWIDTH", &obj.COMMBANDWIDTH)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "COMM_BANDWIDTH-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "CPUSPEED", &obj.CPUSPEED)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "CPUSPEED-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DFT_MON_BUFPOOL", &obj.DFTMONBUFPOOL)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DFT_MON_BUFPOOL-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DFT_MON_LOCK", &obj.DFTMONLOCK)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DFT_MON_LOCK-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DFT_MON_SORT", &obj.DFTMONSORT)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DFT_MON_SORT-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DFT_MON_STMT", &obj.DFTMONSTMT)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DFT_MON_STMT-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DFT_MON_TABLE", &obj.DFTMONTABLE)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DFT_MON_TABLE-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DFT_MON_TIMESTAMP", &obj.DFTMONTIMESTAMP)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DFT_MON_TIMESTAMP-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DFT_MON_UOW", &obj.DFTMONUOW)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DFT_MON_UOW-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DIAGLEVEL", &obj.DIAGLEVEL)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DIAGLEVEL-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "FEDERATED_ASYNC", &obj.FEDERATEDASYNC)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "FEDERATED_ASYNC-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "INDEXREC", &obj.INDEXREC)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "INDEXREC-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "INTRA_PARALLEL", &obj.INTRAPARALLEL)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "INTRA_PARALLEL-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "KEEPFENCED", &obj.KEEPFENCED)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "KEEPFENCED-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "MAX_CONNRETRIES", &obj.MAXCONNRETRIES)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "MAX_CONNRETRIES-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "MAX_QUERYDEGREE", &obj.MAXQUERYDEGREE)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "MAX_QUERYDEGREE-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "MON_HEAP_SZ", &obj.MONHEAPSZ)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "MON_HEAP_SZ-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "MULTIPARTSIZEMB", &obj.MULTIPARTSIZEMB)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "MULTIPARTSIZEMB-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "NOTIFYLEVEL", &obj.NOTIFYLEVEL)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "NOTIFYLEVEL-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "NUM_INITAGENTS", &obj.NUMINITAGENTS)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "NUM_INITAGENTS-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "NUM_INITFENCED", &obj.NUMINITFENCED)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "NUM_INITFENCED-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "NUM_POOLAGENTS", &obj.NUMPOOLAGENTS)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "NUM_POOLAGENTS-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "RESYNC_INTERVAL", &obj.RESYNCINTERVAL)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "RESYNC_INTERVAL-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "RQRIOBLK", &obj.RQRIOBLK)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "RQRIOBLK-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "START_STOP_TIME", &obj.STARTSTOPTIME)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "START_STOP_TIME-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "UTIL_IMPACT_LIM", &obj.UTILIMPACTLIM)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "UTIL_IMPACT_LIM-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "WLM_DISPATCHER", &obj.WLMDISPATCHER)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "WLM_DISPATCHER-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "WLM_DISP_CONCUR", &obj.WLMDISPCONCUR)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "WLM_DISP_CONCUR-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "WLM_DISP_CPU_SHARES", &obj.WLMDISPCPUSHARES)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "WLM_DISP_CPU_SHARES-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "WLM_DISP_MIN_UTIL", &obj.WLMDISPMINUTIL)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "WLM_DISP_MIN_UTIL-error", common.GetComponentInfo())
+		return
+	}
+	reflect.ValueOf(result).Elem().Set(reflect.ValueOf(obj))
+	return
+}
+
+// SuccessTuneableParamsTuneableParamRegistry : Tunable parameters related to the Db2 registry.
+type SuccessTuneableParamsTuneableParamRegistry struct {
+	DB2BIDI *string `json:"DB2BIDI,omitempty"`
+
+	DB2COMPOPT *string `json:"DB2COMPOPT,omitempty"`
+
+	DB2LOCKTORB *string `json:"DB2LOCK_TO_RB,omitempty"`
+
+	DB2STMM *string `json:"DB2STMM,omitempty"`
+
+	DB2ALTERNATEAUTHZBEHAVIOUR *string `json:"DB2_ALTERNATE_AUTHZ_BEHAVIOUR,omitempty"`
+
+	DB2ANTIJOIN *string `json:"DB2_ANTIJOIN,omitempty"`
+
+	DB2ATSENABLE *string `json:"DB2_ATS_ENABLE,omitempty"`
+
+	DB2DEFERREDPREPARESEMANTICS *string `json:"DB2_DEFERRED_PREPARE_SEMANTICS,omitempty"`
+
+	DB2EVALUNCOMMITTED *string `json:"DB2_EVALUNCOMMITTED,omitempty"`
+
+	DB2EXTENDEDOPTIMIZATION *string `json:"DB2_EXTENDED_OPTIMIZATION,omitempty"`
+
+	DB2INDEXPCTFREEDEFAULT *string `json:"DB2_INDEX_PCTFREE_DEFAULT,omitempty"`
+
+	DB2INLISTTONLJN *string `json:"DB2_INLIST_TO_NLJN,omitempty"`
+
+	DB2MINIMIZELISTPREFETCH *string `json:"DB2_MINIMIZE_LISTPREFETCH,omitempty"`
+
+	DB2OBJECTTABLEENTRIES *string `json:"DB2_OBJECT_TABLE_ENTRIES,omitempty"`
+
+	DB2OPTPROFILE *string `json:"DB2_OPTPROFILE,omitempty"`
+
+	DB2OPTSTATSLOG *string `json:"DB2_OPTSTATS_LOG,omitempty"`
+
+	DB2OPTMAXTEMPSIZE *string `json:"DB2_OPT_MAX_TEMP_SIZE,omitempty"`
+
+	DB2PARALLELIO *string `json:"DB2_PARALLEL_IO,omitempty"`
+
+	DB2REDUCEDOPTIMIZATION *string `json:"DB2_REDUCED_OPTIMIZATION,omitempty"`
+
+	DB2SELECTIVITY *string `json:"DB2_SELECTIVITY,omitempty"`
+
+	DB2SKIPDELETED *string `json:"DB2_SKIPDELETED,omitempty"`
+
+	DB2SKIPINSERTED *string `json:"DB2_SKIPINSERTED,omitempty"`
+
+	DB2SYNCRELEASELOCKATTRIBUTES *string `json:"DB2_SYNC_RELEASE_LOCK_ATTRIBUTES,omitempty"`
+
+	DB2TRUNCATEREUSESTORAGE *string `json:"DB2_TRUNCATE_REUSESTORAGE,omitempty"`
+
+	DB2USEALTERNATEPAGECLEANING *string `json:"DB2_USE_ALTERNATE_PAGE_CLEANING,omitempty"`
+
+	DB2VIEWREOPTVALUES *string `json:"DB2_VIEW_REOPT_VALUES,omitempty"`
+
+	DB2WLMSETTINGS *string `json:"DB2_WLM_SETTINGS,omitempty"`
+
+	DB2WORKLOAD *string `json:"DB2_WORKLOAD,omitempty"`
+}
+
+// UnmarshalSuccessTuneableParamsTuneableParamRegistry unmarshals an instance of SuccessTuneableParamsTuneableParamRegistry from the specified map of raw messages.
+func UnmarshalSuccessTuneableParamsTuneableParamRegistry(m map[string]json.RawMessage, result interface{}) (err error) {
+	obj := new(SuccessTuneableParamsTuneableParamRegistry)
+	err = core.UnmarshalPrimitive(m, "DB2BIDI", &obj.DB2BIDI)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DB2BIDI-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DB2COMPOPT", &obj.DB2COMPOPT)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DB2COMPOPT-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DB2LOCK_TO_RB", &obj.DB2LOCKTORB)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DB2LOCK_TO_RB-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DB2STMM", &obj.DB2STMM)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DB2STMM-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DB2_ALTERNATE_AUTHZ_BEHAVIOUR", &obj.DB2ALTERNATEAUTHZBEHAVIOUR)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DB2_ALTERNATE_AUTHZ_BEHAVIOUR-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DB2_ANTIJOIN", &obj.DB2ANTIJOIN)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DB2_ANTIJOIN-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DB2_ATS_ENABLE", &obj.DB2ATSENABLE)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DB2_ATS_ENABLE-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DB2_DEFERRED_PREPARE_SEMANTICS", &obj.DB2DEFERREDPREPARESEMANTICS)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DB2_DEFERRED_PREPARE_SEMANTICS-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DB2_EVALUNCOMMITTED", &obj.DB2EVALUNCOMMITTED)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DB2_EVALUNCOMMITTED-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DB2_EXTENDED_OPTIMIZATION", &obj.DB2EXTENDEDOPTIMIZATION)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DB2_EXTENDED_OPTIMIZATION-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DB2_INDEX_PCTFREE_DEFAULT", &obj.DB2INDEXPCTFREEDEFAULT)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DB2_INDEX_PCTFREE_DEFAULT-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DB2_INLIST_TO_NLJN", &obj.DB2INLISTTONLJN)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DB2_INLIST_TO_NLJN-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DB2_MINIMIZE_LISTPREFETCH", &obj.DB2MINIMIZELISTPREFETCH)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DB2_MINIMIZE_LISTPREFETCH-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DB2_OBJECT_TABLE_ENTRIES", &obj.DB2OBJECTTABLEENTRIES)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DB2_OBJECT_TABLE_ENTRIES-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DB2_OPTPROFILE", &obj.DB2OPTPROFILE)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DB2_OPTPROFILE-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DB2_OPTSTATS_LOG", &obj.DB2OPTSTATSLOG)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DB2_OPTSTATS_LOG-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DB2_OPT_MAX_TEMP_SIZE", &obj.DB2OPTMAXTEMPSIZE)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DB2_OPT_MAX_TEMP_SIZE-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DB2_PARALLEL_IO", &obj.DB2PARALLELIO)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DB2_PARALLEL_IO-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DB2_REDUCED_OPTIMIZATION", &obj.DB2REDUCEDOPTIMIZATION)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DB2_REDUCED_OPTIMIZATION-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DB2_SELECTIVITY", &obj.DB2SELECTIVITY)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DB2_SELECTIVITY-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DB2_SKIPDELETED", &obj.DB2SKIPDELETED)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DB2_SKIPDELETED-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DB2_SKIPINSERTED", &obj.DB2SKIPINSERTED)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DB2_SKIPINSERTED-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DB2_SYNC_RELEASE_LOCK_ATTRIBUTES", &obj.DB2SYNCRELEASELOCKATTRIBUTES)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DB2_SYNC_RELEASE_LOCK_ATTRIBUTES-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DB2_TRUNCATE_REUSESTORAGE", &obj.DB2TRUNCATEREUSESTORAGE)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DB2_TRUNCATE_REUSESTORAGE-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DB2_USE_ALTERNATE_PAGE_CLEANING", &obj.DB2USEALTERNATEPAGECLEANING)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DB2_USE_ALTERNATE_PAGE_CLEANING-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DB2_VIEW_REOPT_VALUES", &obj.DB2VIEWREOPTVALUES)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DB2_VIEW_REOPT_VALUES-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DB2_WLM_SETTINGS", &obj.DB2WLMSETTINGS)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DB2_WLM_SETTINGS-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DB2_WORKLOAD", &obj.DB2WORKLOAD)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DB2_WORKLOAD-error", common.GetComponentInfo())
 		return
 	}
 	reflect.ValueOf(result).Elem().Set(reflect.ValueOf(obj))
