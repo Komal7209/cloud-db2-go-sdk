@@ -901,6 +901,9 @@ func (db2saas *Db2saasV1) PostDb2SaasDbConfigurationWithContext(ctx context.Cont
 	if postDb2SaasDbConfigurationOptions.Db != nil {
 		body["db"] = postDb2SaasDbConfigurationOptions.Db
 	}
+	if postDb2SaasDbConfigurationOptions.Dbm != nil {
+		body["dbm"] = postDb2SaasDbConfigurationOptions.Dbm
+	}
 	_, err = builder.SetBodyContentJSON(body)
 	if err != nil {
 		err = core.SDKErrorf(err, "", "set-json-body-error", common.GetComponentInfo())
@@ -1196,17 +1199,1935 @@ func UnmarshalBackup(m map[string]json.RawMessage, result interface{}) (err erro
 
 // CreateCustomSettingsDb : Container for general database settings.
 type CreateCustomSettingsDb struct {
-	// Defines the amount of memory (in kb) that DB2 can use for sorting operations during query execution. It has in
-	// format AUTOMATIC, range(16, 4294967295).
+	// Configures the sort memory limit for DB2.
+	ACTSORTMEMLIMIT *string `json:"ACT_SORTMEM_LIMIT,omitempty"`
+
+	// Configures the collation sequence.
+	ALTCOLLATE *string `json:"ALT_COLLATE,omitempty"`
+
+	// Sets the application group memory size.
+	APPGROUPMEMSZ *string `json:"APPGROUP_MEM_SZ,omitempty"`
+
+	// Configures the application heap size.
+	APPLHEAPSZ *string `json:"APPLHEAPSZ,omitempty"`
+
+	// Configures the application memory allocation.
+	APPLMEMORY *string `json:"APPL_MEMORY,omitempty"`
+
+	// Configures the application control heap size.
+	APPCTLHEAPSZ *string `json:"APP_CTL_HEAP_SZ,omitempty"`
+
+	// Configures the archive retry delay time.
+	ARCHRETRYDELAY *string `json:"ARCHRETRYDELAY,omitempty"`
+
+	// Configures the authentication cache duration.
+	AUTHNCACHEDURATION *string `json:"AUTHN_CACHE_DURATION,omitempty"`
+
+	// Configures whether the database will automatically restart.
+	AUTORESTART *string `json:"AUTORESTART,omitempty"`
+
+	// Configures whether auto collection of CG statistics is enabled.
+	AUTOCGSTATS *string `json:"AUTO_CG_STATS,omitempty"`
+
+	// Configures automatic maintenance for the database.
+	AUTOMAINT *string `json:"AUTO_MAINT,omitempty"`
+
+	// Configures automatic reorganization for the database.
+	AUTOREORG *string `json:"AUTO_REORG,omitempty"`
+
+	// Configures the auto refresh or revalidation method.
+	AUTOREVAL *string `json:"AUTO_REVAL,omitempty"`
+
+	// Configures automatic collection of run-time statistics.
+	AUTORUNSTATS *string `json:"AUTO_RUNSTATS,omitempty"`
+
+	// Configures whether auto-sampling is enabled.
+	AUTOSAMPLING *string `json:"AUTO_SAMPLING,omitempty"`
+
+	// Configures automatic collection of statistics on views.
+	AUTOSTATSVIEWS *string `json:"AUTO_STATS_VIEWS,omitempty"`
+
+	// Configures automatic collection of statement-level statistics.
+	AUTOSTMTSTATS *string `json:"AUTO_STMT_STATS,omitempty"`
+
+	// Configures automatic table maintenance.
+	AUTOTBLMAINT *string `json:"AUTO_TBL_MAINT,omitempty"`
+
+	// Average number of applications.
+	AVGAPPLS *string `json:"AVG_APPLS,omitempty"`
+
+	// Configures the catalog cache size.
+	CATALOGCACHESZ *string `json:"CATALOGCACHE_SZ,omitempty"`
+
+	// Configures the change pages threshold percentage.
+	CHNGPGSTHRESH *string `json:"CHNGPGS_THRESH,omitempty"`
+
+	// Configures the commit behavior.
+	CURCOMMIT *string `json:"CUR_COMMIT,omitempty"`
+
+	// Configures the database memory management.
+	DATABASEMEMORY *string `json:"DATABASE_MEMORY,omitempty"`
+
+	// Configures the database heap size.
+	DBHEAP *string `json:"DBHEAP,omitempty"`
+
+	// Specifies the database collation name.
+	DBCOLLNAME *string `json:"DB_COLLNAME,omitempty"`
+
+	// Configures the memory threshold percentage for database.
+	DBMEMTHRESH *string `json:"DB_MEM_THRESH,omitempty"`
+
+	// Defines the default DDL compression behavior.
+	DDLCOMPRESSIONDEF *string `json:"DDL_COMPRESSION_DEF,omitempty"`
+
+	// Defines the default constraint behavior in DDL.
+	DDLCONSTRAINTDEF *string `json:"DDL_CONSTRAINT_DEF,omitempty"`
+
+	// Configures the decimal floating-point rounding method.
+	DECFLTROUNDING *string `json:"DECFLT_ROUNDING,omitempty"`
+
+	// Configures the default arithmetic for decimal operations.
+	DECARITHMETIC *string `json:"DEC_ARITHMETIC,omitempty"`
+
+	// Configures the decimal-to-character conversion format.
+	DECTOCHARFMT *string `json:"DEC_TO_CHAR_FMT,omitempty"`
+
+	// Configures the default degree for parallelism.
+	DFTDEGREE *string `json:"DFT_DEGREE,omitempty"`
+
+	// Configures the default extent size for tables.
+	DFTEXTENTSZ *string `json:"DFT_EXTENT_SZ,omitempty"`
+
+	// Configures the default load record session count.
+	DFTLOADRECSES *string `json:"DFT_LOADREC_SES,omitempty"`
+
+	// Configures the default MTTB (multi-table table scan) types.
+	DFTMTTBTYPES *string `json:"DFT_MTTB_TYPES,omitempty"`
+
+	// Configures the default prefetch size for queries.
+	DFTPREFETCHSZ *string `json:"DFT_PREFETCH_SZ,omitempty"`
+
+	// Configures the default query optimization level.
+	DFTQUERYOPT *string `json:"DFT_QUERYOPT,omitempty"`
+
+	// Configures the default refresh age for views.
+	DFTREFRESHAGE *string `json:"DFT_REFRESH_AGE,omitempty"`
+
+	// Configures whether DCC (database control center) is enabled for schemas.
+	DFTSCHEMASDCC *string `json:"DFT_SCHEMAS_DCC,omitempty"`
+
+	// Configures whether SQL math warnings are enabled.
+	DFTSQLMATHWARN *string `json:"DFT_SQLMATHWARN,omitempty"`
+
+	// Configures the default table organization (ROW or COLUMN).
+	DFTTABLEORG *string `json:"DFT_TABLE_ORG,omitempty"`
+
+	// Configures the deadlock check time in milliseconds.
+	DLCHKTIME *string `json:"DLCHKTIME,omitempty"`
+
+	// Configures whether XML character support is enabled.
+	ENABLEXMLCHAR *string `json:"ENABLE_XMLCHAR,omitempty"`
+
+	// Configures whether extended row size is enabled.
+	EXTENDEDROWSZ *string `json:"EXTENDED_ROW_SZ,omitempty"`
+
+	// Configures the heap ratio for group heap memory.
+	GROUPHEAPRATIO *string `json:"GROUPHEAP_RATIO,omitempty"`
+
+	// Configures the index recovery method.
+	INDEXREC *string `json:"INDEXREC,omitempty"`
+
+	// Configures whether large aggregation is enabled.
+	LARGEAGGREGATION *string `json:"LARGE_AGGREGATION,omitempty"`
+
+	// Configures the lock list memory size.
+	LOCKLIST *string `json:"LOCKLIST,omitempty"`
+
+	// Configures the lock timeout duration.
+	LOCKTIMEOUT *string `json:"LOCKTIMEOUT,omitempty"`
+
+	// Configures whether index builds are logged.
+	LOGINDEXBUILD *string `json:"LOGINDEXBUILD,omitempty"`
+
+	// Configures whether application information is logged.
+	LOGAPPLINFO *string `json:"LOG_APPL_INFO,omitempty"`
+
+	// Configures whether DDL statements are logged.
+	LOGDDLSTMTS *string `json:"LOG_DDL_STMTS,omitempty"`
+
+	// Configures the disk capacity log setting.
+	LOGDISKCAP *string `json:"LOG_DISK_CAP,omitempty"`
+
+	// Configures the maximum number of applications.
+	MAXAPPLS *string `json:"MAXAPPLS,omitempty"`
+
+	// Configures the maximum number of file operations.
+	MAXFILOP *string `json:"MAXFILOP,omitempty"`
+
+	// Configures the maximum number of locks.
+	MAXLOCKS *string `json:"MAXLOCKS,omitempty"`
+
+	// Configures whether decimal division by 3 should be handled.
+	MINDECDIV3 *string `json:"MIN_DEC_DIV_3,omitempty"`
+
+	// Configures the level of activity metrics to be monitored.
+	MONACTMETRICS *string `json:"MON_ACT_METRICS,omitempty"`
+
+	// Configures deadlock monitoring settings.
+	MONDEADLOCK *string `json:"MON_DEADLOCK,omitempty"`
+
+	// Configures the lock message level for monitoring.
+	MONLCKMSGLVL *string `json:"MON_LCK_MSG_LVL,omitempty"`
+
+	// Configures lock timeout monitoring settings.
+	MONLOCKTIMEOUT *string `json:"MON_LOCKTIMEOUT,omitempty"`
+
+	// Configures lock wait monitoring settings.
+	MONLOCKWAIT *string `json:"MON_LOCKWAIT,omitempty"`
+
+	// Configures the lightweight threshold for monitoring.
+	MONLWTHRESH *string `json:"MON_LW_THRESH,omitempty"`
+
+	// Configures the object metrics level for monitoring.
+	MONOBJMETRICS *string `json:"MON_OBJ_METRICS,omitempty"`
+
+	// Configures the package list size for monitoring.
+	MONPKGLISTSZ *string `json:"MON_PKGLIST_SZ,omitempty"`
+
+	// Configures the request metrics level for monitoring.
+	MONREQMETRICS *string `json:"MON_REQ_METRICS,omitempty"`
+
+	// Configures the level of return data for monitoring.
+	MONRTNDATA *string `json:"MON_RTN_DATA,omitempty"`
+
+	// Configures whether stored procedure execution list is monitored.
+	MONRTNEXECLIST *string `json:"MON_RTN_EXECLIST,omitempty"`
+
+	// Configures the level of unit of work (UOW) data for monitoring.
+	MONUOWDATA *string `json:"MON_UOW_DATA,omitempty"`
+
+	// Configures whether UOW execution list is monitored.
+	MONUOWEXECLIST *string `json:"MON_UOW_EXECLIST,omitempty"`
+
+	// Configures whether UOW package list is monitored.
+	MONUOWPKGLIST *string `json:"MON_UOW_PKGLIST,omitempty"`
+
+	// Configures the mapping of NCHAR character types.
+	NCHARMAPPING *string `json:"NCHAR_MAPPING,omitempty"`
+
+	// Configures the number of frequent values for optimization.
+	NUMFREQVALUES *string `json:"NUM_FREQVALUES,omitempty"`
+
+	// Configures the number of IO cleaners.
+	NUMIOCLEANERS *string `json:"NUM_IOCLEANERS,omitempty"`
+
+	// Configures the number of IO servers.
+	NUMIOSERVERS *string `json:"NUM_IOSERVERS,omitempty"`
+
+	// Configures the number of log spans.
+	NUMLOGSPAN *string `json:"NUM_LOG_SPAN,omitempty"`
+
+	// Configures the number of quantiles for optimizations.
+	NUMQUANTILES *string `json:"NUM_QUANTILES,omitempty"`
+
+	// Configures the buffer page optimization setting.
+	OPTBUFFPAGE *string `json:"OPT_BUFFPAGE,omitempty"`
+
+	// Configures the direct workload optimization setting.
+	OPTDIRECTWRKLD *string `json:"OPT_DIRECT_WRKLD,omitempty"`
+
+	// Configures the lock list optimization setting.
+	OPTLOCKLIST *string `json:"OPT_LOCKLIST,omitempty"`
+
+	// Configures the max locks optimization setting.
+	OPTMAXLOCKS *string `json:"OPT_MAXLOCKS,omitempty"`
+
+	// Configures the sort heap optimization setting.
+	OPTSORTHEAP *string `json:"OPT_SORTHEAP,omitempty"`
+
+	// Configures the page age target for garbage collection.
+	PAGEAGETRGTGCR *string `json:"PAGE_AGE_TRGT_GCR,omitempty"`
+
+	// Configures the page age target for memory collection.
+	PAGEAGETRGTMCR *string `json:"PAGE_AGE_TRGT_MCR,omitempty"`
+
+	// Configures the package cache size.
+	PCKCACHESZ *string `json:"PCKCACHESZ,omitempty"`
+
+	// Configures the level of stack trace logging for stored procedures.
+	PLSTACKTRACE *string `json:"PL_STACK_TRACE,omitempty"`
+
+	// Configures whether self-tuning memory is enabled.
+	SELFTUNINGMEM *string `json:"SELF_TUNING_MEM,omitempty"`
+
+	// Configures sequence detection for queries.
+	SEQDETECT *string `json:"SEQDETECT,omitempty"`
+
+	// Configures the shared heap threshold size.
+	SHEAPTHRESSHR *string `json:"SHEAPTHRES_SHR,omitempty"`
+
+	// Configures the soft max setting.
+	SOFTMAX *string `json:"SOFTMAX,omitempty"`
+
+	// Configures the sort heap memory size.
 	SORTHEAP *string `json:"SORTHEAP,omitempty"`
+
+	// Configures the SQL compiler flags.
+	SQLCCFLAGS *string `json:"SQL_CCFLAGS,omitempty"`
+
+	// Configures the statistics heap size.
+	STATHEAPSZ *string `json:"STAT_HEAP_SZ,omitempty"`
+
+	// Configures the statement heap size.
+	STMTHEAP *string `json:"STMTHEAP,omitempty"`
+
+	// Configures the statement concurrency.
+	STMTCONC *string `json:"STMT_CONC,omitempty"`
+
+	// Configures the string unit settings.
+	STRINGUNITS *string `json:"STRING_UNITS,omitempty"`
+
+	// Configures whether system time period adjustments are enabled.
+	SYSTIMEPERIODADJ *string `json:"SYSTIME_PERIOD_ADJ,omitempty"`
+
+	// Configures whether modifications to tracked objects are logged.
+	TRACKMOD *string `json:"TRACKMOD,omitempty"`
+
+	// Configures the utility heap size.
+	UTILHEAPSZ *string `json:"UTIL_HEAP_SZ,omitempty"`
+
+	// Configures whether WLM (Workload Management) admission control is enabled.
+	WLMADMISSIONCTRL *string `json:"WLM_ADMISSION_CTRL,omitempty"`
+
+	// Configures the WLM agent load target.
+	WLMAGENTLOADTRGT *string `json:"WLM_AGENT_LOAD_TRGT,omitempty"`
+
+	// Configures the CPU limit for WLM workloads.
+	WLMCPULIMIT *string `json:"WLM_CPU_LIMIT,omitempty"`
+
+	// Configures the CPU share count for WLM workloads.
+	WLMCPUSHARES *string `json:"WLM_CPU_SHARES,omitempty"`
+
+	// Configures the mode of CPU shares for WLM workloads.
+	WLMCPUSHAREMODE *string `json:"WLM_CPU_SHARE_MODE,omitempty"`
 }
+
+// Constants associated with the CreateCustomSettingsDb.ACTSORTMEMLIMIT property.
+// Configures the sort memory limit for DB2.
+const (
+	CreateCustomSettingsDb_ACTSORTMEMLIMIT_None = "NONE"
+	CreateCustomSettingsDb_ACTSORTMEMLIMIT_Range10100 = "range(10, 100)"
+)
+
+// Constants associated with the CreateCustomSettingsDb.ALTCOLLATE property.
+// Configures the collation sequence.
+const (
+	CreateCustomSettingsDb_ALTCOLLATE_Identity16bit = "IDENTITY_16BIT"
+	CreateCustomSettingsDb_ALTCOLLATE_Null = "NULL"
+)
+
+// Constants associated with the CreateCustomSettingsDb.APPGROUPMEMSZ property.
+// Sets the application group memory size.
+const (
+	CreateCustomSettingsDb_APPGROUPMEMSZ_Range11000000 = "range(1, 1000000)"
+)
+
+// Constants associated with the CreateCustomSettingsDb.APPLHEAPSZ property.
+// Configures the application heap size.
+const (
+	CreateCustomSettingsDb_APPLHEAPSZ_Automatic = "AUTOMATIC"
+	CreateCustomSettingsDb_APPLHEAPSZ_Range162147483647 = "range(16, 2147483647)"
+)
+
+// Constants associated with the CreateCustomSettingsDb.APPLMEMORY property.
+// Configures the application memory allocation.
+const (
+	CreateCustomSettingsDb_APPLMEMORY_Automatic = "AUTOMATIC"
+	CreateCustomSettingsDb_APPLMEMORY_Range1284294967295 = "range(128, 4294967295)"
+)
+
+// Constants associated with the CreateCustomSettingsDb.APPCTLHEAPSZ property.
+// Configures the application control heap size.
+const (
+	CreateCustomSettingsDb_APPCTLHEAPSZ_Range164000 = "range(1, 64000)"
+)
+
+// Constants associated with the CreateCustomSettingsDb.ARCHRETRYDELAY property.
+// Configures the archive retry delay time.
+const (
+	CreateCustomSettingsDb_ARCHRETRYDELAY_Range065535 = "range(0, 65535)"
+)
+
+// Constants associated with the CreateCustomSettingsDb.AUTHNCACHEDURATION property.
+// Configures the authentication cache duration.
+const (
+	CreateCustomSettingsDb_AUTHNCACHEDURATION_Range110000 = "range(1,10000)"
+)
+
+// Constants associated with the CreateCustomSettingsDb.AUTORESTART property.
+// Configures whether the database will automatically restart.
+const (
+	CreateCustomSettingsDb_AUTORESTART_Off = "OFF"
+	CreateCustomSettingsDb_AUTORESTART_On = "ON"
+)
+
+// Constants associated with the CreateCustomSettingsDb.AUTOCGSTATS property.
+// Configures whether auto collection of CG statistics is enabled.
+const (
+	CreateCustomSettingsDb_AUTOCGSTATS_Off = "OFF"
+	CreateCustomSettingsDb_AUTOCGSTATS_On = "ON"
+)
+
+// Constants associated with the CreateCustomSettingsDb.AUTOMAINT property.
+// Configures automatic maintenance for the database.
+const (
+	CreateCustomSettingsDb_AUTOMAINT_Off = "OFF"
+	CreateCustomSettingsDb_AUTOMAINT_On = "ON"
+)
+
+// Constants associated with the CreateCustomSettingsDb.AUTOREORG property.
+// Configures automatic reorganization for the database.
+const (
+	CreateCustomSettingsDb_AUTOREORG_Off = "OFF"
+	CreateCustomSettingsDb_AUTOREORG_On = "ON"
+)
+
+// Constants associated with the CreateCustomSettingsDb.AUTOREVAL property.
+// Configures the auto refresh or revalidation method.
+const (
+	CreateCustomSettingsDb_AUTOREVAL_Deferred = "DEFERRED"
+	CreateCustomSettingsDb_AUTOREVAL_DeferredForce = "DEFERRED_FORCE"
+	CreateCustomSettingsDb_AUTOREVAL_Disabled = "DISABLED"
+	CreateCustomSettingsDb_AUTOREVAL_Immediate = "IMMEDIATE"
+)
+
+// Constants associated with the CreateCustomSettingsDb.AUTORUNSTATS property.
+// Configures automatic collection of run-time statistics.
+const (
+	CreateCustomSettingsDb_AUTORUNSTATS_Off = "OFF"
+	CreateCustomSettingsDb_AUTORUNSTATS_On = "ON"
+)
+
+// Constants associated with the CreateCustomSettingsDb.AUTOSAMPLING property.
+// Configures whether auto-sampling is enabled.
+const (
+	CreateCustomSettingsDb_AUTOSAMPLING_Off = "OFF"
+	CreateCustomSettingsDb_AUTOSAMPLING_On = "ON"
+)
+
+// Constants associated with the CreateCustomSettingsDb.AUTOSTATSVIEWS property.
+// Configures automatic collection of statistics on views.
+const (
+	CreateCustomSettingsDb_AUTOSTATSVIEWS_Off = "OFF"
+	CreateCustomSettingsDb_AUTOSTATSVIEWS_On = "ON"
+)
+
+// Constants associated with the CreateCustomSettingsDb.AUTOSTMTSTATS property.
+// Configures automatic collection of statement-level statistics.
+const (
+	CreateCustomSettingsDb_AUTOSTMTSTATS_Off = "OFF"
+	CreateCustomSettingsDb_AUTOSTMTSTATS_On = "ON"
+)
+
+// Constants associated with the CreateCustomSettingsDb.AUTOTBLMAINT property.
+// Configures automatic table maintenance.
+const (
+	CreateCustomSettingsDb_AUTOTBLMAINT_Off = "OFF"
+	CreateCustomSettingsDb_AUTOTBLMAINT_On = "ON"
+)
+
+// Constants associated with the CreateCustomSettingsDb.CHNGPGSTHRESH property.
+// Configures the change pages threshold percentage.
+const (
+	CreateCustomSettingsDb_CHNGPGSTHRESH_Range599 = "range(5,99)"
+)
+
+// Constants associated with the CreateCustomSettingsDb.CURCOMMIT property.
+// Configures the commit behavior.
+const (
+	CreateCustomSettingsDb_CURCOMMIT_Available = "AVAILABLE"
+	CreateCustomSettingsDb_CURCOMMIT_Disabled = "DISABLED"
+	CreateCustomSettingsDb_CURCOMMIT_On = "ON"
+)
+
+// Constants associated with the CreateCustomSettingsDb.DATABASEMEMORY property.
+// Configures the database memory management.
+const (
+	CreateCustomSettingsDb_DATABASEMEMORY_Automatic = "AUTOMATIC"
+	CreateCustomSettingsDb_DATABASEMEMORY_Computed = "COMPUTED"
+	CreateCustomSettingsDb_DATABASEMEMORY_Range04294967295 = "range(0, 4294967295)"
+)
+
+// Constants associated with the CreateCustomSettingsDb.DBHEAP property.
+// Configures the database heap size.
+const (
+	CreateCustomSettingsDb_DBHEAP_Automatic = "AUTOMATIC"
+	CreateCustomSettingsDb_DBHEAP_Range322147483647 = "range(32, 2147483647)"
+)
+
+// Constants associated with the CreateCustomSettingsDb.DBMEMTHRESH property.
+// Configures the memory threshold percentage for database.
+const (
+	CreateCustomSettingsDb_DBMEMTHRESH_Range0100 = "range(0, 100)"
+)
+
+// Constants associated with the CreateCustomSettingsDb.DDLCOMPRESSIONDEF property.
+// Defines the default DDL compression behavior.
+const (
+	CreateCustomSettingsDb_DDLCOMPRESSIONDEF_No = "NO"
+	CreateCustomSettingsDb_DDLCOMPRESSIONDEF_Yes = "YES"
+)
+
+// Constants associated with the CreateCustomSettingsDb.DDLCONSTRAINTDEF property.
+// Defines the default constraint behavior in DDL.
+const (
+	CreateCustomSettingsDb_DDLCONSTRAINTDEF_No = "NO"
+	CreateCustomSettingsDb_DDLCONSTRAINTDEF_Yes = "YES"
+)
+
+// Constants associated with the CreateCustomSettingsDb.DECFLTROUNDING property.
+// Configures the decimal floating-point rounding method.
+const (
+	CreateCustomSettingsDb_DECFLTROUNDING_RoundCeiling = "ROUND_CEILING"
+	CreateCustomSettingsDb_DECFLTROUNDING_RoundDown = "ROUND_DOWN"
+	CreateCustomSettingsDb_DECFLTROUNDING_RoundFloor = "ROUND_FLOOR"
+	CreateCustomSettingsDb_DECFLTROUNDING_RoundHalfEven = "ROUND_HALF_EVEN"
+	CreateCustomSettingsDb_DECFLTROUNDING_RoundHalfUp = "ROUND_HALF_UP"
+)
+
+// Constants associated with the CreateCustomSettingsDb.DECTOCHARFMT property.
+// Configures the decimal-to-character conversion format.
+const (
+	CreateCustomSettingsDb_DECTOCHARFMT_New = "NEW"
+	CreateCustomSettingsDb_DECTOCHARFMT_V95 = "V95"
+)
+
+// Constants associated with the CreateCustomSettingsDb.DFTDEGREE property.
+// Configures the default degree for parallelism.
+const (
+	CreateCustomSettingsDb_DFTDEGREE_Any = "ANY"
+	CreateCustomSettingsDb_DFTDEGREE_Range132767 = "range(1, 32767)"
+)
+
+// Constants associated with the CreateCustomSettingsDb.DFTEXTENTSZ property.
+// Configures the default extent size for tables.
+const (
+	CreateCustomSettingsDb_DFTEXTENTSZ_Range2256 = "range(2, 256)"
+)
+
+// Constants associated with the CreateCustomSettingsDb.DFTLOADRECSES property.
+// Configures the default load record session count.
+const (
+	CreateCustomSettingsDb_DFTLOADRECSES_Range130000 = "range(1, 30000)"
+)
+
+// Constants associated with the CreateCustomSettingsDb.DFTPREFETCHSZ property.
+// Configures the default prefetch size for queries.
+const (
+	CreateCustomSettingsDb_DFTPREFETCHSZ_Automatic = "AUTOMATIC"
+	CreateCustomSettingsDb_DFTPREFETCHSZ_Range032767 = "range(0, 32767)"
+)
+
+// Constants associated with the CreateCustomSettingsDb.DFTQUERYOPT property.
+// Configures the default query optimization level.
+const (
+	CreateCustomSettingsDb_DFTQUERYOPT_Range09 = "range(0, 9)"
+)
+
+// Constants associated with the CreateCustomSettingsDb.DFTSCHEMASDCC property.
+// Configures whether DCC (database control center) is enabled for schemas.
+const (
+	CreateCustomSettingsDb_DFTSCHEMASDCC_No = "NO"
+	CreateCustomSettingsDb_DFTSCHEMASDCC_Yes = "YES"
+)
+
+// Constants associated with the CreateCustomSettingsDb.DFTSQLMATHWARN property.
+// Configures whether SQL math warnings are enabled.
+const (
+	CreateCustomSettingsDb_DFTSQLMATHWARN_No = "NO"
+	CreateCustomSettingsDb_DFTSQLMATHWARN_Yes = "YES"
+)
+
+// Constants associated with the CreateCustomSettingsDb.DFTTABLEORG property.
+// Configures the default table organization (ROW or COLUMN).
+const (
+	CreateCustomSettingsDb_DFTTABLEORG_Column = "COLUMN"
+	CreateCustomSettingsDb_DFTTABLEORG_Row = "ROW"
+)
+
+// Constants associated with the CreateCustomSettingsDb.DLCHKTIME property.
+// Configures the deadlock check time in milliseconds.
+const (
+	CreateCustomSettingsDb_DLCHKTIME_Range1000600000 = "range(1000, 600000)"
+)
+
+// Constants associated with the CreateCustomSettingsDb.ENABLEXMLCHAR property.
+// Configures whether XML character support is enabled.
+const (
+	CreateCustomSettingsDb_ENABLEXMLCHAR_No = "NO"
+	CreateCustomSettingsDb_ENABLEXMLCHAR_Yes = "YES"
+)
+
+// Constants associated with the CreateCustomSettingsDb.EXTENDEDROWSZ property.
+// Configures whether extended row size is enabled.
+const (
+	CreateCustomSettingsDb_EXTENDEDROWSZ_Disable = "DISABLE"
+	CreateCustomSettingsDb_EXTENDEDROWSZ_Enable = "ENABLE"
+)
+
+// Constants associated with the CreateCustomSettingsDb.GROUPHEAPRATIO property.
+// Configures the heap ratio for group heap memory.
+const (
+	CreateCustomSettingsDb_GROUPHEAPRATIO_Range199 = "range(1, 99)"
+)
+
+// Constants associated with the CreateCustomSettingsDb.INDEXREC property.
+// Configures the index recovery method.
+const (
+	CreateCustomSettingsDb_INDEXREC_Access = "ACCESS"
+	CreateCustomSettingsDb_INDEXREC_AccessNoRedo = "ACCESS_NO_REDO"
+	CreateCustomSettingsDb_INDEXREC_Restart = "RESTART"
+	CreateCustomSettingsDb_INDEXREC_RestartNoRedo = "RESTART_NO_REDO"
+	CreateCustomSettingsDb_INDEXREC_System = "SYSTEM"
+)
+
+// Constants associated with the CreateCustomSettingsDb.LARGEAGGREGATION property.
+// Configures whether large aggregation is enabled.
+const (
+	CreateCustomSettingsDb_LARGEAGGREGATION_No = "NO"
+	CreateCustomSettingsDb_LARGEAGGREGATION_Yes = "YES"
+)
+
+// Constants associated with the CreateCustomSettingsDb.LOCKLIST property.
+// Configures the lock list memory size.
+const (
+	CreateCustomSettingsDb_LOCKLIST_Automatic = "AUTOMATIC"
+	CreateCustomSettingsDb_LOCKLIST_Range4134217728 = "range(4, 134217728)"
+)
+
+// Constants associated with the CreateCustomSettingsDb.LOCKTIMEOUT property.
+// Configures the lock timeout duration.
+const (
+	CreateCustomSettingsDb_LOCKTIMEOUT_Range032767 = "range(0, 32767)"
+)
+
+// Constants associated with the CreateCustomSettingsDb.LOGINDEXBUILD property.
+// Configures whether index builds are logged.
+const (
+	CreateCustomSettingsDb_LOGINDEXBUILD_Off = "OFF"
+	CreateCustomSettingsDb_LOGINDEXBUILD_On = "ON"
+)
+
+// Constants associated with the CreateCustomSettingsDb.LOGAPPLINFO property.
+// Configures whether application information is logged.
+const (
+	CreateCustomSettingsDb_LOGAPPLINFO_No = "NO"
+	CreateCustomSettingsDb_LOGAPPLINFO_Yes = "YES"
+)
+
+// Constants associated with the CreateCustomSettingsDb.LOGDDLSTMTS property.
+// Configures whether DDL statements are logged.
+const (
+	CreateCustomSettingsDb_LOGDDLSTMTS_No = "NO"
+	CreateCustomSettingsDb_LOGDDLSTMTS_Yes = "YES"
+)
+
+// Constants associated with the CreateCustomSettingsDb.LOGDISKCAP property.
+// Configures the disk capacity log setting.
+const (
+	CreateCustomSettingsDb_LOGDISKCAP_Range12147483647 = "range(1, 2147483647)"
+)
+
+// Constants associated with the CreateCustomSettingsDb.MAXAPPLS property.
+// Configures the maximum number of applications.
+const (
+	CreateCustomSettingsDb_MAXAPPLS_Range160000 = "range(1, 60000)"
+)
+
+// Constants associated with the CreateCustomSettingsDb.MAXFILOP property.
+// Configures the maximum number of file operations.
+const (
+	CreateCustomSettingsDb_MAXFILOP_Range6461440 = "range(64, 61440)"
+)
+
+// Constants associated with the CreateCustomSettingsDb.MAXLOCKS property.
+// Configures the maximum number of locks.
+const (
+	CreateCustomSettingsDb_MAXLOCKS_Automatic = "AUTOMATIC"
+	CreateCustomSettingsDb_MAXLOCKS_Range1100 = "range(1, 100)"
+)
+
+// Constants associated with the CreateCustomSettingsDb.MINDECDIV3 property.
+// Configures whether decimal division by 3 should be handled.
+const (
+	CreateCustomSettingsDb_MINDECDIV3_No = "NO"
+	CreateCustomSettingsDb_MINDECDIV3_Yes = "YES"
+)
+
+// Constants associated with the CreateCustomSettingsDb.MONACTMETRICS property.
+// Configures the level of activity metrics to be monitored.
+const (
+	CreateCustomSettingsDb_MONACTMETRICS_Base = "BASE"
+	CreateCustomSettingsDb_MONACTMETRICS_Extended = "EXTENDED"
+	CreateCustomSettingsDb_MONACTMETRICS_None = "NONE"
+)
+
+// Constants associated with the CreateCustomSettingsDb.MONDEADLOCK property.
+// Configures deadlock monitoring settings.
+const (
+	CreateCustomSettingsDb_MONDEADLOCK_HistAndValues = "HIST_AND_VALUES"
+	CreateCustomSettingsDb_MONDEADLOCK_History = "HISTORY"
+	CreateCustomSettingsDb_MONDEADLOCK_None = "NONE"
+	CreateCustomSettingsDb_MONDEADLOCK_WithoutHist = "WITHOUT_HIST"
+)
+
+// Constants associated with the CreateCustomSettingsDb.MONLCKMSGLVL property.
+// Configures the lock message level for monitoring.
+const (
+	CreateCustomSettingsDb_MONLCKMSGLVL_Range03 = "range(0, 3)"
+)
+
+// Constants associated with the CreateCustomSettingsDb.MONLOCKTIMEOUT property.
+// Configures lock timeout monitoring settings.
+const (
+	CreateCustomSettingsDb_MONLOCKTIMEOUT_HistAndValues = "HIST_AND_VALUES"
+	CreateCustomSettingsDb_MONLOCKTIMEOUT_History = "HISTORY"
+	CreateCustomSettingsDb_MONLOCKTIMEOUT_None = "NONE"
+	CreateCustomSettingsDb_MONLOCKTIMEOUT_WithoutHist = "WITHOUT_HIST"
+)
+
+// Constants associated with the CreateCustomSettingsDb.MONLOCKWAIT property.
+// Configures lock wait monitoring settings.
+const (
+	CreateCustomSettingsDb_MONLOCKWAIT_HistAndValues = "HIST_AND_VALUES"
+	CreateCustomSettingsDb_MONLOCKWAIT_History = "HISTORY"
+	CreateCustomSettingsDb_MONLOCKWAIT_None = "NONE"
+	CreateCustomSettingsDb_MONLOCKWAIT_WithoutHist = "WITHOUT_HIST"
+)
+
+// Constants associated with the CreateCustomSettingsDb.MONLWTHRESH property.
+// Configures the lightweight threshold for monitoring.
+const (
+	CreateCustomSettingsDb_MONLWTHRESH_Range10004294967295 = "range(1000, 4294967295)"
+)
+
+// Constants associated with the CreateCustomSettingsDb.MONOBJMETRICS property.
+// Configures the object metrics level for monitoring.
+const (
+	CreateCustomSettingsDb_MONOBJMETRICS_Base = "BASE"
+	CreateCustomSettingsDb_MONOBJMETRICS_Extended = "EXTENDED"
+	CreateCustomSettingsDb_MONOBJMETRICS_None = "NONE"
+)
+
+// Constants associated with the CreateCustomSettingsDb.MONPKGLISTSZ property.
+// Configures the package list size for monitoring.
+const (
+	CreateCustomSettingsDb_MONPKGLISTSZ_Range01024 = "range(0, 1024)"
+)
+
+// Constants associated with the CreateCustomSettingsDb.MONREQMETRICS property.
+// Configures the request metrics level for monitoring.
+const (
+	CreateCustomSettingsDb_MONREQMETRICS_Base = "BASE"
+	CreateCustomSettingsDb_MONREQMETRICS_Extended = "EXTENDED"
+	CreateCustomSettingsDb_MONREQMETRICS_None = "NONE"
+)
+
+// Constants associated with the CreateCustomSettingsDb.MONRTNDATA property.
+// Configures the level of return data for monitoring.
+const (
+	CreateCustomSettingsDb_MONRTNDATA_Base = "BASE"
+	CreateCustomSettingsDb_MONRTNDATA_None = "NONE"
+)
+
+// Constants associated with the CreateCustomSettingsDb.MONRTNEXECLIST property.
+// Configures whether stored procedure execution list is monitored.
+const (
+	CreateCustomSettingsDb_MONRTNEXECLIST_Off = "OFF"
+	CreateCustomSettingsDb_MONRTNEXECLIST_On = "ON"
+)
+
+// Constants associated with the CreateCustomSettingsDb.MONUOWDATA property.
+// Configures the level of unit of work (UOW) data for monitoring.
+const (
+	CreateCustomSettingsDb_MONUOWDATA_Base = "BASE"
+	CreateCustomSettingsDb_MONUOWDATA_None = "NONE"
+)
+
+// Constants associated with the CreateCustomSettingsDb.MONUOWEXECLIST property.
+// Configures whether UOW execution list is monitored.
+const (
+	CreateCustomSettingsDb_MONUOWEXECLIST_Off = "OFF"
+	CreateCustomSettingsDb_MONUOWEXECLIST_On = "ON"
+)
+
+// Constants associated with the CreateCustomSettingsDb.MONUOWPKGLIST property.
+// Configures whether UOW package list is monitored.
+const (
+	CreateCustomSettingsDb_MONUOWPKGLIST_Off = "OFF"
+	CreateCustomSettingsDb_MONUOWPKGLIST_On = "ON"
+)
+
+// Constants associated with the CreateCustomSettingsDb.NCHARMAPPING property.
+// Configures the mapping of NCHAR character types.
+const (
+	CreateCustomSettingsDb_NCHARMAPPING_CharCu32 = "CHAR_CU32"
+	CreateCustomSettingsDb_NCHARMAPPING_GraphicCu16 = "GRAPHIC_CU16"
+	CreateCustomSettingsDb_NCHARMAPPING_GraphicCu32 = "GRAPHIC_CU32"
+	CreateCustomSettingsDb_NCHARMAPPING_NotApplicable = "NOT APPLICABLE"
+)
+
+// Constants associated with the CreateCustomSettingsDb.NUMFREQVALUES property.
+// Configures the number of frequent values for optimization.
+const (
+	CreateCustomSettingsDb_NUMFREQVALUES_Range032767 = "range(0, 32767)"
+)
+
+// Constants associated with the CreateCustomSettingsDb.NUMIOCLEANERS property.
+// Configures the number of IO cleaners.
+const (
+	CreateCustomSettingsDb_NUMIOCLEANERS_Automatic = "AUTOMATIC"
+	CreateCustomSettingsDb_NUMIOCLEANERS_Range0255 = "range(0, 255)"
+)
+
+// Constants associated with the CreateCustomSettingsDb.NUMIOSERVERS property.
+// Configures the number of IO servers.
+const (
+	CreateCustomSettingsDb_NUMIOSERVERS_Automatic = "AUTOMATIC"
+	CreateCustomSettingsDb_NUMIOSERVERS_Range1255 = "range(1, 255)"
+)
+
+// Constants associated with the CreateCustomSettingsDb.NUMLOGSPAN property.
+// Configures the number of log spans.
+const (
+	CreateCustomSettingsDb_NUMLOGSPAN_Range065535 = "range(0, 65535)"
+)
+
+// Constants associated with the CreateCustomSettingsDb.NUMQUANTILES property.
+// Configures the number of quantiles for optimizations.
+const (
+	CreateCustomSettingsDb_NUMQUANTILES_Range032767 = "range(0, 32767)"
+)
+
+// Constants associated with the CreateCustomSettingsDb.OPTDIRECTWRKLD property.
+// Configures the direct workload optimization setting.
+const (
+	CreateCustomSettingsDb_OPTDIRECTWRKLD_Automatic = "AUTOMATIC"
+	CreateCustomSettingsDb_OPTDIRECTWRKLD_No = "NO"
+	CreateCustomSettingsDb_OPTDIRECTWRKLD_Off = "OFF"
+	CreateCustomSettingsDb_OPTDIRECTWRKLD_On = "ON"
+	CreateCustomSettingsDb_OPTDIRECTWRKLD_Yes = "YES"
+)
+
+// Constants associated with the CreateCustomSettingsDb.PAGEAGETRGTGCR property.
+// Configures the page age target for garbage collection.
+const (
+	CreateCustomSettingsDb_PAGEAGETRGTGCR_Range165535 = "range(1, 65535)"
+)
+
+// Constants associated with the CreateCustomSettingsDb.PAGEAGETRGTMCR property.
+// Configures the page age target for memory collection.
+const (
+	CreateCustomSettingsDb_PAGEAGETRGTMCR_Range165535 = "range(1, 65535)"
+)
+
+// Constants associated with the CreateCustomSettingsDb.PCKCACHESZ property.
+// Configures the package cache size.
+const (
+	CreateCustomSettingsDb_PCKCACHESZ_Automatic = "AUTOMATIC"
+	CreateCustomSettingsDb_PCKCACHESZ_Range322147483646 = "range(32, 2147483646)"
+)
+
+// Constants associated with the CreateCustomSettingsDb.PLSTACKTRACE property.
+// Configures the level of stack trace logging for stored procedures.
+const (
+	CreateCustomSettingsDb_PLSTACKTRACE_All = "ALL"
+	CreateCustomSettingsDb_PLSTACKTRACE_None = "NONE"
+	CreateCustomSettingsDb_PLSTACKTRACE_Unhandled = "UNHANDLED"
+)
+
+// Constants associated with the CreateCustomSettingsDb.SELFTUNINGMEM property.
+// Configures whether self-tuning memory is enabled.
+const (
+	CreateCustomSettingsDb_SELFTUNINGMEM_Off = "OFF"
+	CreateCustomSettingsDb_SELFTUNINGMEM_On = "ON"
+)
+
+// Constants associated with the CreateCustomSettingsDb.SEQDETECT property.
+// Configures sequence detection for queries.
+const (
+	CreateCustomSettingsDb_SEQDETECT_No = "NO"
+	CreateCustomSettingsDb_SEQDETECT_Yes = "YES"
+)
+
+// Constants associated with the CreateCustomSettingsDb.SHEAPTHRESSHR property.
+// Configures the shared heap threshold size.
+const (
+	CreateCustomSettingsDb_SHEAPTHRESSHR_Automatic = "AUTOMATIC"
+	CreateCustomSettingsDb_SHEAPTHRESSHR_Range2502147483647 = "range(250, 2147483647)"
+)
+
+// Constants associated with the CreateCustomSettingsDb.SORTHEAP property.
+// Configures the sort heap memory size.
+const (
+	CreateCustomSettingsDb_SORTHEAP_Automatic = "AUTOMATIC"
+	CreateCustomSettingsDb_SORTHEAP_Range164294967295 = "range(16, 4294967295)"
+)
+
+// Constants associated with the CreateCustomSettingsDb.STATHEAPSZ property.
+// Configures the statistics heap size.
+const (
+	CreateCustomSettingsDb_STATHEAPSZ_Automatic = "AUTOMATIC"
+	CreateCustomSettingsDb_STATHEAPSZ_Range10962147483647 = "range(1096, 2147483647)"
+)
+
+// Constants associated with the CreateCustomSettingsDb.STMTHEAP property.
+// Configures the statement heap size.
+const (
+	CreateCustomSettingsDb_STMTHEAP_Automatic = "AUTOMATIC"
+	CreateCustomSettingsDb_STMTHEAP_Range1282147483647 = "range(128, 2147483647)"
+)
+
+// Constants associated with the CreateCustomSettingsDb.STMTCONC property.
+// Configures the statement concurrency.
+const (
+	CreateCustomSettingsDb_STMTCONC_CommLit = "COMM_LIT"
+	CreateCustomSettingsDb_STMTCONC_Comments = "COMMENTS"
+	CreateCustomSettingsDb_STMTCONC_Literals = "LITERALS"
+	CreateCustomSettingsDb_STMTCONC_Off = "OFF"
+)
+
+// Constants associated with the CreateCustomSettingsDb.STRINGUNITS property.
+// Configures the string unit settings.
+const (
+	CreateCustomSettingsDb_STRINGUNITS_Codeunits32 = "CODEUNITS32"
+	CreateCustomSettingsDb_STRINGUNITS_System = "SYSTEM"
+)
+
+// Constants associated with the CreateCustomSettingsDb.SYSTIMEPERIODADJ property.
+// Configures whether system time period adjustments are enabled.
+const (
+	CreateCustomSettingsDb_SYSTIMEPERIODADJ_No = "NO"
+	CreateCustomSettingsDb_SYSTIMEPERIODADJ_Yes = "YES"
+)
+
+// Constants associated with the CreateCustomSettingsDb.TRACKMOD property.
+// Configures whether modifications to tracked objects are logged.
+const (
+	CreateCustomSettingsDb_TRACKMOD_No = "NO"
+	CreateCustomSettingsDb_TRACKMOD_Yes = "YES"
+)
+
+// Constants associated with the CreateCustomSettingsDb.UTILHEAPSZ property.
+// Configures the utility heap size.
+const (
+	CreateCustomSettingsDb_UTILHEAPSZ_Automatic = "AUTOMATIC"
+	CreateCustomSettingsDb_UTILHEAPSZ_Range162147483647 = "range(16, 2147483647)"
+)
+
+// Constants associated with the CreateCustomSettingsDb.WLMADMISSIONCTRL property.
+// Configures whether WLM (Workload Management) admission control is enabled.
+const (
+	CreateCustomSettingsDb_WLMADMISSIONCTRL_No = "NO"
+	CreateCustomSettingsDb_WLMADMISSIONCTRL_Yes = "YES"
+)
+
+// Constants associated with the CreateCustomSettingsDb.WLMAGENTLOADTRGT property.
+// Configures the WLM agent load target.
+const (
+	CreateCustomSettingsDb_WLMAGENTLOADTRGT_Automatic = "AUTOMATIC"
+	CreateCustomSettingsDb_WLMAGENTLOADTRGT_Range165535 = "range(1, 65535)"
+)
+
+// Constants associated with the CreateCustomSettingsDb.WLMCPULIMIT property.
+// Configures the CPU limit for WLM workloads.
+const (
+	CreateCustomSettingsDb_WLMCPULIMIT_Range0100 = "range(0, 100)"
+)
+
+// Constants associated with the CreateCustomSettingsDb.WLMCPUSHARES property.
+// Configures the CPU share count for WLM workloads.
+const (
+	CreateCustomSettingsDb_WLMCPUSHARES_Range165535 = "range(1, 65535)"
+)
+
+// Constants associated with the CreateCustomSettingsDb.WLMCPUSHAREMODE property.
+// Configures the mode of CPU shares for WLM workloads.
+const (
+	CreateCustomSettingsDb_WLMCPUSHAREMODE_Hard = "HARD"
+	CreateCustomSettingsDb_WLMCPUSHAREMODE_Soft = "SOFT"
+)
 
 // UnmarshalCreateCustomSettingsDb unmarshals an instance of CreateCustomSettingsDb from the specified map of raw messages.
 func UnmarshalCreateCustomSettingsDb(m map[string]json.RawMessage, result interface{}) (err error) {
 	obj := new(CreateCustomSettingsDb)
+	err = core.UnmarshalPrimitive(m, "ACT_SORTMEM_LIMIT", &obj.ACTSORTMEMLIMIT)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "ACT_SORTMEM_LIMIT-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "ALT_COLLATE", &obj.ALTCOLLATE)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "ALT_COLLATE-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "APPGROUP_MEM_SZ", &obj.APPGROUPMEMSZ)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "APPGROUP_MEM_SZ-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "APPLHEAPSZ", &obj.APPLHEAPSZ)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "APPLHEAPSZ-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "APPL_MEMORY", &obj.APPLMEMORY)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "APPL_MEMORY-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "APP_CTL_HEAP_SZ", &obj.APPCTLHEAPSZ)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "APP_CTL_HEAP_SZ-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "ARCHRETRYDELAY", &obj.ARCHRETRYDELAY)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "ARCHRETRYDELAY-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "AUTHN_CACHE_DURATION", &obj.AUTHNCACHEDURATION)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "AUTHN_CACHE_DURATION-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "AUTORESTART", &obj.AUTORESTART)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "AUTORESTART-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "AUTO_CG_STATS", &obj.AUTOCGSTATS)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "AUTO_CG_STATS-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "AUTO_MAINT", &obj.AUTOMAINT)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "AUTO_MAINT-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "AUTO_REORG", &obj.AUTOREORG)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "AUTO_REORG-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "AUTO_REVAL", &obj.AUTOREVAL)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "AUTO_REVAL-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "AUTO_RUNSTATS", &obj.AUTORUNSTATS)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "AUTO_RUNSTATS-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "AUTO_SAMPLING", &obj.AUTOSAMPLING)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "AUTO_SAMPLING-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "AUTO_STATS_VIEWS", &obj.AUTOSTATSVIEWS)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "AUTO_STATS_VIEWS-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "AUTO_STMT_STATS", &obj.AUTOSTMTSTATS)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "AUTO_STMT_STATS-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "AUTO_TBL_MAINT", &obj.AUTOTBLMAINT)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "AUTO_TBL_MAINT-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "AVG_APPLS", &obj.AVGAPPLS)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "AVG_APPLS-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "CATALOGCACHE_SZ", &obj.CATALOGCACHESZ)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "CATALOGCACHE_SZ-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "CHNGPGS_THRESH", &obj.CHNGPGSTHRESH)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "CHNGPGS_THRESH-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "CUR_COMMIT", &obj.CURCOMMIT)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "CUR_COMMIT-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DATABASE_MEMORY", &obj.DATABASEMEMORY)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DATABASE_MEMORY-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DBHEAP", &obj.DBHEAP)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DBHEAP-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DB_COLLNAME", &obj.DBCOLLNAME)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DB_COLLNAME-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DB_MEM_THRESH", &obj.DBMEMTHRESH)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DB_MEM_THRESH-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DDL_COMPRESSION_DEF", &obj.DDLCOMPRESSIONDEF)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DDL_COMPRESSION_DEF-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DDL_CONSTRAINT_DEF", &obj.DDLCONSTRAINTDEF)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DDL_CONSTRAINT_DEF-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DECFLT_ROUNDING", &obj.DECFLTROUNDING)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DECFLT_ROUNDING-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DEC_ARITHMETIC", &obj.DECARITHMETIC)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DEC_ARITHMETIC-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DEC_TO_CHAR_FMT", &obj.DECTOCHARFMT)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DEC_TO_CHAR_FMT-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DFT_DEGREE", &obj.DFTDEGREE)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DFT_DEGREE-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DFT_EXTENT_SZ", &obj.DFTEXTENTSZ)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DFT_EXTENT_SZ-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DFT_LOADREC_SES", &obj.DFTLOADRECSES)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DFT_LOADREC_SES-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DFT_MTTB_TYPES", &obj.DFTMTTBTYPES)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DFT_MTTB_TYPES-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DFT_PREFETCH_SZ", &obj.DFTPREFETCHSZ)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DFT_PREFETCH_SZ-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DFT_QUERYOPT", &obj.DFTQUERYOPT)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DFT_QUERYOPT-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DFT_REFRESH_AGE", &obj.DFTREFRESHAGE)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DFT_REFRESH_AGE-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DFT_SCHEMAS_DCC", &obj.DFTSCHEMASDCC)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DFT_SCHEMAS_DCC-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DFT_SQLMATHWARN", &obj.DFTSQLMATHWARN)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DFT_SQLMATHWARN-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DFT_TABLE_ORG", &obj.DFTTABLEORG)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DFT_TABLE_ORG-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DLCHKTIME", &obj.DLCHKTIME)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DLCHKTIME-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "ENABLE_XMLCHAR", &obj.ENABLEXMLCHAR)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "ENABLE_XMLCHAR-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "EXTENDED_ROW_SZ", &obj.EXTENDEDROWSZ)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "EXTENDED_ROW_SZ-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "GROUPHEAP_RATIO", &obj.GROUPHEAPRATIO)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "GROUPHEAP_RATIO-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "INDEXREC", &obj.INDEXREC)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "INDEXREC-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "LARGE_AGGREGATION", &obj.LARGEAGGREGATION)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "LARGE_AGGREGATION-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "LOCKLIST", &obj.LOCKLIST)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "LOCKLIST-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "LOCKTIMEOUT", &obj.LOCKTIMEOUT)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "LOCKTIMEOUT-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "LOGINDEXBUILD", &obj.LOGINDEXBUILD)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "LOGINDEXBUILD-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "LOG_APPL_INFO", &obj.LOGAPPLINFO)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "LOG_APPL_INFO-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "LOG_DDL_STMTS", &obj.LOGDDLSTMTS)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "LOG_DDL_STMTS-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "LOG_DISK_CAP", &obj.LOGDISKCAP)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "LOG_DISK_CAP-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "MAXAPPLS", &obj.MAXAPPLS)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "MAXAPPLS-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "MAXFILOP", &obj.MAXFILOP)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "MAXFILOP-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "MAXLOCKS", &obj.MAXLOCKS)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "MAXLOCKS-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "MIN_DEC_DIV_3", &obj.MINDECDIV3)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "MIN_DEC_DIV_3-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "MON_ACT_METRICS", &obj.MONACTMETRICS)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "MON_ACT_METRICS-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "MON_DEADLOCK", &obj.MONDEADLOCK)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "MON_DEADLOCK-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "MON_LCK_MSG_LVL", &obj.MONLCKMSGLVL)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "MON_LCK_MSG_LVL-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "MON_LOCKTIMEOUT", &obj.MONLOCKTIMEOUT)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "MON_LOCKTIMEOUT-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "MON_LOCKWAIT", &obj.MONLOCKWAIT)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "MON_LOCKWAIT-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "MON_LW_THRESH", &obj.MONLWTHRESH)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "MON_LW_THRESH-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "MON_OBJ_METRICS", &obj.MONOBJMETRICS)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "MON_OBJ_METRICS-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "MON_PKGLIST_SZ", &obj.MONPKGLISTSZ)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "MON_PKGLIST_SZ-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "MON_REQ_METRICS", &obj.MONREQMETRICS)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "MON_REQ_METRICS-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "MON_RTN_DATA", &obj.MONRTNDATA)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "MON_RTN_DATA-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "MON_RTN_EXECLIST", &obj.MONRTNEXECLIST)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "MON_RTN_EXECLIST-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "MON_UOW_DATA", &obj.MONUOWDATA)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "MON_UOW_DATA-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "MON_UOW_EXECLIST", &obj.MONUOWEXECLIST)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "MON_UOW_EXECLIST-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "MON_UOW_PKGLIST", &obj.MONUOWPKGLIST)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "MON_UOW_PKGLIST-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "NCHAR_MAPPING", &obj.NCHARMAPPING)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "NCHAR_MAPPING-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "NUM_FREQVALUES", &obj.NUMFREQVALUES)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "NUM_FREQVALUES-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "NUM_IOCLEANERS", &obj.NUMIOCLEANERS)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "NUM_IOCLEANERS-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "NUM_IOSERVERS", &obj.NUMIOSERVERS)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "NUM_IOSERVERS-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "NUM_LOG_SPAN", &obj.NUMLOGSPAN)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "NUM_LOG_SPAN-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "NUM_QUANTILES", &obj.NUMQUANTILES)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "NUM_QUANTILES-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "OPT_BUFFPAGE", &obj.OPTBUFFPAGE)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "OPT_BUFFPAGE-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "OPT_DIRECT_WRKLD", &obj.OPTDIRECTWRKLD)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "OPT_DIRECT_WRKLD-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "OPT_LOCKLIST", &obj.OPTLOCKLIST)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "OPT_LOCKLIST-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "OPT_MAXLOCKS", &obj.OPTMAXLOCKS)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "OPT_MAXLOCKS-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "OPT_SORTHEAP", &obj.OPTSORTHEAP)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "OPT_SORTHEAP-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "PAGE_AGE_TRGT_GCR", &obj.PAGEAGETRGTGCR)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "PAGE_AGE_TRGT_GCR-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "PAGE_AGE_TRGT_MCR", &obj.PAGEAGETRGTMCR)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "PAGE_AGE_TRGT_MCR-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "PCKCACHESZ", &obj.PCKCACHESZ)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "PCKCACHESZ-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "PL_STACK_TRACE", &obj.PLSTACKTRACE)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "PL_STACK_TRACE-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "SELF_TUNING_MEM", &obj.SELFTUNINGMEM)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "SELF_TUNING_MEM-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "SEQDETECT", &obj.SEQDETECT)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "SEQDETECT-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "SHEAPTHRES_SHR", &obj.SHEAPTHRESSHR)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "SHEAPTHRES_SHR-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "SOFTMAX", &obj.SOFTMAX)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "SOFTMAX-error", common.GetComponentInfo())
+		return
+	}
 	err = core.UnmarshalPrimitive(m, "SORTHEAP", &obj.SORTHEAP)
 	if err != nil {
 		err = core.SDKErrorf(err, "", "SORTHEAP-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "SQL_CCFLAGS", &obj.SQLCCFLAGS)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "SQL_CCFLAGS-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "STAT_HEAP_SZ", &obj.STATHEAPSZ)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "STAT_HEAP_SZ-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "STMTHEAP", &obj.STMTHEAP)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "STMTHEAP-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "STMT_CONC", &obj.STMTCONC)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "STMT_CONC-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "STRING_UNITS", &obj.STRINGUNITS)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "STRING_UNITS-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "SYSTIME_PERIOD_ADJ", &obj.SYSTIMEPERIODADJ)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "SYSTIME_PERIOD_ADJ-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "TRACKMOD", &obj.TRACKMOD)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "TRACKMOD-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "UTIL_HEAP_SZ", &obj.UTILHEAPSZ)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "UTIL_HEAP_SZ-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "WLM_ADMISSION_CTRL", &obj.WLMADMISSIONCTRL)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "WLM_ADMISSION_CTRL-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "WLM_AGENT_LOAD_TRGT", &obj.WLMAGENTLOADTRGT)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "WLM_AGENT_LOAD_TRGT-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "WLM_CPU_LIMIT", &obj.WLMCPULIMIT)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "WLM_CPU_LIMIT-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "WLM_CPU_SHARES", &obj.WLMCPUSHARES)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "WLM_CPU_SHARES-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "WLM_CPU_SHARE_MODE", &obj.WLMCPUSHAREMODE)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "WLM_CPU_SHARE_MODE-error", common.GetComponentInfo())
+		return
+	}
+	reflect.ValueOf(result).Elem().Set(reflect.ValueOf(obj))
+	return
+}
+
+// CreateCustomSettingsDbm : Container for general database management settings.
+type CreateCustomSettingsDbm struct {
+	// Configures the communication bandwidth for the database manager.
+	COMMBANDWIDTH *string `json:"COMM_BANDWIDTH,omitempty"`
+
+	// Configures the CPU speed for the database manager.
+	CPUSPEED *string `json:"CPUSPEED,omitempty"`
+
+	// Configures whether the buffer pool is monitored by default.
+	DFTMONBUFPOOL *string `json:"DFT_MON_BUFPOOL,omitempty"`
+
+	// Configures whether lock monitoring is enabled by default.
+	DFTMONLOCK *string `json:"DFT_MON_LOCK,omitempty"`
+
+	// Configures whether sort operations are monitored by default.
+	DFTMONSORT *string `json:"DFT_MON_SORT,omitempty"`
+
+	// Configures whether statement execution is monitored by default.
+	DFTMONSTMT *string `json:"DFT_MON_STMT,omitempty"`
+
+	// Configures whether table operations are monitored by default.
+	DFTMONTABLE *string `json:"DFT_MON_TABLE,omitempty"`
+
+	// Configures whether timestamp monitoring is enabled by default.
+	DFTMONTIMESTAMP *string `json:"DFT_MON_TIMESTAMP,omitempty"`
+
+	// Configures whether unit of work (UOW) monitoring is enabled by default.
+	DFTMONUOW *string `json:"DFT_MON_UOW,omitempty"`
+
+	// Configures the diagnostic level for the database manager.
+	DIAGLEVEL *string `json:"DIAGLEVEL,omitempty"`
+
+	// Configures whether federated asynchronous mode is enabled.
+	FEDERATEDASYNC *string `json:"FEDERATED_ASYNC,omitempty"`
+
+	// Configures the type of indexing to be used in the database manager.
+	INDEXREC *string `json:"INDEXREC,omitempty"`
+
+	// Configures the parallelism settings for intra-query parallelism.
+	INTRAPARALLEL *string `json:"INTRA_PARALLEL,omitempty"`
+
+	// Configures whether fenced routines are kept in memory.
+	KEEPFENCED *string `json:"KEEPFENCED,omitempty"`
+
+	// Configures the maximum number of connection retries.
+	MAXCONNRETRIES *string `json:"MAX_CONNRETRIES,omitempty"`
+
+	// Configures the maximum degree of parallelism for queries.
+	MAXQUERYDEGREE *string `json:"MAX_QUERYDEGREE,omitempty"`
+
+	// Configures the size of the monitoring heap.
+	MONHEAPSZ *string `json:"MON_HEAP_SZ,omitempty"`
+
+	// Configures the size of multipart queries in MB.
+	MULTIPARTSIZEMB *string `json:"MULTIPARTSIZEMB,omitempty"`
+
+	// Configures the level of notifications for the database manager.
+	NOTIFYLEVEL *string `json:"NOTIFYLEVEL,omitempty"`
+
+	// Configures the number of initial agents in the database manager.
+	NUMINITAGENTS *string `json:"NUM_INITAGENTS,omitempty"`
+
+	// Configures the number of initial fenced routines.
+	NUMINITFENCED *string `json:"NUM_INITFENCED,omitempty"`
+
+	// Configures the number of pool agents.
+	NUMPOOLAGENTS *string `json:"NUM_POOLAGENTS,omitempty"`
+
+	// Configures the interval between resync operations.
+	RESYNCINTERVAL *string `json:"RESYNC_INTERVAL,omitempty"`
+
+	// Configures the request/response I/O block size.
+	RQRIOBLK *string `json:"RQRIOBLK,omitempty"`
+
+	// Configures the time in minutes for start/stop operations.
+	STARTSTOPTIME *string `json:"START_STOP_TIME,omitempty"`
+
+	// Configures the utility impact limit.
+	UTILIMPACTLIM *string `json:"UTIL_IMPACT_LIM,omitempty"`
+
+	// Configures whether the WLM (Workload Management) dispatcher is enabled.
+	WLMDISPATCHER *string `json:"WLM_DISPATCHER,omitempty"`
+
+	// Configures the concurrency level for the WLM dispatcher.
+	WLMDISPCONCUR *string `json:"WLM_DISP_CONCUR,omitempty"`
+
+	// Configures whether CPU shares are used for WLM dispatcher.
+	WLMDISPCPUSHARES *string `json:"WLM_DISP_CPU_SHARES,omitempty"`
+
+	// Configures the minimum utility threshold for WLM dispatcher.
+	WLMDISPMINUTIL *string `json:"WLM_DISP_MIN_UTIL,omitempty"`
+}
+
+// Constants associated with the CreateCustomSettingsDbm.COMMBANDWIDTH property.
+// Configures the communication bandwidth for the database manager.
+const (
+	CreateCustomSettingsDbm_COMMBANDWIDTH_Range01100000 = "range(0.1, 100000)"
+)
+
+// Constants associated with the CreateCustomSettingsDbm.CPUSPEED property.
+// Configures the CPU speed for the database manager.
+const (
+	CreateCustomSettingsDbm_CPUSPEED_Range000000000011 = "range(0.0000000001, 1)"
+)
+
+// Constants associated with the CreateCustomSettingsDbm.DFTMONBUFPOOL property.
+// Configures whether the buffer pool is monitored by default.
+const (
+	CreateCustomSettingsDbm_DFTMONBUFPOOL_Off = "OFF"
+	CreateCustomSettingsDbm_DFTMONBUFPOOL_On = "ON"
+)
+
+// Constants associated with the CreateCustomSettingsDbm.DFTMONLOCK property.
+// Configures whether lock monitoring is enabled by default.
+const (
+	CreateCustomSettingsDbm_DFTMONLOCK_Off = "OFF"
+	CreateCustomSettingsDbm_DFTMONLOCK_On = "ON"
+)
+
+// Constants associated with the CreateCustomSettingsDbm.DFTMONSORT property.
+// Configures whether sort operations are monitored by default.
+const (
+	CreateCustomSettingsDbm_DFTMONSORT_Off = "OFF"
+	CreateCustomSettingsDbm_DFTMONSORT_On = "ON"
+)
+
+// Constants associated with the CreateCustomSettingsDbm.DFTMONSTMT property.
+// Configures whether statement execution is monitored by default.
+const (
+	CreateCustomSettingsDbm_DFTMONSTMT_Off = "OFF"
+	CreateCustomSettingsDbm_DFTMONSTMT_On = "ON"
+)
+
+// Constants associated with the CreateCustomSettingsDbm.DFTMONTABLE property.
+// Configures whether table operations are monitored by default.
+const (
+	CreateCustomSettingsDbm_DFTMONTABLE_Off = "OFF"
+	CreateCustomSettingsDbm_DFTMONTABLE_On = "ON"
+)
+
+// Constants associated with the CreateCustomSettingsDbm.DFTMONTIMESTAMP property.
+// Configures whether timestamp monitoring is enabled by default.
+const (
+	CreateCustomSettingsDbm_DFTMONTIMESTAMP_Off = "OFF"
+	CreateCustomSettingsDbm_DFTMONTIMESTAMP_On = "ON"
+)
+
+// Constants associated with the CreateCustomSettingsDbm.DFTMONUOW property.
+// Configures whether unit of work (UOW) monitoring is enabled by default.
+const (
+	CreateCustomSettingsDbm_DFTMONUOW_Off = "OFF"
+	CreateCustomSettingsDbm_DFTMONUOW_On = "ON"
+)
+
+// Constants associated with the CreateCustomSettingsDbm.DIAGLEVEL property.
+// Configures the diagnostic level for the database manager.
+const (
+	CreateCustomSettingsDbm_DIAGLEVEL_Range04 = "range(0, 4)"
+)
+
+// Constants associated with the CreateCustomSettingsDbm.FEDERATEDASYNC property.
+// Configures whether federated asynchronous mode is enabled.
+const (
+	CreateCustomSettingsDbm_FEDERATEDASYNC_Any = "ANY"
+	CreateCustomSettingsDbm_FEDERATEDASYNC_Range032767 = "range(0, 32767)"
+)
+
+// Constants associated with the CreateCustomSettingsDbm.INDEXREC property.
+// Configures the type of indexing to be used in the database manager.
+const (
+	CreateCustomSettingsDbm_INDEXREC_Access = "ACCESS"
+	CreateCustomSettingsDbm_INDEXREC_AccessNoRedo = "ACCESS_NO_REDO"
+	CreateCustomSettingsDbm_INDEXREC_Restart = "RESTART"
+	CreateCustomSettingsDbm_INDEXREC_RestartNoRedo = "RESTART_NO_REDO"
+)
+
+// Constants associated with the CreateCustomSettingsDbm.INTRAPARALLEL property.
+// Configures the parallelism settings for intra-query parallelism.
+const (
+	CreateCustomSettingsDbm_INTRAPARALLEL_No = "NO"
+	CreateCustomSettingsDbm_INTRAPARALLEL_System = "SYSTEM"
+	CreateCustomSettingsDbm_INTRAPARALLEL_Yes = "YES"
+)
+
+// Constants associated with the CreateCustomSettingsDbm.KEEPFENCED property.
+// Configures whether fenced routines are kept in memory.
+const (
+	CreateCustomSettingsDbm_KEEPFENCED_No = "NO"
+	CreateCustomSettingsDbm_KEEPFENCED_Yes = "YES"
+)
+
+// Constants associated with the CreateCustomSettingsDbm.MAXCONNRETRIES property.
+// Configures the maximum number of connection retries.
+const (
+	CreateCustomSettingsDbm_MAXCONNRETRIES_Range0100 = "range(0, 100)"
+)
+
+// Constants associated with the CreateCustomSettingsDbm.MAXQUERYDEGREE property.
+// Configures the maximum degree of parallelism for queries.
+const (
+	CreateCustomSettingsDbm_MAXQUERYDEGREE_Any = "ANY"
+	CreateCustomSettingsDbm_MAXQUERYDEGREE_Range132767 = "range(1, 32767)"
+)
+
+// Constants associated with the CreateCustomSettingsDbm.MONHEAPSZ property.
+// Configures the size of the monitoring heap.
+const (
+	CreateCustomSettingsDbm_MONHEAPSZ_Automatic = "AUTOMATIC"
+	CreateCustomSettingsDbm_MONHEAPSZ_Range02147483647 = "range(0, 2147483647)"
+)
+
+// Constants associated with the CreateCustomSettingsDbm.MULTIPARTSIZEMB property.
+// Configures the size of multipart queries in MB.
+const (
+	CreateCustomSettingsDbm_MULTIPARTSIZEMB_Range55120 = "range(5, 5120)"
+)
+
+// Constants associated with the CreateCustomSettingsDbm.NOTIFYLEVEL property.
+// Configures the level of notifications for the database manager.
+const (
+	CreateCustomSettingsDbm_NOTIFYLEVEL_Range04 = "range(0, 4)"
+)
+
+// Constants associated with the CreateCustomSettingsDbm.NUMINITAGENTS property.
+// Configures the number of initial agents in the database manager.
+const (
+	CreateCustomSettingsDbm_NUMINITAGENTS_Range064000 = "range(0, 64000)"
+)
+
+// Constants associated with the CreateCustomSettingsDbm.NUMINITFENCED property.
+// Configures the number of initial fenced routines.
+const (
+	CreateCustomSettingsDbm_NUMINITFENCED_Range064000 = "range(0, 64000)"
+)
+
+// Constants associated with the CreateCustomSettingsDbm.NUMPOOLAGENTS property.
+// Configures the number of pool agents.
+const (
+	CreateCustomSettingsDbm_NUMPOOLAGENTS_Range064000 = "range(0, 64000)"
+)
+
+// Constants associated with the CreateCustomSettingsDbm.RESYNCINTERVAL property.
+// Configures the interval between resync operations.
+const (
+	CreateCustomSettingsDbm_RESYNCINTERVAL_Range160000 = "range(1, 60000)"
+)
+
+// Constants associated with the CreateCustomSettingsDbm.RQRIOBLK property.
+// Configures the request/response I/O block size.
+const (
+	CreateCustomSettingsDbm_RQRIOBLK_Range409665535 = "range(4096, 65535)"
+)
+
+// Constants associated with the CreateCustomSettingsDbm.STARTSTOPTIME property.
+// Configures the time in minutes for start/stop operations.
+const (
+	CreateCustomSettingsDbm_STARTSTOPTIME_Range11440 = "range(1, 1440)"
+)
+
+// Constants associated with the CreateCustomSettingsDbm.UTILIMPACTLIM property.
+// Configures the utility impact limit.
+const (
+	CreateCustomSettingsDbm_UTILIMPACTLIM_Range1100 = "range(1, 100)"
+)
+
+// Constants associated with the CreateCustomSettingsDbm.WLMDISPATCHER property.
+// Configures whether the WLM (Workload Management) dispatcher is enabled.
+const (
+	CreateCustomSettingsDbm_WLMDISPATCHER_No = "NO"
+	CreateCustomSettingsDbm_WLMDISPATCHER_Yes = "YES"
+)
+
+// Constants associated with the CreateCustomSettingsDbm.WLMDISPCONCUR property.
+// Configures the concurrency level for the WLM dispatcher.
+const (
+	CreateCustomSettingsDbm_WLMDISPCONCUR_Computed = "COMPUTED"
+	CreateCustomSettingsDbm_WLMDISPCONCUR_Range132767 = "range(1, 32767)"
+)
+
+// Constants associated with the CreateCustomSettingsDbm.WLMDISPCPUSHARES property.
+// Configures whether CPU shares are used for WLM dispatcher.
+const (
+	CreateCustomSettingsDbm_WLMDISPCPUSHARES_No = "NO"
+	CreateCustomSettingsDbm_WLMDISPCPUSHARES_Yes = "YES"
+)
+
+// Constants associated with the CreateCustomSettingsDbm.WLMDISPMINUTIL property.
+// Configures the minimum utility threshold for WLM dispatcher.
+const (
+	CreateCustomSettingsDbm_WLMDISPMINUTIL_Range0100 = "range(0, 100)"
+)
+
+// UnmarshalCreateCustomSettingsDbm unmarshals an instance of CreateCustomSettingsDbm from the specified map of raw messages.
+func UnmarshalCreateCustomSettingsDbm(m map[string]json.RawMessage, result interface{}) (err error) {
+	obj := new(CreateCustomSettingsDbm)
+	err = core.UnmarshalPrimitive(m, "COMM_BANDWIDTH", &obj.COMMBANDWIDTH)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "COMM_BANDWIDTH-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "CPUSPEED", &obj.CPUSPEED)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "CPUSPEED-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DFT_MON_BUFPOOL", &obj.DFTMONBUFPOOL)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DFT_MON_BUFPOOL-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DFT_MON_LOCK", &obj.DFTMONLOCK)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DFT_MON_LOCK-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DFT_MON_SORT", &obj.DFTMONSORT)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DFT_MON_SORT-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DFT_MON_STMT", &obj.DFTMONSTMT)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DFT_MON_STMT-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DFT_MON_TABLE", &obj.DFTMONTABLE)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DFT_MON_TABLE-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DFT_MON_TIMESTAMP", &obj.DFTMONTIMESTAMP)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DFT_MON_TIMESTAMP-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DFT_MON_UOW", &obj.DFTMONUOW)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DFT_MON_UOW-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DIAGLEVEL", &obj.DIAGLEVEL)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DIAGLEVEL-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "FEDERATED_ASYNC", &obj.FEDERATEDASYNC)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "FEDERATED_ASYNC-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "INDEXREC", &obj.INDEXREC)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "INDEXREC-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "INTRA_PARALLEL", &obj.INTRAPARALLEL)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "INTRA_PARALLEL-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "KEEPFENCED", &obj.KEEPFENCED)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "KEEPFENCED-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "MAX_CONNRETRIES", &obj.MAXCONNRETRIES)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "MAX_CONNRETRIES-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "MAX_QUERYDEGREE", &obj.MAXQUERYDEGREE)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "MAX_QUERYDEGREE-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "MON_HEAP_SZ", &obj.MONHEAPSZ)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "MON_HEAP_SZ-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "MULTIPARTSIZEMB", &obj.MULTIPARTSIZEMB)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "MULTIPARTSIZEMB-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "NOTIFYLEVEL", &obj.NOTIFYLEVEL)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "NOTIFYLEVEL-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "NUM_INITAGENTS", &obj.NUMINITAGENTS)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "NUM_INITAGENTS-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "NUM_INITFENCED", &obj.NUMINITFENCED)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "NUM_INITFENCED-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "NUM_POOLAGENTS", &obj.NUMPOOLAGENTS)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "NUM_POOLAGENTS-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "RESYNC_INTERVAL", &obj.RESYNCINTERVAL)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "RESYNC_INTERVAL-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "RQRIOBLK", &obj.RQRIOBLK)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "RQRIOBLK-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "START_STOP_TIME", &obj.STARTSTOPTIME)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "START_STOP_TIME-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "UTIL_IMPACT_LIM", &obj.UTILIMPACTLIM)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "UTIL_IMPACT_LIM-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "WLM_DISPATCHER", &obj.WLMDISPATCHER)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "WLM_DISPATCHER-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "WLM_DISP_CONCUR", &obj.WLMDISPCONCUR)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "WLM_DISP_CONCUR-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "WLM_DISP_CPU_SHARES", &obj.WLMDISPCPUSHARES)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "WLM_DISP_CPU_SHARES-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "WLM_DISP_MIN_UTIL", &obj.WLMDISPMINUTIL)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "WLM_DISP_MIN_UTIL-error", common.GetComponentInfo())
 		return
 	}
 	reflect.ValueOf(result).Elem().Set(reflect.ValueOf(obj))
@@ -1215,19 +3136,116 @@ func UnmarshalCreateCustomSettingsDb(m map[string]json.RawMessage, result interf
 
 // CreateCustomSettingsRegistry : registry for db2 related configuration settings/configurations.
 type CreateCustomSettingsRegistry struct {
-	// Determines the selectivity of a query.
-	DB2SELECTIVITY *string `json:"DB2_SELECTIVITY,omitempty"`
+	// Configures the bidi (bidirectional) support for DB2.
+	DB2BIDI *string `json:"DB2BIDI,omitempty"`
+
+	// Configures the DB2 component options (not specified in values).
+	DB2COMPOPT *string `json:"DB2COMPOPT,omitempty"`
+
+	// Configures the DB2 lock timeout behavior.
+	DB2LOCKTORB *string `json:"DB2LOCK_TO_RB,omitempty"`
+
+	// Configures whether DB2's self-tuning memory manager (STMM) is enabled.
+	DB2STMM *string `json:"DB2STMM,omitempty"`
+
+	// Configures the alternate authorization behavior for DB2.
+	DB2ALTERNATEAUTHZBEHAVIOUR *string `json:"DB2_ALTERNATE_AUTHZ_BEHAVIOUR,omitempty"`
 
 	// Configures how DB2 handles anti-joins.
 	DB2ANTIJOIN *string `json:"DB2_ANTIJOIN,omitempty"`
+
+	// Configures whether DB2 asynchronous table scanning (ATS) is enabled.
+	DB2ATSENABLE *string `json:"DB2_ATS_ENABLE,omitempty"`
+
+	// Configures whether deferred prepare semantics are enabled in DB2.
+	DB2DEFERREDPREPARESEMANTICS *string `json:"DB2_DEFERRED_PREPARE_SEMANTICS,omitempty"`
+
+	// Configures whether uncommitted data is evaluated by DB2.
+	DB2EVALUNCOMMITTED *string `json:"DB2_EVALUNCOMMITTED,omitempty"`
+
+	// Configures extended optimization in DB2 (not specified in values).
+	DB2EXTENDEDOPTIMIZATION *string `json:"DB2_EXTENDED_OPTIMIZATION,omitempty"`
+
+	// Configures the default percentage of free space for DB2 indexes.
+	DB2INDEXPCTFREEDEFAULT *string `json:"DB2_INDEX_PCTFREE_DEFAULT,omitempty"`
+
+	// Configures whether in-list queries are converted to nested loop joins.
+	DB2INLISTTONLJN *string `json:"DB2_INLIST_TO_NLJN,omitempty"`
+
+	// Configures whether DB2 minimizes list prefetching for queries.
+	DB2MINIMIZELISTPREFETCH *string `json:"DB2_MINIMIZE_LISTPREFETCH,omitempty"`
+
+	// Configures the number of entries for DB2 object tables.
+	DB2OBJECTTABLEENTRIES *string `json:"DB2_OBJECT_TABLE_ENTRIES,omitempty"`
+
+	// Configures whether DB2's optimizer profile is enabled.
+	DB2OPTPROFILE *string `json:"DB2_OPTPROFILE,omitempty"`
+
+	// Configures the logging of optimizer statistics (not specified in values).
+	DB2OPTSTATSLOG *string `json:"DB2_OPTSTATS_LOG,omitempty"`
+
+	// Configures the maximum temporary space size for DB2 optimizer.
+	DB2OPTMAXTEMPSIZE *string `json:"DB2_OPT_MAX_TEMP_SIZE,omitempty"`
+
+	// Configures parallel I/O behavior in DB2 (not specified in values).
+	DB2PARALLELIO *string `json:"DB2_PARALLEL_IO,omitempty"`
+
+	// Configures whether reduced optimization is applied in DB2 (not specified in values).
+	DB2REDUCEDOPTIMIZATION *string `json:"DB2_REDUCED_OPTIMIZATION,omitempty"`
+
+	// Configures the selectivity behavior for DB2 queries.
+	DB2SELECTIVITY *string `json:"DB2_SELECTIVITY,omitempty"`
+
+	// Configures whether DB2 skips deleted rows during query processing.
+	DB2SKIPDELETED *string `json:"DB2_SKIPDELETED,omitempty"`
+
+	// Configures whether DB2 skips inserted rows during query processing.
+	DB2SKIPINSERTED *string `json:"DB2_SKIPINSERTED,omitempty"`
+
+	// Configures whether DB2 synchronizes lock release attributes.
+	DB2SYNCRELEASELOCKATTRIBUTES *string `json:"DB2_SYNC_RELEASE_LOCK_ATTRIBUTES,omitempty"`
+
+	// Configures the types of operations that reuse storage after truncation.
+	DB2TRUNCATEREUSESTORAGE *string `json:"DB2_TRUNCATE_REUSESTORAGE,omitempty"`
+
+	// Configures whether DB2 uses alternate page cleaning methods.
+	DB2USEALTERNATEPAGECLEANING *string `json:"DB2_USE_ALTERNATE_PAGE_CLEANING,omitempty"`
+
+	// Configures whether DB2 view reoptimization values are used.
+	DB2VIEWREOPTVALUES *string `json:"DB2_VIEW_REOPT_VALUES,omitempty"`
+
+	// Configures the WLM (Workload Management) settings for DB2 (not specified in values).
+	DB2WLMSETTINGS *string `json:"DB2_WLM_SETTINGS,omitempty"`
+
+	// Configures the DB2 workload type.
+	DB2WORKLOAD *string `json:"DB2_WORKLOAD,omitempty"`
 }
 
-// Constants associated with the CreateCustomSettingsRegistry.DB2SELECTIVITY property.
-// Determines the selectivity of a query.
+// Constants associated with the CreateCustomSettingsRegistry.DB2BIDI property.
+// Configures the bidi (bidirectional) support for DB2.
 const (
-	CreateCustomSettingsRegistry_DB2SELECTIVITY_All = "ALL"
-	CreateCustomSettingsRegistry_DB2SELECTIVITY_No = "NO"
-	CreateCustomSettingsRegistry_DB2SELECTIVITY_Yes = "YES"
+	CreateCustomSettingsRegistry_DB2BIDI_No = "NO"
+	CreateCustomSettingsRegistry_DB2BIDI_Yes = "YES"
+)
+
+// Constants associated with the CreateCustomSettingsRegistry.DB2LOCKTORB property.
+// Configures the DB2 lock timeout behavior.
+const (
+	CreateCustomSettingsRegistry_DB2LOCKTORB_Statement = "STATEMENT"
+)
+
+// Constants associated with the CreateCustomSettingsRegistry.DB2STMM property.
+// Configures whether DB2's self-tuning memory manager (STMM) is enabled.
+const (
+	CreateCustomSettingsRegistry_DB2STMM_No = "NO"
+	CreateCustomSettingsRegistry_DB2STMM_Yes = "YES"
+)
+
+// Constants associated with the CreateCustomSettingsRegistry.DB2ALTERNATEAUTHZBEHAVIOUR property.
+// Configures the alternate authorization behavior for DB2.
+const (
+	CreateCustomSettingsRegistry_DB2ALTERNATEAUTHZBEHAVIOUR_ExternalRoutineDbadm = "EXTERNAL_ROUTINE_DBADM"
+	CreateCustomSettingsRegistry_DB2ALTERNATEAUTHZBEHAVIOUR_ExternalRoutineDbauth = "EXTERNAL_ROUTINE_DBAUTH"
 )
 
 // Constants associated with the CreateCustomSettingsRegistry.DB2ANTIJOIN property.
@@ -1238,17 +3256,269 @@ const (
 	CreateCustomSettingsRegistry_DB2ANTIJOIN_Yes = "YES"
 )
 
+// Constants associated with the CreateCustomSettingsRegistry.DB2ATSENABLE property.
+// Configures whether DB2 asynchronous table scanning (ATS) is enabled.
+const (
+	CreateCustomSettingsRegistry_DB2ATSENABLE_No = "NO"
+	CreateCustomSettingsRegistry_DB2ATSENABLE_Yes = "YES"
+)
+
+// Constants associated with the CreateCustomSettingsRegistry.DB2DEFERREDPREPARESEMANTICS property.
+// Configures whether deferred prepare semantics are enabled in DB2.
+const (
+	CreateCustomSettingsRegistry_DB2DEFERREDPREPARESEMANTICS_No = "NO"
+	CreateCustomSettingsRegistry_DB2DEFERREDPREPARESEMANTICS_Yes = "YES"
+)
+
+// Constants associated with the CreateCustomSettingsRegistry.DB2EVALUNCOMMITTED property.
+// Configures whether uncommitted data is evaluated by DB2.
+const (
+	CreateCustomSettingsRegistry_DB2EVALUNCOMMITTED_No = "NO"
+	CreateCustomSettingsRegistry_DB2EVALUNCOMMITTED_Yes = "YES"
+)
+
+// Constants associated with the CreateCustomSettingsRegistry.DB2INDEXPCTFREEDEFAULT property.
+// Configures the default percentage of free space for DB2 indexes.
+const (
+	CreateCustomSettingsRegistry_DB2INDEXPCTFREEDEFAULT_Range099 = "range(0, 99)"
+)
+
+// Constants associated with the CreateCustomSettingsRegistry.DB2INLISTTONLJN property.
+// Configures whether in-list queries are converted to nested loop joins.
+const (
+	CreateCustomSettingsRegistry_DB2INLISTTONLJN_No = "NO"
+	CreateCustomSettingsRegistry_DB2INLISTTONLJN_Yes = "YES"
+)
+
+// Constants associated with the CreateCustomSettingsRegistry.DB2MINIMIZELISTPREFETCH property.
+// Configures whether DB2 minimizes list prefetching for queries.
+const (
+	CreateCustomSettingsRegistry_DB2MINIMIZELISTPREFETCH_No = "NO"
+	CreateCustomSettingsRegistry_DB2MINIMIZELISTPREFETCH_Yes = "YES"
+)
+
+// Constants associated with the CreateCustomSettingsRegistry.DB2OBJECTTABLEENTRIES property.
+// Configures the number of entries for DB2 object tables.
+const (
+	CreateCustomSettingsRegistry_DB2OBJECTTABLEENTRIES_Range065532 = "range(0, 65532)"
+)
+
+// Constants associated with the CreateCustomSettingsRegistry.DB2OPTPROFILE property.
+// Configures whether DB2's optimizer profile is enabled.
+const (
+	CreateCustomSettingsRegistry_DB2OPTPROFILE_No = "NO"
+	CreateCustomSettingsRegistry_DB2OPTPROFILE_Yes = "YES"
+)
+
+// Constants associated with the CreateCustomSettingsRegistry.DB2SELECTIVITY property.
+// Configures the selectivity behavior for DB2 queries.
+const (
+	CreateCustomSettingsRegistry_DB2SELECTIVITY_All = "ALL"
+	CreateCustomSettingsRegistry_DB2SELECTIVITY_No = "NO"
+	CreateCustomSettingsRegistry_DB2SELECTIVITY_Yes = "YES"
+)
+
+// Constants associated with the CreateCustomSettingsRegistry.DB2SKIPDELETED property.
+// Configures whether DB2 skips deleted rows during query processing.
+const (
+	CreateCustomSettingsRegistry_DB2SKIPDELETED_No = "NO"
+	CreateCustomSettingsRegistry_DB2SKIPDELETED_Yes = "YES"
+)
+
+// Constants associated with the CreateCustomSettingsRegistry.DB2SKIPINSERTED property.
+// Configures whether DB2 skips inserted rows during query processing.
+const (
+	CreateCustomSettingsRegistry_DB2SKIPINSERTED_No = "NO"
+	CreateCustomSettingsRegistry_DB2SKIPINSERTED_Yes = "YES"
+)
+
+// Constants associated with the CreateCustomSettingsRegistry.DB2SYNCRELEASELOCKATTRIBUTES property.
+// Configures whether DB2 synchronizes lock release attributes.
+const (
+	CreateCustomSettingsRegistry_DB2SYNCRELEASELOCKATTRIBUTES_No = "NO"
+	CreateCustomSettingsRegistry_DB2SYNCRELEASELOCKATTRIBUTES_Yes = "YES"
+)
+
+// Constants associated with the CreateCustomSettingsRegistry.DB2TRUNCATEREUSESTORAGE property.
+// Configures the types of operations that reuse storage after truncation.
+const (
+	CreateCustomSettingsRegistry_DB2TRUNCATEREUSESTORAGE_Import = "IMPORT"
+	CreateCustomSettingsRegistry_DB2TRUNCATEREUSESTORAGE_Load = "LOAD"
+	CreateCustomSettingsRegistry_DB2TRUNCATEREUSESTORAGE_Truncate = "TRUNCATE"
+)
+
+// Constants associated with the CreateCustomSettingsRegistry.DB2USEALTERNATEPAGECLEANING property.
+// Configures whether DB2 uses alternate page cleaning methods.
+const (
+	CreateCustomSettingsRegistry_DB2USEALTERNATEPAGECLEANING_Off = "OFF"
+	CreateCustomSettingsRegistry_DB2USEALTERNATEPAGECLEANING_On = "ON"
+)
+
+// Constants associated with the CreateCustomSettingsRegistry.DB2VIEWREOPTVALUES property.
+// Configures whether DB2 view reoptimization values are used.
+const (
+	CreateCustomSettingsRegistry_DB2VIEWREOPTVALUES_No = "NO"
+	CreateCustomSettingsRegistry_DB2VIEWREOPTVALUES_Yes = "YES"
+)
+
+// Constants associated with the CreateCustomSettingsRegistry.DB2WORKLOAD property.
+// Configures the DB2 workload type.
+const (
+	CreateCustomSettingsRegistry_DB2WORKLOAD_Analytics = "ANALYTICS"
+	CreateCustomSettingsRegistry_DB2WORKLOAD_Cm = "CM"
+	CreateCustomSettingsRegistry_DB2WORKLOAD_CognosCs = "COGNOS_CS"
+	CreateCustomSettingsRegistry_DB2WORKLOAD_FilenetCm = "FILENET_CM"
+	CreateCustomSettingsRegistry_DB2WORKLOAD_InforErpLn = "INFOR_ERP_LN"
+	CreateCustomSettingsRegistry_DB2WORKLOAD_Maximo = "MAXIMO"
+	CreateCustomSettingsRegistry_DB2WORKLOAD_Mdm = "MDM"
+	CreateCustomSettingsRegistry_DB2WORKLOAD_Sap = "SAP"
+	CreateCustomSettingsRegistry_DB2WORKLOAD_Tpm = "TPM"
+	CreateCustomSettingsRegistry_DB2WORKLOAD_Was = "WAS"
+	CreateCustomSettingsRegistry_DB2WORKLOAD_Wc = "WC"
+	CreateCustomSettingsRegistry_DB2WORKLOAD_Wp = "WP"
+)
+
 // UnmarshalCreateCustomSettingsRegistry unmarshals an instance of CreateCustomSettingsRegistry from the specified map of raw messages.
 func UnmarshalCreateCustomSettingsRegistry(m map[string]json.RawMessage, result interface{}) (err error) {
 	obj := new(CreateCustomSettingsRegistry)
-	err = core.UnmarshalPrimitive(m, "DB2_SELECTIVITY", &obj.DB2SELECTIVITY)
+	err = core.UnmarshalPrimitive(m, "DB2BIDI", &obj.DB2BIDI)
 	if err != nil {
-		err = core.SDKErrorf(err, "", "DB2_SELECTIVITY-error", common.GetComponentInfo())
+		err = core.SDKErrorf(err, "", "DB2BIDI-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DB2COMPOPT", &obj.DB2COMPOPT)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DB2COMPOPT-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DB2LOCK_TO_RB", &obj.DB2LOCKTORB)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DB2LOCK_TO_RB-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DB2STMM", &obj.DB2STMM)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DB2STMM-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DB2_ALTERNATE_AUTHZ_BEHAVIOUR", &obj.DB2ALTERNATEAUTHZBEHAVIOUR)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DB2_ALTERNATE_AUTHZ_BEHAVIOUR-error", common.GetComponentInfo())
 		return
 	}
 	err = core.UnmarshalPrimitive(m, "DB2_ANTIJOIN", &obj.DB2ANTIJOIN)
 	if err != nil {
 		err = core.SDKErrorf(err, "", "DB2_ANTIJOIN-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DB2_ATS_ENABLE", &obj.DB2ATSENABLE)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DB2_ATS_ENABLE-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DB2_DEFERRED_PREPARE_SEMANTICS", &obj.DB2DEFERREDPREPARESEMANTICS)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DB2_DEFERRED_PREPARE_SEMANTICS-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DB2_EVALUNCOMMITTED", &obj.DB2EVALUNCOMMITTED)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DB2_EVALUNCOMMITTED-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DB2_EXTENDED_OPTIMIZATION", &obj.DB2EXTENDEDOPTIMIZATION)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DB2_EXTENDED_OPTIMIZATION-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DB2_INDEX_PCTFREE_DEFAULT", &obj.DB2INDEXPCTFREEDEFAULT)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DB2_INDEX_PCTFREE_DEFAULT-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DB2_INLIST_TO_NLJN", &obj.DB2INLISTTONLJN)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DB2_INLIST_TO_NLJN-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DB2_MINIMIZE_LISTPREFETCH", &obj.DB2MINIMIZELISTPREFETCH)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DB2_MINIMIZE_LISTPREFETCH-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DB2_OBJECT_TABLE_ENTRIES", &obj.DB2OBJECTTABLEENTRIES)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DB2_OBJECT_TABLE_ENTRIES-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DB2_OPTPROFILE", &obj.DB2OPTPROFILE)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DB2_OPTPROFILE-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DB2_OPTSTATS_LOG", &obj.DB2OPTSTATSLOG)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DB2_OPTSTATS_LOG-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DB2_OPT_MAX_TEMP_SIZE", &obj.DB2OPTMAXTEMPSIZE)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DB2_OPT_MAX_TEMP_SIZE-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DB2_PARALLEL_IO", &obj.DB2PARALLELIO)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DB2_PARALLEL_IO-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DB2_REDUCED_OPTIMIZATION", &obj.DB2REDUCEDOPTIMIZATION)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DB2_REDUCED_OPTIMIZATION-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DB2_SELECTIVITY", &obj.DB2SELECTIVITY)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DB2_SELECTIVITY-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DB2_SKIPDELETED", &obj.DB2SKIPDELETED)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DB2_SKIPDELETED-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DB2_SKIPINSERTED", &obj.DB2SKIPINSERTED)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DB2_SKIPINSERTED-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DB2_SYNC_RELEASE_LOCK_ATTRIBUTES", &obj.DB2SYNCRELEASELOCKATTRIBUTES)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DB2_SYNC_RELEASE_LOCK_ATTRIBUTES-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DB2_TRUNCATE_REUSESTORAGE", &obj.DB2TRUNCATEREUSESTORAGE)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DB2_TRUNCATE_REUSESTORAGE-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DB2_USE_ALTERNATE_PAGE_CLEANING", &obj.DB2USEALTERNATEPAGECLEANING)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DB2_USE_ALTERNATE_PAGE_CLEANING-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DB2_VIEW_REOPT_VALUES", &obj.DB2VIEWREOPTVALUES)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DB2_VIEW_REOPT_VALUES-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DB2_WLM_SETTINGS", &obj.DB2WLMSETTINGS)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DB2_WLM_SETTINGS-error", common.GetComponentInfo())
+		return
+	}
+	err = core.UnmarshalPrimitive(m, "DB2_WORKLOAD", &obj.DB2WORKLOAD)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "DB2_WORKLOAD-error", common.GetComponentInfo())
 		return
 	}
 	reflect.ValueOf(result).Elem().Set(reflect.ValueOf(obj))
@@ -1654,6 +3924,9 @@ type PostDb2SaasDbConfigurationOptions struct {
 	// Container for general database settings.
 	Db *CreateCustomSettingsDb `json:"db,omitempty"`
 
+	// Container for general database management settings.
+	Dbm *CreateCustomSettingsDbm `json:"dbm,omitempty"`
+
 	// Allows users to set headers on API requests.
 	Headers map[string]string
 }
@@ -1680,6 +3953,12 @@ func (_options *PostDb2SaasDbConfigurationOptions) SetRegistry(registry *CreateC
 // SetDb : Allow user to set Db
 func (_options *PostDb2SaasDbConfigurationOptions) SetDb(db *CreateCustomSettingsDb) *PostDb2SaasDbConfigurationOptions {
 	_options.Db = db
+	return _options
+}
+
+// SetDbm : Allow user to set Dbm
+func (_options *PostDb2SaasDbConfigurationOptions) SetDbm(dbm *CreateCustomSettingsDbm) *PostDb2SaasDbConfigurationOptions {
+	_options.Dbm = dbm
 	return _options
 }
 
