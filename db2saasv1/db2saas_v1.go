@@ -852,7 +852,7 @@ func (db2saas *Db2saasV1) GetDb2SaasAutoscaleWithContext(ctx context.Context, ge
 	return
 }
 
-// PostDb2SaasDbConfiguration : Set database and database manager configuration, allows around 100+ custom values to be set
+// PostDb2SaasDbConfiguration : Set database and database manager configuration
 func (db2saas *Db2saasV1) PostDb2SaasDbConfiguration(postDb2SaasDbConfigurationOptions *PostDb2SaasDbConfigurationOptions) (result *SuccessPostCustomSettings, response *core.DetailedResponse, err error) {
 	result, response, err = db2saas.PostDb2SaasDbConfigurationWithContext(context.Background(), postDb2SaasDbConfigurationOptions)
 	err = core.RepurposeSDKProblem(err, "")
