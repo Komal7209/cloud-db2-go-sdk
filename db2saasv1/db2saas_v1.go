@@ -890,8 +890,8 @@ func (db2saas *Db2saasV1) PostDb2SaasDbConfigurationWithContext(ctx context.Cont
 	}
 	builder.AddHeader("Accept", "application/json")
 	builder.AddHeader("Content-Type", "application/json")
-	if postDb2SaasDbConfigurationOptions.XDeploymentID != nil {
-		builder.AddHeader("x-deployment-id", fmt.Sprint(*postDb2SaasDbConfigurationOptions.XDeploymentID))
+	if postDb2SaasDbConfigurationOptions.XDbProfile != nil {
+		builder.AddHeader("x-db-profile", fmt.Sprint(*postDb2SaasDbConfigurationOptions.XDbProfile))
 	}
 
 	body := make(map[string]interface{})
@@ -944,11 +944,6 @@ func (db2saas *Db2saasV1) GetDb2SaasTuneableParam(getDb2SaasTuneableParamOptions
 
 // GetDb2SaasTuneableParamWithContext is an alternate form of the GetDb2SaasTuneableParam method which supports a Context parameter
 func (db2saas *Db2saasV1) GetDb2SaasTuneableParamWithContext(ctx context.Context, getDb2SaasTuneableParamOptions *GetDb2SaasTuneableParamOptions) (result *SuccessTuneableParams, response *core.DetailedResponse, err error) {
-	err = core.ValidateNotNil(getDb2SaasTuneableParamOptions, "getDb2SaasTuneableParamOptions cannot be nil")
-	if err != nil {
-		err = core.SDKErrorf(err, "", "unexpected-nil-param", common.GetComponentInfo())
-		return
-	}
 	err = core.ValidateStruct(getDb2SaasTuneableParamOptions, "getDb2SaasTuneableParamOptions")
 	if err != nil {
 		err = core.SDKErrorf(err, "", "struct-validation-error", common.GetComponentInfo())
@@ -973,9 +968,6 @@ func (db2saas *Db2saasV1) GetDb2SaasTuneableParamWithContext(ctx context.Context
 		builder.AddHeader(headerName, headerValue)
 	}
 	builder.AddHeader("Accept", "application/json")
-	if getDb2SaasTuneableParamOptions.XDeploymentID != nil {
-		builder.AddHeader("x-deployment-id", fmt.Sprint(*getDb2SaasTuneableParamOptions.XDeploymentID))
-	}
 
 	request, err := builder.Build()
 	if err != nil {
@@ -1040,8 +1032,8 @@ func (db2saas *Db2saasV1) GetDb2SaasBackupWithContext(ctx context.Context, getDb
 		builder.AddHeader(headerName, headerValue)
 	}
 	builder.AddHeader("Accept", "application/json")
-	if getDb2SaasBackupOptions.XDeploymentID != nil {
-		builder.AddHeader("x-deployment-id", fmt.Sprint(*getDb2SaasBackupOptions.XDeploymentID))
+	if getDb2SaasBackupOptions.XDbProfile != nil {
+		builder.AddHeader("x-db-profile", fmt.Sprint(*getDb2SaasBackupOptions.XDbProfile))
 	}
 
 	request, err := builder.Build()
@@ -1107,8 +1099,8 @@ func (db2saas *Db2saasV1) PostDb2SaasBackupWithContext(ctx context.Context, post
 		builder.AddHeader(headerName, headerValue)
 	}
 	builder.AddHeader("Accept", "application/json")
-	if postDb2SaasBackupOptions.XDeploymentID != nil {
-		builder.AddHeader("x-deployment-id", fmt.Sprint(*postDb2SaasBackupOptions.XDeploymentID))
+	if postDb2SaasBackupOptions.XDbProfile != nil {
+		builder.AddHeader("x-db-profile", fmt.Sprint(*postDb2SaasBackupOptions.XDbProfile))
 	}
 
 	request, err := builder.Build()
@@ -3660,23 +3652,23 @@ func (options *GetDb2SaasAutoscaleOptions) SetHeaders(param map[string]string) *
 
 // GetDb2SaasBackupOptions : The GetDb2SaasBackup options.
 type GetDb2SaasBackupOptions struct {
-	// CRN deployment id.
-	XDeploymentID *string `json:"x-deployment-id" validate:"required"`
+	// Encoded CRN deployment id.
+	XDbProfile *string `json:"x-db-profile" validate:"required"`
 
 	// Allows users to set headers on API requests.
 	Headers map[string]string
 }
 
 // NewGetDb2SaasBackupOptions : Instantiate GetDb2SaasBackupOptions
-func (*Db2saasV1) NewGetDb2SaasBackupOptions(xDeploymentID string) *GetDb2SaasBackupOptions {
+func (*Db2saasV1) NewGetDb2SaasBackupOptions(xDbProfile string) *GetDb2SaasBackupOptions {
 	return &GetDb2SaasBackupOptions{
-		XDeploymentID: core.StringPtr(xDeploymentID),
+		XDbProfile: core.StringPtr(xDbProfile),
 	}
 }
 
-// SetXDeploymentID : Allow user to set XDeploymentID
-func (_options *GetDb2SaasBackupOptions) SetXDeploymentID(xDeploymentID string) *GetDb2SaasBackupOptions {
-	_options.XDeploymentID = core.StringPtr(xDeploymentID)
+// SetXDbProfile : Allow user to set XDbProfile
+func (_options *GetDb2SaasBackupOptions) SetXDbProfile(xDbProfile string) *GetDb2SaasBackupOptions {
+	_options.XDbProfile = core.StringPtr(xDbProfile)
 	return _options
 }
 
@@ -3726,24 +3718,14 @@ func (options *GetDb2SaasConnectionInfoOptions) SetHeaders(param map[string]stri
 
 // GetDb2SaasTuneableParamOptions : The GetDb2SaasTuneableParam options.
 type GetDb2SaasTuneableParamOptions struct {
-	// CRN deployment id.
-	XDeploymentID *string `json:"x-deployment-id" validate:"required"`
 
 	// Allows users to set headers on API requests.
 	Headers map[string]string
 }
 
 // NewGetDb2SaasTuneableParamOptions : Instantiate GetDb2SaasTuneableParamOptions
-func (*Db2saasV1) NewGetDb2SaasTuneableParamOptions(xDeploymentID string) *GetDb2SaasTuneableParamOptions {
-	return &GetDb2SaasTuneableParamOptions{
-		XDeploymentID: core.StringPtr(xDeploymentID),
-	}
-}
-
-// SetXDeploymentID : Allow user to set XDeploymentID
-func (_options *GetDb2SaasTuneableParamOptions) SetXDeploymentID(xDeploymentID string) *GetDb2SaasTuneableParamOptions {
-	_options.XDeploymentID = core.StringPtr(xDeploymentID)
-	return _options
+func (*Db2saasV1) NewGetDb2SaasTuneableParamOptions() *GetDb2SaasTuneableParamOptions {
+	return &GetDb2SaasTuneableParamOptions{}
 }
 
 // SetHeaders : Allow user to set Headers
@@ -3887,23 +3869,23 @@ func (options *PostDb2SaasAllowlistOptions) SetHeaders(param map[string]string) 
 
 // PostDb2SaasBackupOptions : The PostDb2SaasBackup options.
 type PostDb2SaasBackupOptions struct {
-	// CRN deployment id.
-	XDeploymentID *string `json:"x-deployment-id" validate:"required"`
+	// Encoded CRN deployment id.
+	XDbProfile *string `json:"x-db-profile" validate:"required"`
 
 	// Allows users to set headers on API requests.
 	Headers map[string]string
 }
 
 // NewPostDb2SaasBackupOptions : Instantiate PostDb2SaasBackupOptions
-func (*Db2saasV1) NewPostDb2SaasBackupOptions(xDeploymentID string) *PostDb2SaasBackupOptions {
+func (*Db2saasV1) NewPostDb2SaasBackupOptions(xDbProfile string) *PostDb2SaasBackupOptions {
 	return &PostDb2SaasBackupOptions{
-		XDeploymentID: core.StringPtr(xDeploymentID),
+		XDbProfile: core.StringPtr(xDbProfile),
 	}
 }
 
-// SetXDeploymentID : Allow user to set XDeploymentID
-func (_options *PostDb2SaasBackupOptions) SetXDeploymentID(xDeploymentID string) *PostDb2SaasBackupOptions {
-	_options.XDeploymentID = core.StringPtr(xDeploymentID)
+// SetXDbProfile : Allow user to set XDbProfile
+func (_options *PostDb2SaasBackupOptions) SetXDbProfile(xDbProfile string) *PostDb2SaasBackupOptions {
+	_options.XDbProfile = core.StringPtr(xDbProfile)
 	return _options
 }
 
@@ -3915,8 +3897,8 @@ func (options *PostDb2SaasBackupOptions) SetHeaders(param map[string]string) *Po
 
 // PostDb2SaasDbConfigurationOptions : The PostDb2SaasDbConfiguration options.
 type PostDb2SaasDbConfigurationOptions struct {
-	// CRN deployment id.
-	XDeploymentID *string `json:"x-deployment-id" validate:"required"`
+	// Encoded CRN deployment id.
+	XDbProfile *string `json:"x-db-profile" validate:"required"`
 
 	// registry for db2 related configuration settings/configurations.
 	Registry *CreateCustomSettingsRegistry `json:"registry,omitempty"`
@@ -3932,15 +3914,15 @@ type PostDb2SaasDbConfigurationOptions struct {
 }
 
 // NewPostDb2SaasDbConfigurationOptions : Instantiate PostDb2SaasDbConfigurationOptions
-func (*Db2saasV1) NewPostDb2SaasDbConfigurationOptions(xDeploymentID string) *PostDb2SaasDbConfigurationOptions {
+func (*Db2saasV1) NewPostDb2SaasDbConfigurationOptions(xDbProfile string) *PostDb2SaasDbConfigurationOptions {
 	return &PostDb2SaasDbConfigurationOptions{
-		XDeploymentID: core.StringPtr(xDeploymentID),
+		XDbProfile: core.StringPtr(xDbProfile),
 	}
 }
 
-// SetXDeploymentID : Allow user to set XDeploymentID
-func (_options *PostDb2SaasDbConfigurationOptions) SetXDeploymentID(xDeploymentID string) *PostDb2SaasDbConfigurationOptions {
-	_options.XDeploymentID = core.StringPtr(xDeploymentID)
+// SetXDbProfile : Allow user to set XDbProfile
+func (_options *PostDb2SaasDbConfigurationOptions) SetXDbProfile(xDbProfile string) *PostDb2SaasDbConfigurationOptions {
+	_options.XDbProfile = core.StringPtr(xDbProfile)
 	return _options
 }
 

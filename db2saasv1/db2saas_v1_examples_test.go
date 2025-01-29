@@ -296,7 +296,7 @@
 			 // begin-post_db2_saas_db_configuration
  
 			 postDb2SaasDbConfigurationOptions := db2saasService.NewPostDb2SaasDbConfigurationOptions(
-				 "crn:v1:staging:public:dashdb-for-transactions:us-south:a/e7e3e87b512f474381c0684a5ecbba03:69db420f-33d5-4953-8bd8-1950abd356f6::",
+				 "crn%3Av1%3Astaging%3Apublic%3Adashdb-for-transactions%3Aus-south%3Aa%2Fe7e3e87b512f474381c0684a5ecbba03%3A39269573-e43f-43e8-8b93-09f44c2ff875%3A%3A",
 			 )
  
 			 successPostCustomSettings, response, err := db2saasService.PostDb2SaasDbConfiguration(postDb2SaasDbConfigurationOptions)
@@ -316,9 +316,7 @@
 			 fmt.Println("\nGetDb2SaasTuneableParam() result:")
 			 // begin-get_db2_saas_tuneable_param
  
-			 getDb2SaasTuneableParamOptions := db2saasService.NewGetDb2SaasTuneableParamOptions(
-				 "crn:v1:staging:public:dashdb-for-transactions:us-south:a/e7e3e87b512f474381c0684a5ecbba03:69db420f-33d5-4953-8bd8-1950abd356f6::",
-			 )
+			 getDb2SaasTuneableParamOptions := db2saasService.NewGetDb2SaasTuneableParamOptions()
  
 			 successTuneableParams, response, err := db2saasService.GetDb2SaasTuneableParam(getDb2SaasTuneableParamOptions)
 			 if err != nil {
@@ -338,7 +336,7 @@
 			 // begin-get_db2_saas_backup
  
 			 getDb2SaasBackupOptions := db2saasService.NewGetDb2SaasBackupOptions(
-				 "crn:v1:staging:public:dashdb-for-transactions:us-south:a/e7e3e87b512f474381c0684a5ecbba03:69db420f-33d5-4953-8bd8-1950abd356f6::",
+				 "crn%3Av1%3Astaging%3Apublic%3Adashdb-for-transactions%3Aus-south%3Aa%2Fe7e3e87b512f474381c0684a5ecbba03%3A39269573-e43f-43e8-8b93-09f44c2ff875%3A%3A",
 			 )
  
 			 successGetBackups, response, err := db2saasService.GetDb2SaasBackup(getDb2SaasBackupOptions)
@@ -359,7 +357,7 @@
 			 // begin-post_db2_saas_backup
  
 			 postDb2SaasBackupOptions := db2saasService.NewPostDb2SaasBackupOptions(
-				 "crn:v1:staging:public:dashdb-for-transactions:us-south:a/e7e3e87b512f474381c0684a5ecbba03:69db420f-33d5-4953-8bd8-1950abd356f6::",
+				 "crn%3Av1%3Astaging%3Apublic%3Adashdb-for-transactions%3Aus-south%3Aa%2Fe7e3e87b512f474381c0684a5ecbba03%3A39269573-e43f-43e8-8b93-09f44c2ff875%3A%3A",
 			 )
  
 			 successGetBackup, response, err := db2saasService.PostDb2SaasBackup(postDb2SaasBackupOptions)

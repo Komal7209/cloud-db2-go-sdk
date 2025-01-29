@@ -419,7 +419,7 @@
 			 }
  
 			 postDb2SaasDbConfigurationOptions := &db2saasv1.PostDb2SaasDbConfigurationOptions{
-				 XDeploymentID: core.StringPtr("crn:v1:staging:public:dashdb-for-transactions:us-south:a/e7e3e87b512f474381c0684a5ecbba03:69db420f-33d5-4953-8bd8-1950abd356f6::"),
+				 XDbProfile: core.StringPtr("crn%3Av1%3Astaging%3Apublic%3Adashdb-for-transactions%3Aus-south%3Aa%2Fe7e3e87b512f474381c0684a5ecbba03%3A39269573-e43f-43e8-8b93-09f44c2ff875%3A%3A"),
 			 }
  
 			 successPostCustomSettings, response, err := db2saasService.PostDb2SaasDbConfiguration(postDb2SaasDbConfigurationOptions)
@@ -435,7 +435,6 @@
 		 })
 		 It(`GetDb2SaasTuneableParam(getDb2SaasTuneableParamOptions *GetDb2SaasTuneableParamOptions)`, func() {
 			 getDb2SaasTuneableParamOptions := &db2saasv1.GetDb2SaasTuneableParamOptions{
-				 XDeploymentID: core.StringPtr("crn:v1:staging:public:dashdb-for-transactions:us-south:a/e7e3e87b512f474381c0684a5ecbba03:69db420f-33d5-4953-8bd8-1950abd356f6::"),
 			 }
  
 			 successTuneableParams, response, err := db2saasService.GetDb2SaasTuneableParam(getDb2SaasTuneableParamOptions)
@@ -451,7 +450,7 @@
 		 })
 		 It(`GetDb2SaasBackup(getDb2SaasBackupOptions *GetDb2SaasBackupOptions)`, func() {
 			 getDb2SaasBackupOptions := &db2saasv1.GetDb2SaasBackupOptions{
-				 XDeploymentID: core.StringPtr("crn:v1:staging:public:dashdb-for-transactions:us-south:a/e7e3e87b512f474381c0684a5ecbba03:69db420f-33d5-4953-8bd8-1950abd356f6::"),
+				 XDbProfile: core.StringPtr("crn%3Av1%3Astaging%3Apublic%3Adashdb-for-transactions%3Aus-south%3Aa%2Fe7e3e87b512f474381c0684a5ecbba03%3A39269573-e43f-43e8-8b93-09f44c2ff875%3A%3A"),
 			 }
  
 			 successGetBackups, response, err := db2saasService.GetDb2SaasBackup(getDb2SaasBackupOptions)
@@ -467,7 +466,7 @@
 		 })
 		 It(`PostDb2SaasBackup(postDb2SaasBackupOptions *PostDb2SaasBackupOptions)`, func() {
 			 postDb2SaasBackupOptions := &db2saasv1.PostDb2SaasBackupOptions{
-				 XDeploymentID: core.StringPtr("crn:v1:staging:public:dashdb-for-transactions:us-south:a/e7e3e87b512f474381c0684a5ecbba03:69db420f-33d5-4953-8bd8-1950abd356f6::"),
+				 XDbProfile: core.StringPtr("crn%3Av1%3Astaging%3Apublic%3Adashdb-for-transactions%3Aus-south%3Aa%2Fe7e3e87b512f474381c0684a5ecbba03%3A39269573-e43f-43e8-8b93-09f44c2ff875%3A%3A"),
 			 }
  
 			 successGetBackup, response, err := db2saasService.PostDb2SaasBackup(postDb2SaasBackupOptions)

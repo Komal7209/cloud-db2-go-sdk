@@ -2336,8 +2336,8 @@
 					 // Verify the contents of the request
 					 Expect(req.URL.EscapedPath()).To(Equal(postDb2SaasDbConfigurationPath))
 					 Expect(req.Method).To(Equal("POST"))
-					 Expect(req.Header["X-Deployment-Id"]).ToNot(BeNil())
-					 Expect(req.Header["X-Deployment-Id"][0]).To(Equal(fmt.Sprintf("%v", "crn:v1:staging:public:dashdb-for-transactions:us-south:a/e7e3e87b512f474381c0684a5ecbba03:69db420f-33d5-4953-8bd8-1950abd356f6::")))
+					 Expect(req.Header["X-Db-Profile"]).ToNot(BeNil())
+					 Expect(req.Header["X-Db-Profile"][0]).To(Equal(fmt.Sprintf("%v", "crn%3Av1%3Astaging%3Apublic%3Adashdb-for-transactions%3Aus-south%3Aa%2Fe7e3e87b512f474381c0684a5ecbba03%3A39269573-e43f-43e8-8b93-09f44c2ff875%3A%3A")))
 					 res.Header().Set("Content-type", "application/json")
 					 res.WriteHeader(200)
 					 fmt.Fprint(res, `} this is not valid json {`)
@@ -2524,7 +2524,7 @@
  
 				 // Construct an instance of the PostDb2SaasDbConfigurationOptions model
 				 postDb2SaasDbConfigurationOptionsModel := new(db2saasv1.PostDb2SaasDbConfigurationOptions)
-				 postDb2SaasDbConfigurationOptionsModel.XDeploymentID = core.StringPtr("crn:v1:staging:public:dashdb-for-transactions:us-south:a/e7e3e87b512f474381c0684a5ecbba03:69db420f-33d5-4953-8bd8-1950abd356f6::")
+				 postDb2SaasDbConfigurationOptionsModel.XDbProfile = core.StringPtr("crn%3Av1%3Astaging%3Apublic%3Adashdb-for-transactions%3Aus-south%3Aa%2Fe7e3e87b512f474381c0684a5ecbba03%3A39269573-e43f-43e8-8b93-09f44c2ff875%3A%3A")
 				 postDb2SaasDbConfigurationOptionsModel.Registry = createCustomSettingsRegistryModel
 				 postDb2SaasDbConfigurationOptionsModel.Db = createCustomSettingsDbModel
 				 postDb2SaasDbConfigurationOptionsModel.Dbm = createCustomSettingsDbmModel
@@ -2574,8 +2574,8 @@
 					 }
 					 fmt.Fprintf(GinkgoWriter, "  Request body: %s", bodyBuf.String())
  
-					 Expect(req.Header["X-Deployment-Id"]).ToNot(BeNil())
-					 Expect(req.Header["X-Deployment-Id"][0]).To(Equal(fmt.Sprintf("%v", "crn:v1:staging:public:dashdb-for-transactions:us-south:a/e7e3e87b512f474381c0684a5ecbba03:69db420f-33d5-4953-8bd8-1950abd356f6::")))
+					 Expect(req.Header["X-Db-Profile"]).ToNot(BeNil())
+					 Expect(req.Header["X-Db-Profile"][0]).To(Equal(fmt.Sprintf("%v", "crn%3Av1%3Astaging%3Apublic%3Adashdb-for-transactions%3Aus-south%3Aa%2Fe7e3e87b512f474381c0684a5ecbba03%3A39269573-e43f-43e8-8b93-09f44c2ff875%3A%3A")))
 					 // Sleep a short time to support a timeout test
 					 time.Sleep(100 * time.Millisecond)
  
@@ -2767,7 +2767,7 @@
  
 				 // Construct an instance of the PostDb2SaasDbConfigurationOptions model
 				 postDb2SaasDbConfigurationOptionsModel := new(db2saasv1.PostDb2SaasDbConfigurationOptions)
-				 postDb2SaasDbConfigurationOptionsModel.XDeploymentID = core.StringPtr("crn:v1:staging:public:dashdb-for-transactions:us-south:a/e7e3e87b512f474381c0684a5ecbba03:69db420f-33d5-4953-8bd8-1950abd356f6::")
+				 postDb2SaasDbConfigurationOptionsModel.XDbProfile = core.StringPtr("crn%3Av1%3Astaging%3Apublic%3Adashdb-for-transactions%3Aus-south%3Aa%2Fe7e3e87b512f474381c0684a5ecbba03%3A39269573-e43f-43e8-8b93-09f44c2ff875%3A%3A")
 				 postDb2SaasDbConfigurationOptionsModel.Registry = createCustomSettingsRegistryModel
 				 postDb2SaasDbConfigurationOptionsModel.Db = createCustomSettingsDbModel
 				 postDb2SaasDbConfigurationOptionsModel.Dbm = createCustomSettingsDbmModel
@@ -2823,8 +2823,8 @@
 					 }
 					 fmt.Fprintf(GinkgoWriter, "  Request body: %s", bodyBuf.String())
  
-					 Expect(req.Header["X-Deployment-Id"]).ToNot(BeNil())
-					 Expect(req.Header["X-Deployment-Id"][0]).To(Equal(fmt.Sprintf("%v", "crn:v1:staging:public:dashdb-for-transactions:us-south:a/e7e3e87b512f474381c0684a5ecbba03:69db420f-33d5-4953-8bd8-1950abd356f6::")))
+					 Expect(req.Header["X-Db-Profile"]).ToNot(BeNil())
+					 Expect(req.Header["X-Db-Profile"][0]).To(Equal(fmt.Sprintf("%v", "crn%3Av1%3Astaging%3Apublic%3Adashdb-for-transactions%3Aus-south%3Aa%2Fe7e3e87b512f474381c0684a5ecbba03%3A39269573-e43f-43e8-8b93-09f44c2ff875%3A%3A")))
 					 // Set mock response
 					 res.Header().Set("Content-type", "application/json")
 					 res.WriteHeader(200)
@@ -3018,7 +3018,7 @@
  
 				 // Construct an instance of the PostDb2SaasDbConfigurationOptions model
 				 postDb2SaasDbConfigurationOptionsModel := new(db2saasv1.PostDb2SaasDbConfigurationOptions)
-				 postDb2SaasDbConfigurationOptionsModel.XDeploymentID = core.StringPtr("crn:v1:staging:public:dashdb-for-transactions:us-south:a/e7e3e87b512f474381c0684a5ecbba03:69db420f-33d5-4953-8bd8-1950abd356f6::")
+				 postDb2SaasDbConfigurationOptionsModel.XDbProfile = core.StringPtr("crn%3Av1%3Astaging%3Apublic%3Adashdb-for-transactions%3Aus-south%3Aa%2Fe7e3e87b512f474381c0684a5ecbba03%3A39269573-e43f-43e8-8b93-09f44c2ff875%3A%3A")
 				 postDb2SaasDbConfigurationOptionsModel.Registry = createCustomSettingsRegistryModel
 				 postDb2SaasDbConfigurationOptionsModel.Db = createCustomSettingsDbModel
 				 postDb2SaasDbConfigurationOptionsModel.Dbm = createCustomSettingsDbmModel
@@ -3212,7 +3212,7 @@
  
 				 // Construct an instance of the PostDb2SaasDbConfigurationOptions model
 				 postDb2SaasDbConfigurationOptionsModel := new(db2saasv1.PostDb2SaasDbConfigurationOptions)
-				 postDb2SaasDbConfigurationOptionsModel.XDeploymentID = core.StringPtr("crn:v1:staging:public:dashdb-for-transactions:us-south:a/e7e3e87b512f474381c0684a5ecbba03:69db420f-33d5-4953-8bd8-1950abd356f6::")
+				 postDb2SaasDbConfigurationOptionsModel.XDbProfile = core.StringPtr("crn%3Av1%3Astaging%3Apublic%3Adashdb-for-transactions%3Aus-south%3Aa%2Fe7e3e87b512f474381c0684a5ecbba03%3A39269573-e43f-43e8-8b93-09f44c2ff875%3A%3A")
 				 postDb2SaasDbConfigurationOptionsModel.Registry = createCustomSettingsRegistryModel
 				 postDb2SaasDbConfigurationOptionsModel.Db = createCustomSettingsDbModel
 				 postDb2SaasDbConfigurationOptionsModel.Dbm = createCustomSettingsDbmModel
@@ -3427,7 +3427,7 @@
  
 				 // Construct an instance of the PostDb2SaasDbConfigurationOptions model
 				 postDb2SaasDbConfigurationOptionsModel := new(db2saasv1.PostDb2SaasDbConfigurationOptions)
-				 postDb2SaasDbConfigurationOptionsModel.XDeploymentID = core.StringPtr("crn:v1:staging:public:dashdb-for-transactions:us-south:a/e7e3e87b512f474381c0684a5ecbba03:69db420f-33d5-4953-8bd8-1950abd356f6::")
+				 postDb2SaasDbConfigurationOptionsModel.XDbProfile = core.StringPtr("crn%3Av1%3Astaging%3Apublic%3Adashdb-for-transactions%3Aus-south%3Aa%2Fe7e3e87b512f474381c0684a5ecbba03%3A39269573-e43f-43e8-8b93-09f44c2ff875%3A%3A")
 				 postDb2SaasDbConfigurationOptionsModel.Registry = createCustomSettingsRegistryModel
 				 postDb2SaasDbConfigurationOptionsModel.Db = createCustomSettingsDbModel
 				 postDb2SaasDbConfigurationOptionsModel.Dbm = createCustomSettingsDbmModel
@@ -3456,8 +3456,6 @@
 					 // Verify the contents of the request
 					 Expect(req.URL.EscapedPath()).To(Equal(getDb2SaasTuneableParamPath))
 					 Expect(req.Method).To(Equal("GET"))
-					 Expect(req.Header["X-Deployment-Id"]).ToNot(BeNil())
-					 Expect(req.Header["X-Deployment-Id"][0]).To(Equal(fmt.Sprintf("%v", "crn:v1:staging:public:dashdb-for-transactions:us-south:a/e7e3e87b512f474381c0684a5ecbba03:69db420f-33d5-4953-8bd8-1950abd356f6::")))
 					 res.Header().Set("Content-type", "application/json")
 					 res.WriteHeader(200)
 					 fmt.Fprint(res, `} this is not valid json {`)
@@ -3473,7 +3471,6 @@
  
 				 // Construct an instance of the GetDb2SaasTuneableParamOptions model
 				 getDb2SaasTuneableParamOptionsModel := new(db2saasv1.GetDb2SaasTuneableParamOptions)
-				 getDb2SaasTuneableParamOptionsModel.XDeploymentID = core.StringPtr("crn:v1:staging:public:dashdb-for-transactions:us-south:a/e7e3e87b512f474381c0684a5ecbba03:69db420f-33d5-4953-8bd8-1950abd356f6::")
 				 getDb2SaasTuneableParamOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				 // Expect response parsing to fail since we are receiving a text/plain response
 				 result, response, operationErr := db2saasService.GetDb2SaasTuneableParam(getDb2SaasTuneableParamOptionsModel)
@@ -3504,8 +3501,6 @@
 					 Expect(req.URL.EscapedPath()).To(Equal(getDb2SaasTuneableParamPath))
 					 Expect(req.Method).To(Equal("GET"))
  
-					 Expect(req.Header["X-Deployment-Id"]).ToNot(BeNil())
-					 Expect(req.Header["X-Deployment-Id"][0]).To(Equal(fmt.Sprintf("%v", "crn:v1:staging:public:dashdb-for-transactions:us-south:a/e7e3e87b512f474381c0684a5ecbba03:69db420f-33d5-4953-8bd8-1950abd356f6::")))
 					 // Sleep a short time to support a timeout test
 					 time.Sleep(100 * time.Millisecond)
  
@@ -3526,7 +3521,6 @@
  
 				 // Construct an instance of the GetDb2SaasTuneableParamOptions model
 				 getDb2SaasTuneableParamOptionsModel := new(db2saasv1.GetDb2SaasTuneableParamOptions)
-				 getDb2SaasTuneableParamOptionsModel.XDeploymentID = core.StringPtr("crn:v1:staging:public:dashdb-for-transactions:us-south:a/e7e3e87b512f474381c0684a5ecbba03:69db420f-33d5-4953-8bd8-1950abd356f6::")
 				 getDb2SaasTuneableParamOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
  
 				 // Invoke operation with a Context to test a timeout error
@@ -3563,8 +3557,6 @@
 					 Expect(req.URL.EscapedPath()).To(Equal(getDb2SaasTuneableParamPath))
 					 Expect(req.Method).To(Equal("GET"))
  
-					 Expect(req.Header["X-Deployment-Id"]).ToNot(BeNil())
-					 Expect(req.Header["X-Deployment-Id"][0]).To(Equal(fmt.Sprintf("%v", "crn:v1:staging:public:dashdb-for-transactions:us-south:a/e7e3e87b512f474381c0684a5ecbba03:69db420f-33d5-4953-8bd8-1950abd356f6::")))
 					 // Set mock response
 					 res.Header().Set("Content-type", "application/json")
 					 res.WriteHeader(200)
@@ -3587,7 +3579,6 @@
  
 				 // Construct an instance of the GetDb2SaasTuneableParamOptions model
 				 getDb2SaasTuneableParamOptionsModel := new(db2saasv1.GetDb2SaasTuneableParamOptions)
-				 getDb2SaasTuneableParamOptionsModel.XDeploymentID = core.StringPtr("crn:v1:staging:public:dashdb-for-transactions:us-south:a/e7e3e87b512f474381c0684a5ecbba03:69db420f-33d5-4953-8bd8-1950abd356f6::")
 				 getDb2SaasTuneableParamOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
  
 				 // Invoke operation with valid options model (positive test)
@@ -3597,7 +3588,7 @@
 				 Expect(result).ToNot(BeNil())
  
 			 })
-			 It(`Invoke GetDb2SaasTuneableParam with error: Operation validation and request error`, func() {
+			 It(`Invoke GetDb2SaasTuneableParam with error: Operation request error`, func() {
 				 db2saasService, serviceErr := db2saasv1.NewDb2saasV1(&db2saasv1.Db2saasV1Options{
 					 URL:           testServer.URL,
 					 Authenticator: &core.NoAuthAuthenticator{},
@@ -3607,7 +3598,6 @@
  
 				 // Construct an instance of the GetDb2SaasTuneableParamOptions model
 				 getDb2SaasTuneableParamOptionsModel := new(db2saasv1.GetDb2SaasTuneableParamOptions)
-				 getDb2SaasTuneableParamOptionsModel.XDeploymentID = core.StringPtr("crn:v1:staging:public:dashdb-for-transactions:us-south:a/e7e3e87b512f474381c0684a5ecbba03:69db420f-33d5-4953-8bd8-1950abd356f6::")
 				 getDb2SaasTuneableParamOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				 // Invoke operation with empty URL (negative test)
 				 err := db2saasService.SetServiceURL("")
@@ -3615,13 +3605,6 @@
 				 result, response, operationErr := db2saasService.GetDb2SaasTuneableParam(getDb2SaasTuneableParamOptionsModel)
 				 Expect(operationErr).ToNot(BeNil())
 				 Expect(operationErr.Error()).To(ContainSubstring(core.ERRORMSG_SERVICE_URL_MISSING))
-				 Expect(response).To(BeNil())
-				 Expect(result).To(BeNil())
-				 // Construct a second instance of the GetDb2SaasTuneableParamOptions model with no property values
-				 getDb2SaasTuneableParamOptionsModelNew := new(db2saasv1.GetDb2SaasTuneableParamOptions)
-				 // Invoke operation with invalid model (negative test)
-				 result, response, operationErr = db2saasService.GetDb2SaasTuneableParam(getDb2SaasTuneableParamOptionsModelNew)
-				 Expect(operationErr).ToNot(BeNil())
 				 Expect(response).To(BeNil())
 				 Expect(result).To(BeNil())
 			 })
@@ -3648,7 +3631,6 @@
  
 				 // Construct an instance of the GetDb2SaasTuneableParamOptions model
 				 getDb2SaasTuneableParamOptionsModel := new(db2saasv1.GetDb2SaasTuneableParamOptions)
-				 getDb2SaasTuneableParamOptionsModel.XDeploymentID = core.StringPtr("crn:v1:staging:public:dashdb-for-transactions:us-south:a/e7e3e87b512f474381c0684a5ecbba03:69db420f-33d5-4953-8bd8-1950abd356f6::")
 				 getDb2SaasTuneableParamOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
  
 				 // Invoke operation
@@ -3674,8 +3656,8 @@
 					 // Verify the contents of the request
 					 Expect(req.URL.EscapedPath()).To(Equal(getDb2SaasBackupPath))
 					 Expect(req.Method).To(Equal("GET"))
-					 Expect(req.Header["X-Deployment-Id"]).ToNot(BeNil())
-					 Expect(req.Header["X-Deployment-Id"][0]).To(Equal(fmt.Sprintf("%v", "crn:v1:staging:public:dashdb-for-transactions:us-south:a/e7e3e87b512f474381c0684a5ecbba03:69db420f-33d5-4953-8bd8-1950abd356f6::")))
+					 Expect(req.Header["X-Db-Profile"]).ToNot(BeNil())
+					 Expect(req.Header["X-Db-Profile"][0]).To(Equal(fmt.Sprintf("%v", "crn%3Av1%3Astaging%3Apublic%3Adashdb-for-transactions%3Aus-south%3Aa%2Fe7e3e87b512f474381c0684a5ecbba03%3A39269573-e43f-43e8-8b93-09f44c2ff875%3A%3A")))
 					 res.Header().Set("Content-type", "application/json")
 					 res.WriteHeader(200)
 					 fmt.Fprint(res, `} this is not valid json {`)
@@ -3691,7 +3673,7 @@
  
 				 // Construct an instance of the GetDb2SaasBackupOptions model
 				 getDb2SaasBackupOptionsModel := new(db2saasv1.GetDb2SaasBackupOptions)
-				 getDb2SaasBackupOptionsModel.XDeploymentID = core.StringPtr("crn:v1:staging:public:dashdb-for-transactions:us-south:a/e7e3e87b512f474381c0684a5ecbba03:69db420f-33d5-4953-8bd8-1950abd356f6::")
+				 getDb2SaasBackupOptionsModel.XDbProfile = core.StringPtr("crn%3Av1%3Astaging%3Apublic%3Adashdb-for-transactions%3Aus-south%3Aa%2Fe7e3e87b512f474381c0684a5ecbba03%3A39269573-e43f-43e8-8b93-09f44c2ff875%3A%3A")
 				 getDb2SaasBackupOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				 // Expect response parsing to fail since we are receiving a text/plain response
 				 result, response, operationErr := db2saasService.GetDb2SaasBackup(getDb2SaasBackupOptionsModel)
@@ -3722,8 +3704,8 @@
 					 Expect(req.URL.EscapedPath()).To(Equal(getDb2SaasBackupPath))
 					 Expect(req.Method).To(Equal("GET"))
  
-					 Expect(req.Header["X-Deployment-Id"]).ToNot(BeNil())
-					 Expect(req.Header["X-Deployment-Id"][0]).To(Equal(fmt.Sprintf("%v", "crn:v1:staging:public:dashdb-for-transactions:us-south:a/e7e3e87b512f474381c0684a5ecbba03:69db420f-33d5-4953-8bd8-1950abd356f6::")))
+					 Expect(req.Header["X-Db-Profile"]).ToNot(BeNil())
+					 Expect(req.Header["X-Db-Profile"][0]).To(Equal(fmt.Sprintf("%v", "crn%3Av1%3Astaging%3Apublic%3Adashdb-for-transactions%3Aus-south%3Aa%2Fe7e3e87b512f474381c0684a5ecbba03%3A39269573-e43f-43e8-8b93-09f44c2ff875%3A%3A")))
 					 // Sleep a short time to support a timeout test
 					 time.Sleep(100 * time.Millisecond)
  
@@ -3744,7 +3726,7 @@
  
 				 // Construct an instance of the GetDb2SaasBackupOptions model
 				 getDb2SaasBackupOptionsModel := new(db2saasv1.GetDb2SaasBackupOptions)
-				 getDb2SaasBackupOptionsModel.XDeploymentID = core.StringPtr("crn:v1:staging:public:dashdb-for-transactions:us-south:a/e7e3e87b512f474381c0684a5ecbba03:69db420f-33d5-4953-8bd8-1950abd356f6::")
+				 getDb2SaasBackupOptionsModel.XDbProfile = core.StringPtr("crn%3Av1%3Astaging%3Apublic%3Adashdb-for-transactions%3Aus-south%3Aa%2Fe7e3e87b512f474381c0684a5ecbba03%3A39269573-e43f-43e8-8b93-09f44c2ff875%3A%3A")
 				 getDb2SaasBackupOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
  
 				 // Invoke operation with a Context to test a timeout error
@@ -3781,8 +3763,8 @@
 					 Expect(req.URL.EscapedPath()).To(Equal(getDb2SaasBackupPath))
 					 Expect(req.Method).To(Equal("GET"))
  
-					 Expect(req.Header["X-Deployment-Id"]).ToNot(BeNil())
-					 Expect(req.Header["X-Deployment-Id"][0]).To(Equal(fmt.Sprintf("%v", "crn:v1:staging:public:dashdb-for-transactions:us-south:a/e7e3e87b512f474381c0684a5ecbba03:69db420f-33d5-4953-8bd8-1950abd356f6::")))
+					 Expect(req.Header["X-Db-Profile"]).ToNot(BeNil())
+					 Expect(req.Header["X-Db-Profile"][0]).To(Equal(fmt.Sprintf("%v", "crn%3Av1%3Astaging%3Apublic%3Adashdb-for-transactions%3Aus-south%3Aa%2Fe7e3e87b512f474381c0684a5ecbba03%3A39269573-e43f-43e8-8b93-09f44c2ff875%3A%3A")))
 					 // Set mock response
 					 res.Header().Set("Content-type", "application/json")
 					 res.WriteHeader(200)
@@ -3805,7 +3787,7 @@
  
 				 // Construct an instance of the GetDb2SaasBackupOptions model
 				 getDb2SaasBackupOptionsModel := new(db2saasv1.GetDb2SaasBackupOptions)
-				 getDb2SaasBackupOptionsModel.XDeploymentID = core.StringPtr("crn:v1:staging:public:dashdb-for-transactions:us-south:a/e7e3e87b512f474381c0684a5ecbba03:69db420f-33d5-4953-8bd8-1950abd356f6::")
+				 getDb2SaasBackupOptionsModel.XDbProfile = core.StringPtr("crn%3Av1%3Astaging%3Apublic%3Adashdb-for-transactions%3Aus-south%3Aa%2Fe7e3e87b512f474381c0684a5ecbba03%3A39269573-e43f-43e8-8b93-09f44c2ff875%3A%3A")
 				 getDb2SaasBackupOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
  
 				 // Invoke operation with valid options model (positive test)
@@ -3825,7 +3807,7 @@
  
 				 // Construct an instance of the GetDb2SaasBackupOptions model
 				 getDb2SaasBackupOptionsModel := new(db2saasv1.GetDb2SaasBackupOptions)
-				 getDb2SaasBackupOptionsModel.XDeploymentID = core.StringPtr("crn:v1:staging:public:dashdb-for-transactions:us-south:a/e7e3e87b512f474381c0684a5ecbba03:69db420f-33d5-4953-8bd8-1950abd356f6::")
+				 getDb2SaasBackupOptionsModel.XDbProfile = core.StringPtr("crn%3Av1%3Astaging%3Apublic%3Adashdb-for-transactions%3Aus-south%3Aa%2Fe7e3e87b512f474381c0684a5ecbba03%3A39269573-e43f-43e8-8b93-09f44c2ff875%3A%3A")
 				 getDb2SaasBackupOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				 // Invoke operation with empty URL (negative test)
 				 err := db2saasService.SetServiceURL("")
@@ -3866,7 +3848,7 @@
  
 				 // Construct an instance of the GetDb2SaasBackupOptions model
 				 getDb2SaasBackupOptionsModel := new(db2saasv1.GetDb2SaasBackupOptions)
-				 getDb2SaasBackupOptionsModel.XDeploymentID = core.StringPtr("crn:v1:staging:public:dashdb-for-transactions:us-south:a/e7e3e87b512f474381c0684a5ecbba03:69db420f-33d5-4953-8bd8-1950abd356f6::")
+				 getDb2SaasBackupOptionsModel.XDbProfile = core.StringPtr("crn%3Av1%3Astaging%3Apublic%3Adashdb-for-transactions%3Aus-south%3Aa%2Fe7e3e87b512f474381c0684a5ecbba03%3A39269573-e43f-43e8-8b93-09f44c2ff875%3A%3A")
 				 getDb2SaasBackupOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
  
 				 // Invoke operation
@@ -3892,8 +3874,8 @@
 					 // Verify the contents of the request
 					 Expect(req.URL.EscapedPath()).To(Equal(postDb2SaasBackupPath))
 					 Expect(req.Method).To(Equal("POST"))
-					 Expect(req.Header["X-Deployment-Id"]).ToNot(BeNil())
-					 Expect(req.Header["X-Deployment-Id"][0]).To(Equal(fmt.Sprintf("%v", "crn:v1:staging:public:dashdb-for-transactions:us-south:a/e7e3e87b512f474381c0684a5ecbba03:69db420f-33d5-4953-8bd8-1950abd356f6::")))
+					 Expect(req.Header["X-Db-Profile"]).ToNot(BeNil())
+					 Expect(req.Header["X-Db-Profile"][0]).To(Equal(fmt.Sprintf("%v", "crn%3Av1%3Astaging%3Apublic%3Adashdb-for-transactions%3Aus-south%3Aa%2Fe7e3e87b512f474381c0684a5ecbba03%3A39269573-e43f-43e8-8b93-09f44c2ff875%3A%3A")))
 					 res.Header().Set("Content-type", "application/json")
 					 res.WriteHeader(200)
 					 fmt.Fprint(res, `} this is not valid json {`)
@@ -3909,7 +3891,7 @@
  
 				 // Construct an instance of the PostDb2SaasBackupOptions model
 				 postDb2SaasBackupOptionsModel := new(db2saasv1.PostDb2SaasBackupOptions)
-				 postDb2SaasBackupOptionsModel.XDeploymentID = core.StringPtr("crn:v1:staging:public:dashdb-for-transactions:us-south:a/e7e3e87b512f474381c0684a5ecbba03:69db420f-33d5-4953-8bd8-1950abd356f6::")
+				 postDb2SaasBackupOptionsModel.XDbProfile = core.StringPtr("crn%3Av1%3Astaging%3Apublic%3Adashdb-for-transactions%3Aus-south%3Aa%2Fe7e3e87b512f474381c0684a5ecbba03%3A39269573-e43f-43e8-8b93-09f44c2ff875%3A%3A")
 				 postDb2SaasBackupOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				 // Expect response parsing to fail since we are receiving a text/plain response
 				 result, response, operationErr := db2saasService.PostDb2SaasBackup(postDb2SaasBackupOptionsModel)
@@ -3940,8 +3922,8 @@
 					 Expect(req.URL.EscapedPath()).To(Equal(postDb2SaasBackupPath))
 					 Expect(req.Method).To(Equal("POST"))
  
-					 Expect(req.Header["X-Deployment-Id"]).ToNot(BeNil())
-					 Expect(req.Header["X-Deployment-Id"][0]).To(Equal(fmt.Sprintf("%v", "crn:v1:staging:public:dashdb-for-transactions:us-south:a/e7e3e87b512f474381c0684a5ecbba03:69db420f-33d5-4953-8bd8-1950abd356f6::")))
+					 Expect(req.Header["X-Db-Profile"]).ToNot(BeNil())
+					 Expect(req.Header["X-Db-Profile"][0]).To(Equal(fmt.Sprintf("%v", "crn%3Av1%3Astaging%3Apublic%3Adashdb-for-transactions%3Aus-south%3Aa%2Fe7e3e87b512f474381c0684a5ecbba03%3A39269573-e43f-43e8-8b93-09f44c2ff875%3A%3A")))
 					 // Sleep a short time to support a timeout test
 					 time.Sleep(100 * time.Millisecond)
  
@@ -3962,7 +3944,7 @@
  
 				 // Construct an instance of the PostDb2SaasBackupOptions model
 				 postDb2SaasBackupOptionsModel := new(db2saasv1.PostDb2SaasBackupOptions)
-				 postDb2SaasBackupOptionsModel.XDeploymentID = core.StringPtr("crn:v1:staging:public:dashdb-for-transactions:us-south:a/e7e3e87b512f474381c0684a5ecbba03:69db420f-33d5-4953-8bd8-1950abd356f6::")
+				 postDb2SaasBackupOptionsModel.XDbProfile = core.StringPtr("crn%3Av1%3Astaging%3Apublic%3Adashdb-for-transactions%3Aus-south%3Aa%2Fe7e3e87b512f474381c0684a5ecbba03%3A39269573-e43f-43e8-8b93-09f44c2ff875%3A%3A")
 				 postDb2SaasBackupOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
  
 				 // Invoke operation with a Context to test a timeout error
@@ -3999,8 +3981,8 @@
 					 Expect(req.URL.EscapedPath()).To(Equal(postDb2SaasBackupPath))
 					 Expect(req.Method).To(Equal("POST"))
  
-					 Expect(req.Header["X-Deployment-Id"]).ToNot(BeNil())
-					 Expect(req.Header["X-Deployment-Id"][0]).To(Equal(fmt.Sprintf("%v", "crn:v1:staging:public:dashdb-for-transactions:us-south:a/e7e3e87b512f474381c0684a5ecbba03:69db420f-33d5-4953-8bd8-1950abd356f6::")))
+					 Expect(req.Header["X-Db-Profile"]).ToNot(BeNil())
+					 Expect(req.Header["X-Db-Profile"][0]).To(Equal(fmt.Sprintf("%v", "crn%3Av1%3Astaging%3Apublic%3Adashdb-for-transactions%3Aus-south%3Aa%2Fe7e3e87b512f474381c0684a5ecbba03%3A39269573-e43f-43e8-8b93-09f44c2ff875%3A%3A")))
 					 // Set mock response
 					 res.Header().Set("Content-type", "application/json")
 					 res.WriteHeader(200)
@@ -4023,7 +4005,7 @@
  
 				 // Construct an instance of the PostDb2SaasBackupOptions model
 				 postDb2SaasBackupOptionsModel := new(db2saasv1.PostDb2SaasBackupOptions)
-				 postDb2SaasBackupOptionsModel.XDeploymentID = core.StringPtr("crn:v1:staging:public:dashdb-for-transactions:us-south:a/e7e3e87b512f474381c0684a5ecbba03:69db420f-33d5-4953-8bd8-1950abd356f6::")
+				 postDb2SaasBackupOptionsModel.XDbProfile = core.StringPtr("crn%3Av1%3Astaging%3Apublic%3Adashdb-for-transactions%3Aus-south%3Aa%2Fe7e3e87b512f474381c0684a5ecbba03%3A39269573-e43f-43e8-8b93-09f44c2ff875%3A%3A")
 				 postDb2SaasBackupOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
  
 				 // Invoke operation with valid options model (positive test)
@@ -4043,7 +4025,7 @@
  
 				 // Construct an instance of the PostDb2SaasBackupOptions model
 				 postDb2SaasBackupOptionsModel := new(db2saasv1.PostDb2SaasBackupOptions)
-				 postDb2SaasBackupOptionsModel.XDeploymentID = core.StringPtr("crn:v1:staging:public:dashdb-for-transactions:us-south:a/e7e3e87b512f474381c0684a5ecbba03:69db420f-33d5-4953-8bd8-1950abd356f6::")
+				 postDb2SaasBackupOptionsModel.XDbProfile = core.StringPtr("crn%3Av1%3Astaging%3Apublic%3Adashdb-for-transactions%3Aus-south%3Aa%2Fe7e3e87b512f474381c0684a5ecbba03%3A39269573-e43f-43e8-8b93-09f44c2ff875%3A%3A")
 				 postDb2SaasBackupOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
 				 // Invoke operation with empty URL (negative test)
 				 err := db2saasService.SetServiceURL("")
@@ -4084,7 +4066,7 @@
  
 				 // Construct an instance of the PostDb2SaasBackupOptions model
 				 postDb2SaasBackupOptionsModel := new(db2saasv1.PostDb2SaasBackupOptions)
-				 postDb2SaasBackupOptionsModel.XDeploymentID = core.StringPtr("crn:v1:staging:public:dashdb-for-transactions:us-south:a/e7e3e87b512f474381c0684a5ecbba03:69db420f-33d5-4953-8bd8-1950abd356f6::")
+				 postDb2SaasBackupOptionsModel.XDbProfile = core.StringPtr("crn%3Av1%3Astaging%3Apublic%3Adashdb-for-transactions%3Aus-south%3Aa%2Fe7e3e87b512f474381c0684a5ecbba03%3A39269573-e43f-43e8-8b93-09f44c2ff875%3A%3A")
 				 postDb2SaasBackupOptionsModel.Headers = map[string]string{"x-custom-header": "x-custom-value"}
  
 				 // Invoke operation
@@ -4148,12 +4130,12 @@
 			 })
 			 It(`Invoke NewGetDb2SaasBackupOptions successfully`, func() {
 				 // Construct an instance of the GetDb2SaasBackupOptions model
-				 xDeploymentID := "crn:v1:staging:public:dashdb-for-transactions:us-south:a/e7e3e87b512f474381c0684a5ecbba03:69db420f-33d5-4953-8bd8-1950abd356f6::"
-				 getDb2SaasBackupOptionsModel := db2saasService.NewGetDb2SaasBackupOptions(xDeploymentID)
-				 getDb2SaasBackupOptionsModel.SetXDeploymentID("crn:v1:staging:public:dashdb-for-transactions:us-south:a/e7e3e87b512f474381c0684a5ecbba03:69db420f-33d5-4953-8bd8-1950abd356f6::")
+				 xDbProfile := "crn%3Av1%3Astaging%3Apublic%3Adashdb-for-transactions%3Aus-south%3Aa%2Fe7e3e87b512f474381c0684a5ecbba03%3A39269573-e43f-43e8-8b93-09f44c2ff875%3A%3A"
+				 getDb2SaasBackupOptionsModel := db2saasService.NewGetDb2SaasBackupOptions(xDbProfile)
+				 getDb2SaasBackupOptionsModel.SetXDbProfile("crn%3Av1%3Astaging%3Apublic%3Adashdb-for-transactions%3Aus-south%3Aa%2Fe7e3e87b512f474381c0684a5ecbba03%3A39269573-e43f-43e8-8b93-09f44c2ff875%3A%3A")
 				 getDb2SaasBackupOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				 Expect(getDb2SaasBackupOptionsModel).ToNot(BeNil())
-				 Expect(getDb2SaasBackupOptionsModel.XDeploymentID).To(Equal(core.StringPtr("crn:v1:staging:public:dashdb-for-transactions:us-south:a/e7e3e87b512f474381c0684a5ecbba03:69db420f-33d5-4953-8bd8-1950abd356f6::")))
+				 Expect(getDb2SaasBackupOptionsModel.XDbProfile).To(Equal(core.StringPtr("crn%3Av1%3Astaging%3Apublic%3Adashdb-for-transactions%3Aus-south%3Aa%2Fe7e3e87b512f474381c0684a5ecbba03%3A39269573-e43f-43e8-8b93-09f44c2ff875%3A%3A")))
 				 Expect(getDb2SaasBackupOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			 })
 			 It(`Invoke NewGetDb2SaasConnectionInfoOptions successfully`, func() {
@@ -4171,12 +4153,9 @@
 			 })
 			 It(`Invoke NewGetDb2SaasTuneableParamOptions successfully`, func() {
 				 // Construct an instance of the GetDb2SaasTuneableParamOptions model
-				 xDeploymentID := "crn:v1:staging:public:dashdb-for-transactions:us-south:a/e7e3e87b512f474381c0684a5ecbba03:69db420f-33d5-4953-8bd8-1950abd356f6::"
-				 getDb2SaasTuneableParamOptionsModel := db2saasService.NewGetDb2SaasTuneableParamOptions(xDeploymentID)
-				 getDb2SaasTuneableParamOptionsModel.SetXDeploymentID("crn:v1:staging:public:dashdb-for-transactions:us-south:a/e7e3e87b512f474381c0684a5ecbba03:69db420f-33d5-4953-8bd8-1950abd356f6::")
+				 getDb2SaasTuneableParamOptionsModel := db2saasService.NewGetDb2SaasTuneableParamOptions()
 				 getDb2SaasTuneableParamOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				 Expect(getDb2SaasTuneableParamOptionsModel).ToNot(BeNil())
-				 Expect(getDb2SaasTuneableParamOptionsModel.XDeploymentID).To(Equal(core.StringPtr("crn:v1:staging:public:dashdb-for-transactions:us-south:a/e7e3e87b512f474381c0684a5ecbba03:69db420f-33d5-4953-8bd8-1950abd356f6::")))
 				 Expect(getDb2SaasTuneableParamOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			 })
 			 It(`Invoke NewGetDb2SaasUserOptions successfully`, func() {
@@ -4229,12 +4208,12 @@
 			 })
 			 It(`Invoke NewPostDb2SaasBackupOptions successfully`, func() {
 				 // Construct an instance of the PostDb2SaasBackupOptions model
-				 xDeploymentID := "crn:v1:staging:public:dashdb-for-transactions:us-south:a/e7e3e87b512f474381c0684a5ecbba03:69db420f-33d5-4953-8bd8-1950abd356f6::"
-				 postDb2SaasBackupOptionsModel := db2saasService.NewPostDb2SaasBackupOptions(xDeploymentID)
-				 postDb2SaasBackupOptionsModel.SetXDeploymentID("crn:v1:staging:public:dashdb-for-transactions:us-south:a/e7e3e87b512f474381c0684a5ecbba03:69db420f-33d5-4953-8bd8-1950abd356f6::")
+				 xDbProfile := "crn%3Av1%3Astaging%3Apublic%3Adashdb-for-transactions%3Aus-south%3Aa%2Fe7e3e87b512f474381c0684a5ecbba03%3A39269573-e43f-43e8-8b93-09f44c2ff875%3A%3A"
+				 postDb2SaasBackupOptionsModel := db2saasService.NewPostDb2SaasBackupOptions(xDbProfile)
+				 postDb2SaasBackupOptionsModel.SetXDbProfile("crn%3Av1%3Astaging%3Apublic%3Adashdb-for-transactions%3Aus-south%3Aa%2Fe7e3e87b512f474381c0684a5ecbba03%3A39269573-e43f-43e8-8b93-09f44c2ff875%3A%3A")
 				 postDb2SaasBackupOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				 Expect(postDb2SaasBackupOptionsModel).ToNot(BeNil())
-				 Expect(postDb2SaasBackupOptionsModel.XDeploymentID).To(Equal(core.StringPtr("crn:v1:staging:public:dashdb-for-transactions:us-south:a/e7e3e87b512f474381c0684a5ecbba03:69db420f-33d5-4953-8bd8-1950abd356f6::")))
+				 Expect(postDb2SaasBackupOptionsModel.XDbProfile).To(Equal(core.StringPtr("crn%3Av1%3Astaging%3Apublic%3Adashdb-for-transactions%3Aus-south%3Aa%2Fe7e3e87b512f474381c0684a5ecbba03%3A39269573-e43f-43e8-8b93-09f44c2ff875%3A%3A")))
 				 Expect(postDb2SaasBackupOptionsModel.Headers).To(Equal(map[string]string{"foo": "bar"}))
 			 })
 			 It(`Invoke NewPostDb2SaasDbConfigurationOptions successfully`, func() {
@@ -4575,15 +4554,15 @@
 				 Expect(createCustomSettingsDbmModel.WLMDISPMINUTIL).To(Equal(core.StringPtr("10")))
  
 				 // Construct an instance of the PostDb2SaasDbConfigurationOptions model
-				 xDeploymentID := "crn:v1:staging:public:dashdb-for-transactions:us-south:a/e7e3e87b512f474381c0684a5ecbba03:69db420f-33d5-4953-8bd8-1950abd356f6::"
-				 postDb2SaasDbConfigurationOptionsModel := db2saasService.NewPostDb2SaasDbConfigurationOptions(xDeploymentID)
-				 postDb2SaasDbConfigurationOptionsModel.SetXDeploymentID("crn:v1:staging:public:dashdb-for-transactions:us-south:a/e7e3e87b512f474381c0684a5ecbba03:69db420f-33d5-4953-8bd8-1950abd356f6::")
+				 xDbProfile := "crn%3Av1%3Astaging%3Apublic%3Adashdb-for-transactions%3Aus-south%3Aa%2Fe7e3e87b512f474381c0684a5ecbba03%3A39269573-e43f-43e8-8b93-09f44c2ff875%3A%3A"
+				 postDb2SaasDbConfigurationOptionsModel := db2saasService.NewPostDb2SaasDbConfigurationOptions(xDbProfile)
+				 postDb2SaasDbConfigurationOptionsModel.SetXDbProfile("crn%3Av1%3Astaging%3Apublic%3Adashdb-for-transactions%3Aus-south%3Aa%2Fe7e3e87b512f474381c0684a5ecbba03%3A39269573-e43f-43e8-8b93-09f44c2ff875%3A%3A")
 				 postDb2SaasDbConfigurationOptionsModel.SetRegistry(createCustomSettingsRegistryModel)
 				 postDb2SaasDbConfigurationOptionsModel.SetDb(createCustomSettingsDbModel)
 				 postDb2SaasDbConfigurationOptionsModel.SetDbm(createCustomSettingsDbmModel)
 				 postDb2SaasDbConfigurationOptionsModel.SetHeaders(map[string]string{"foo": "bar"})
 				 Expect(postDb2SaasDbConfigurationOptionsModel).ToNot(BeNil())
-				 Expect(postDb2SaasDbConfigurationOptionsModel.XDeploymentID).To(Equal(core.StringPtr("crn:v1:staging:public:dashdb-for-transactions:us-south:a/e7e3e87b512f474381c0684a5ecbba03:69db420f-33d5-4953-8bd8-1950abd356f6::")))
+				 Expect(postDb2SaasDbConfigurationOptionsModel.XDbProfile).To(Equal(core.StringPtr("crn%3Av1%3Astaging%3Apublic%3Adashdb-for-transactions%3Aus-south%3Aa%2Fe7e3e87b512f474381c0684a5ecbba03%3A39269573-e43f-43e8-8b93-09f44c2ff875%3A%3A")))
 				 Expect(postDb2SaasDbConfigurationOptionsModel.Registry).To(Equal(createCustomSettingsRegistryModel))
 				 Expect(postDb2SaasDbConfigurationOptionsModel.Db).To(Equal(createCustomSettingsDbModel))
 				 Expect(postDb2SaasDbConfigurationOptionsModel.Dbm).To(Equal(createCustomSettingsDbmModel))
