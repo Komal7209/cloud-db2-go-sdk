@@ -19,6 +19,7 @@
  */
 
 // Package db2saasv1 : Operations and models for the Db2saasV1 service
+
 package db2saasv1
 
 import (
@@ -851,7 +852,7 @@ func (db2saas *Db2saasV1) GetDb2SaasAutoscaleWithContext(ctx context.Context, ge
 	return
 }
 
-// PostDb2SaasDbConfiguration : Set database and database manager configuration
+// PostDb2SaasDbConfiguration : Set database and database manager configuration, allows around 100+ custom values to be set
 func (db2saas *Db2saasV1) PostDb2SaasDbConfiguration(postDb2SaasDbConfigurationOptions *PostDb2SaasDbConfigurationOptions) (result *SuccessPostCustomSettings, response *core.DetailedResponse, err error) {
 	result, response, err = db2saas.PostDb2SaasDbConfigurationWithContext(context.Background(), postDb2SaasDbConfigurationOptions)
 	err = core.RepurposeSDKProblem(err, "")
