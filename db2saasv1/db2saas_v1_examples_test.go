@@ -360,18 +360,18 @@
 				 "crn%3Av1%3Astaging%3Apublic%3Adashdb-for-transactions%3Aus-south%3Aa%2Fe7e3e87b512f474381c0684a5ecbba03%3A39269573-e43f-43e8-8b93-09f44c2ff875%3A%3A",
 			 )
  
-			 successGetBackup, response, err := db2saasService.PostDb2SaasBackup(postDb2SaasBackupOptions)
+			 successCreateBackup, response, err := db2saasService.PostDb2SaasBackup(postDb2SaasBackupOptions)
 			 if err != nil {
 				 panic(err)
 			 }
-			 b, _ := json.MarshalIndent(successGetBackup, "", "  ")
+			 b, _ := json.MarshalIndent(successCreateBackup, "", "  ")
 			 fmt.Println(string(b))
  
 			 // end-post_db2_saas_backup
  
 			 Expect(err).To(BeNil())
 			 Expect(response.StatusCode).To(Equal(200))
-			 Expect(successGetBackup).ToNot(BeNil())
+			 Expect(successCreateBackup).ToNot(BeNil())
 		 })
 		 It(`DeleteDb2SaasUser request example`, func() {
 			 fmt.Println("\nDeleteDb2SaasUser() result:")

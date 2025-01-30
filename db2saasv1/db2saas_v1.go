@@ -19,7 +19,6 @@
  */
 
 // Package db2saasv1 : Operations and models for the Db2saasV1 service
-
 package db2saasv1
 
 import (
@@ -1063,14 +1062,14 @@ func (db2saas *Db2saasV1) GetDb2SaasBackupWithContext(ctx context.Context, getDb
 }
 
 // PostDb2SaasBackup : Create backup of an instance
-func (db2saas *Db2saasV1) PostDb2SaasBackup(postDb2SaasBackupOptions *PostDb2SaasBackupOptions) (result *SuccessGetBackup, response *core.DetailedResponse, err error) {
+func (db2saas *Db2saasV1) PostDb2SaasBackup(postDb2SaasBackupOptions *PostDb2SaasBackupOptions) (result *SuccessCreateBackup, response *core.DetailedResponse, err error) {
 	result, response, err = db2saas.PostDb2SaasBackupWithContext(context.Background(), postDb2SaasBackupOptions)
 	err = core.RepurposeSDKProblem(err, "")
 	return
 }
 
 // PostDb2SaasBackupWithContext is an alternate form of the PostDb2SaasBackup method which supports a Context parameter
-func (db2saas *Db2saasV1) PostDb2SaasBackupWithContext(ctx context.Context, postDb2SaasBackupOptions *PostDb2SaasBackupOptions) (result *SuccessGetBackup, response *core.DetailedResponse, err error) {
+func (db2saas *Db2saasV1) PostDb2SaasBackupWithContext(ctx context.Context, postDb2SaasBackupOptions *PostDb2SaasBackupOptions) (result *SuccessCreateBackup, response *core.DetailedResponse, err error) {
 	err = core.ValidateNotNil(postDb2SaasBackupOptions, "postDb2SaasBackupOptions cannot be nil")
 	if err != nil {
 		err = core.SDKErrorf(err, "", "unexpected-nil-param", common.GetComponentInfo())
@@ -1118,7 +1117,7 @@ func (db2saas *Db2saasV1) PostDb2SaasBackupWithContext(ctx context.Context, post
 		return
 	}
 	if rawResponse != nil {
-		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalSuccessGetBackup)
+		err = core.UnmarshalModel(rawResponse, "", &result, UnmarshalSuccessCreateBackup)
 		if err != nil {
 			err = core.SDKErrorf(err, "", "unmarshal-resp-error", common.GetComponentInfo())
 			return
@@ -4393,6 +4392,41 @@ func UnmarshalSuccessConnectionInfoPublic(m map[string]json.RawMessage, result i
 	return
 }
 
+// SuccessCreateBackup : Success response of post backup.
+type SuccessCreateBackup struct {
+	Task *SuccessCreateBackupTask `json:"task" validate:"required"`
+}
+
+// UnmarshalSuccessCreateBackup unmarshals an instance of SuccessCreateBackup from the specified map of raw messages.
+func UnmarshalSuccessCreateBackup(m map[string]json.RawMessage, result interface{}) (err error) {
+	obj := new(SuccessCreateBackup)
+	err = core.UnmarshalModel(m, "task", &obj.Task, UnmarshalSuccessCreateBackupTask)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "task-error", common.GetComponentInfo())
+		return
+	}
+	reflect.ValueOf(result).Elem().Set(reflect.ValueOf(obj))
+	return
+}
+
+// SuccessCreateBackupTask : SuccessCreateBackupTask struct
+type SuccessCreateBackupTask struct {
+	// CRN of the instance.
+	ID *string `json:"id,omitempty"`
+}
+
+// UnmarshalSuccessCreateBackupTask unmarshals an instance of SuccessCreateBackupTask from the specified map of raw messages.
+func UnmarshalSuccessCreateBackupTask(m map[string]json.RawMessage, result interface{}) (err error) {
+	obj := new(SuccessCreateBackupTask)
+	err = core.UnmarshalPrimitive(m, "id", &obj.ID)
+	if err != nil {
+		err = core.SDKErrorf(err, "", "id-error", common.GetComponentInfo())
+		return
+	}
+	reflect.ValueOf(result).Elem().Set(reflect.ValueOf(obj))
+	return
+}
+
 // SuccessGetAllowlistIPs : Success response of get allowlist IPs.
 type SuccessGetAllowlistIPs struct {
 	// List of IP addresses.
@@ -4405,41 +4439,6 @@ func UnmarshalSuccessGetAllowlistIPs(m map[string]json.RawMessage, result interf
 	err = core.UnmarshalModel(m, "ip_addresses", &obj.IpAddresses, UnmarshalIpAddress)
 	if err != nil {
 		err = core.SDKErrorf(err, "", "ip_addresses-error", common.GetComponentInfo())
-		return
-	}
-	reflect.ValueOf(result).Elem().Set(reflect.ValueOf(obj))
-	return
-}
-
-// SuccessGetBackup : Success response of post backup.
-type SuccessGetBackup struct {
-	Task *SuccessGetBackupTask `json:"task" validate:"required"`
-}
-
-// UnmarshalSuccessGetBackup unmarshals an instance of SuccessGetBackup from the specified map of raw messages.
-func UnmarshalSuccessGetBackup(m map[string]json.RawMessage, result interface{}) (err error) {
-	obj := new(SuccessGetBackup)
-	err = core.UnmarshalModel(m, "task", &obj.Task, UnmarshalSuccessGetBackupTask)
-	if err != nil {
-		err = core.SDKErrorf(err, "", "task-error", common.GetComponentInfo())
-		return
-	}
-	reflect.ValueOf(result).Elem().Set(reflect.ValueOf(obj))
-	return
-}
-
-// SuccessGetBackupTask : SuccessGetBackupTask struct
-type SuccessGetBackupTask struct {
-	// CRN of the instance.
-	ID *string `json:"id,omitempty"`
-}
-
-// UnmarshalSuccessGetBackupTask unmarshals an instance of SuccessGetBackupTask from the specified map of raw messages.
-func UnmarshalSuccessGetBackupTask(m map[string]json.RawMessage, result interface{}) (err error) {
-	obj := new(SuccessGetBackupTask)
-	err = core.UnmarshalPrimitive(m, "id", &obj.ID)
-	if err != nil {
-		err = core.SDKErrorf(err, "", "id-error", common.GetComponentInfo())
 		return
 	}
 	reflect.ValueOf(result).Elem().Set(reflect.ValueOf(obj))
