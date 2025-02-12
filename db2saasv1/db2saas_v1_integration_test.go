@@ -108,6 +108,28 @@
 		 })
 	 })
  
+	 Describe(`PostDb2SaasAllowlist - Allow listing of new IPs`, func() {
+		 BeforeEach(func() {
+			 shouldSkipTest()
+		 })
+		 It(`PostDb2SaasAllowlist(postDb2SaasAllowlistOptions *PostDb2SaasAllowlistOptions)`, func() {
+			 ipAddressModel := &db2saasv1.IpAddress{
+				 Address: core.StringPtr("127.0.0.1"),
+				 Description: core.StringPtr("A sample IP address"),
+			 }
+ 
+			 postDb2SaasAllowlistOptions := &db2saasv1.PostDb2SaasAllowlistOptions{
+				 XDeploymentID: core.StringPtr("crn:v1:staging:public:dashdb-for-transactions:us-south:a/e7e3e87b512f474381c0684a5ecbba03:69db420f-33d5-4953-8bd8-1950abd356f6::"),
+				 IpAddresses: []db2saasv1.IpAddress{*ipAddressModel},
+			 }
+ 
+			 successPostAllowedlistIPs, response, err := db2saasService.PostDb2SaasAllowlist(postDb2SaasAllowlistOptions)
+			 Expect(err).To(BeNil())
+			 Expect(response.StatusCode).To(Equal(200))
+			 Expect(successPostAllowedlistIPs).ToNot(BeNil())
+		 })
+	 })
+ 
 	 Describe(`GetDb2SaasAllowlist - Get allowed list of IPs`, func() {
 		 BeforeEach(func() {
 			 shouldSkipTest()
@@ -121,6 +143,68 @@
 			 Expect(err).To(BeNil())
 			 Expect(response.StatusCode).To(Equal(200))
 			 Expect(successGetAllowlistIPs).ToNot(BeNil())
+		 })
+	 })
+ 
+	 Describe(`PostDb2SaasUser - Create new user ( available only for platform users)`, func() {
+		 BeforeEach(func() {
+			 shouldSkipTest()
+		 })
+		 It(`PostDb2SaasUser(postDb2SaasUserOptions *PostDb2SaasUserOptions)`, func() {
+			 createUserAuthenticationModel := &db2saasv1.CreateUserAuthentication{
+				 Method: core.StringPtr("internal"),
+				 PolicyID: core.StringPtr("Default"),
+			 }
+ 
+			 postDb2SaasUserOptions := &db2saasv1.PostDb2SaasUserOptions{
+				 XDeploymentID: core.StringPtr("crn:v1:staging:public:dashdb-for-transactions:us-south:a/e7e3e87b512f474381c0684a5ecbba03:69db420f-33d5-4953-8bd8-1950abd356f6::"),
+				 ID: core.StringPtr("test-user"),
+				 Iam: core.BoolPtr(false),
+				 Ibmid: core.StringPtr("test-ibm-id"),
+				 Name: core.StringPtr("test_user"),
+				 Password: core.StringPtr("dEkMc43@gfAPl!867^dSbu"),
+				 Role: core.StringPtr("bluuser"),
+				 Email: core.StringPtr("test_user@mycompany.com"),
+				 Locked: core.StringPtr("no"),
+				 Authentication: createUserAuthenticationModel,
+			 }
+ 
+			 successUserResponse, response, err := db2saasService.PostDb2SaasUser(postDb2SaasUserOptions)
+			 Expect(err).To(BeNil())
+			 Expect(response.StatusCode).To(Equal(200))
+			 Expect(successUserResponse).ToNot(BeNil())
+		 })
+	 })
+ 
+	 Describe(`GetDb2SaasUser - Get the list of Users`, func() {
+		 BeforeEach(func() {
+			 shouldSkipTest()
+		 })
+		 It(`GetDb2SaasUser(getDb2SaasUserOptions *GetDb2SaasUserOptions)`, func() {
+			 getDb2SaasUserOptions := &db2saasv1.GetDb2SaasUserOptions{
+				 XDeploymentID: core.StringPtr("crn:v1:staging:public:dashdb-for-transactions:us-south:a/e7e3e87b512f474381c0684a5ecbba03:69db420f-33d5-4953-8bd8-1950abd356f6::"),
+			 }
+ 
+			 successGetUserInfo, response, err := db2saasService.GetDb2SaasUser(getDb2SaasUserOptions)
+			 Expect(err).To(BeNil())
+			 Expect(response.StatusCode).To(Equal(200))
+			 Expect(successGetUserInfo).ToNot(BeNil())
+		 })
+	 })
+ 
+	 Describe(`GetbyidDb2SaasUser - Get specific user by Id`, func() {
+		 BeforeEach(func() {
+			 shouldSkipTest()
+		 })
+		 It(`GetbyidDb2SaasUser(getbyidDb2SaasUserOptions *GetbyidDb2SaasUserOptions)`, func() {
+			 getbyidDb2SaasUserOptions := &db2saasv1.GetbyidDb2SaasUserOptions{
+				 XDeploymentID: core.StringPtr("crn:v1:staging:public:dashdb-for-transactions:us-south:a/e7e3e87b512f474381c0684a5ecbba03:69db420f-33d5-4953-8bd8-1950abd356f6::"),
+			 }
+ 
+			 successGetUserByID, response, err := db2saasService.GetbyidDb2SaasUser(getbyidDb2SaasUserOptions)
+			 Expect(err).To(BeNil())
+			 Expect(response.StatusCode).To(Equal(200))
+			 Expect(successGetUserByID).ToNot(BeNil())
 		 })
 	 })
  
@@ -162,7 +246,8 @@
 		 BeforeEach(func() {
 			 shouldSkipTest()
 		 })
-		 It(`PostDb2SaasDbConfiguration(postDb2SaasDbConfigurationOptions *PostDb2SaasDbConfigurationOptions)`, func() { 
+		 It(`PostDb2SaasDbConfiguration(postDb2SaasDbConfigurationOptions *PostDb2SaasDbConfigurationOptions)`, func() {
+ 
 			 postDb2SaasDbConfigurationOptions := &db2saasv1.PostDb2SaasDbConfigurationOptions{
 				 XDbProfile: core.StringPtr("crn%3Av1%3Astaging%3Apublic%3Adashdb-for-transactions%3Aus-south%3Aa%2Fe7e3e87b512f474381c0684a5ecbba03%3A39269573-e43f-43e8-8b93-09f44c2ff875%3A%3A"),
 			 }
@@ -218,6 +303,23 @@
 			 Expect(err).To(BeNil())
 			 Expect(response.StatusCode).To(Equal(200))
 			 Expect(successCreateBackup).ToNot(BeNil())
+		 })
+	 })
+ 
+	 Describe(`DeleteDb2SaasUser - Delete a user (only platform admin)`, func() {
+		 BeforeEach(func() {
+			 shouldSkipTest()
+		 })
+		 It(`DeleteDb2SaasUser(deleteDb2SaasUserOptions *DeleteDb2SaasUserOptions)`, func() {
+			 deleteDb2SaasUserOptions := &db2saasv1.DeleteDb2SaasUserOptions{
+				 XDeploymentID: core.StringPtr("crn:v1:staging:public:dashdb-for-transactions:us-south:a/e7e3e87b512f474381c0684a5ecbba03:69db420f-33d5-4953-8bd8-1950abd356f6::"),
+				 ID: core.StringPtr("test-user"),
+			 }
+ 
+			 result, response, err := db2saasService.DeleteDb2SaasUser(deleteDb2SaasUserOptions)
+			 Expect(err).To(BeNil())
+			 Expect(response.StatusCode).To(Equal(200))
+			 Expect(result).ToNot(BeNil())
 		 })
 	 })
  })

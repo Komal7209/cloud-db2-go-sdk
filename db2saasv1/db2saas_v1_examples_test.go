@@ -124,6 +124,33 @@
 			 Expect(response.StatusCode).To(Equal(200))
 			 Expect(successConnectionInfo).ToNot(BeNil())
 		 })
+		 It(`PostDb2SaasAllowlist request example`, func() {
+			 fmt.Println("\nPostDb2SaasAllowlist() result:")
+			 // begin-post_db2_saas_allowlist
+ 
+			 ipAddressModel := &db2saasv1.IpAddress{
+				 Address: core.StringPtr("127.0.0.1"),
+				 Description: core.StringPtr("A sample IP address"),
+			 }
+ 
+			 postDb2SaasAllowlistOptions := db2saasService.NewPostDb2SaasAllowlistOptions(
+				 "crn:v1:staging:public:dashdb-for-transactions:us-south:a/e7e3e87b512f474381c0684a5ecbba03:69db420f-33d5-4953-8bd8-1950abd356f6::",
+				 []db2saasv1.IpAddress{*ipAddressModel},
+			 )
+ 
+			 successPostAllowedlistIPs, response, err := db2saasService.PostDb2SaasAllowlist(postDb2SaasAllowlistOptions)
+			 if err != nil {
+				 panic(err)
+			 }
+			 b, _ := json.MarshalIndent(successPostAllowedlistIPs, "", "  ")
+			 fmt.Println(string(b))
+ 
+			 // end-post_db2_saas_allowlist
+ 
+			 Expect(err).To(BeNil())
+			 Expect(response.StatusCode).To(Equal(200))
+			 Expect(successPostAllowedlistIPs).ToNot(BeNil())
+		 })
 		 It(`GetDb2SaasAllowlist request example`, func() {
 			 fmt.Println("\nGetDb2SaasAllowlist() result:")
 			 // begin-get_db2_saas_allowlist
@@ -144,6 +171,83 @@
 			 Expect(err).To(BeNil())
 			 Expect(response.StatusCode).To(Equal(200))
 			 Expect(successGetAllowlistIPs).ToNot(BeNil())
+		 })
+		 It(`PostDb2SaasUser request example`, func() {
+			 fmt.Println("\nPostDb2SaasUser() result:")
+			 // begin-post_db2_saas_user
+ 
+			 createUserAuthenticationModel := &db2saasv1.CreateUserAuthentication{
+				 Method: core.StringPtr("internal"),
+				 PolicyID: core.StringPtr("Default"),
+			 }
+ 
+			 postDb2SaasUserOptions := db2saasService.NewPostDb2SaasUserOptions(
+				 "crn:v1:staging:public:dashdb-for-transactions:us-south:a/e7e3e87b512f474381c0684a5ecbba03:69db420f-33d5-4953-8bd8-1950abd356f6::",
+				 "test-user",
+				 false,
+				 "test-ibm-id",
+				 "test_user",
+				 "dEkMc43@gfAPl!867^dSbu",
+				 "bluuser",
+				 "test_user@mycompany.com",
+				 "no",
+				 createUserAuthenticationModel,
+			 )
+ 
+			 successUserResponse, response, err := db2saasService.PostDb2SaasUser(postDb2SaasUserOptions)
+			 if err != nil {
+				 panic(err)
+			 }
+			 b, _ := json.MarshalIndent(successUserResponse, "", "  ")
+			 fmt.Println(string(b))
+ 
+			 // end-post_db2_saas_user
+ 
+			 Expect(err).To(BeNil())
+			 Expect(response.StatusCode).To(Equal(200))
+			 Expect(successUserResponse).ToNot(BeNil())
+		 })
+		 It(`GetDb2SaasUser request example`, func() {
+			 fmt.Println("\nGetDb2SaasUser() result:")
+			 // begin-get_db2_saas_user
+ 
+			 getDb2SaasUserOptions := db2saasService.NewGetDb2SaasUserOptions(
+				 "crn:v1:staging:public:dashdb-for-transactions:us-south:a/e7e3e87b512f474381c0684a5ecbba03:69db420f-33d5-4953-8bd8-1950abd356f6::",
+			 )
+ 
+			 successGetUserInfo, response, err := db2saasService.GetDb2SaasUser(getDb2SaasUserOptions)
+			 if err != nil {
+				 panic(err)
+			 }
+			 b, _ := json.MarshalIndent(successGetUserInfo, "", "  ")
+			 fmt.Println(string(b))
+ 
+			 // end-get_db2_saas_user
+ 
+			 Expect(err).To(BeNil())
+			 Expect(response.StatusCode).To(Equal(200))
+			 Expect(successGetUserInfo).ToNot(BeNil())
+		 })
+		 It(`GetbyidDb2SaasUser request example`, func() {
+			 fmt.Println("\nGetbyidDb2SaasUser() result:")
+			 // begin-getbyid_db2_saas_user
+ 
+			 getbyidDb2SaasUserOptions := db2saasService.NewGetbyidDb2SaasUserOptions(
+				 "crn:v1:staging:public:dashdb-for-transactions:us-south:a/e7e3e87b512f474381c0684a5ecbba03:69db420f-33d5-4953-8bd8-1950abd356f6::",
+			 )
+ 
+			 successGetUserByID, response, err := db2saasService.GetbyidDb2SaasUser(getbyidDb2SaasUserOptions)
+			 if err != nil {
+				 panic(err)
+			 }
+			 b, _ := json.MarshalIndent(successGetUserByID, "", "  ")
+			 fmt.Println(string(b))
+ 
+			 // end-getbyid_db2_saas_user
+ 
+			 Expect(err).To(BeNil())
+			 Expect(response.StatusCode).To(Equal(200))
+			 Expect(successGetUserByID).ToNot(BeNil())
 		 })
 		 It(`PutDb2SaasAutoscale request example`, func() {
 			 fmt.Println("\nPutDb2SaasAutoscale() result:")
@@ -268,6 +372,28 @@
 			 Expect(err).To(BeNil())
 			 Expect(response.StatusCode).To(Equal(200))
 			 Expect(successCreateBackup).ToNot(BeNil())
+		 })
+		 It(`DeleteDb2SaasUser request example`, func() {
+			 fmt.Println("\nDeleteDb2SaasUser() result:")
+			 // begin-delete_db2_saas_user
+ 
+			 deleteDb2SaasUserOptions := db2saasService.NewDeleteDb2SaasUserOptions(
+				 "crn:v1:staging:public:dashdb-for-transactions:us-south:a/e7e3e87b512f474381c0684a5ecbba03:69db420f-33d5-4953-8bd8-1950abd356f6::",
+				 "test-user",
+			 )
+ 
+			 result, response, err := db2saasService.DeleteDb2SaasUser(deleteDb2SaasUserOptions)
+			 if err != nil {
+				 panic(err)
+			 }
+			 b, _ := json.MarshalIndent(result, "", "  ")
+			 fmt.Println(string(b))
+ 
+			 // end-delete_db2_saas_user
+ 
+			 Expect(err).To(BeNil())
+			 Expect(response.StatusCode).To(Equal(200))
+			 Expect(result).ToNot(BeNil())
 		 })
 	 })
  })
