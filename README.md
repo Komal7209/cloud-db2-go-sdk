@@ -38,8 +38,8 @@ Changes might occur which impact applications that use this SDK.
 
 The IBM Cloud Db2 Go SDK allows developers to programmatically interact with the following IBM Cloud services:
 
-Service Name | Package name 
---- | --- 
+Service Name | Package name
+--- | ---
 [IBM Cloud Db2](https://cloud.ibm.com/apidocs/db2-on-cloud/db2-on-cloud-v4) | db2saasv1
 
 ## Prerequisites
@@ -53,9 +53,9 @@ Service Name | Package name
 ## Installation
 The current version of this SDK: 0.2.2
 
-### Go modules  
-If your application uses Go modules for dependency management (recommended), just add an import for each service 
-that you will use in your application.  
+### Go modules
+If your application uses Go modules for dependency management (recommended), just add an import for each service
+that you will use in your application.
 Here is an example:
 
 ```go
@@ -64,13 +64,13 @@ import (
 )
 ```
 Next, run `go build` or `go mod tidy` to download and install the new dependencies and update your application's
-`go.mod` file.  
+`go.mod` file.
 
 In the example above, the `db2saasv1` part of the import path is the package name
 associated with the IBM Cloud Db2.
 See the service table above to find the approprate package name for the services used by your application.
 
-### `go get` command  
+### `go get` command
 Alternatively, you can use the `go get` command to download and install the appropriate packages needed by your application:
 ```
 go get -u github.com/IBM/cloud-db2-go-sdk/db2saasv1
@@ -80,10 +80,15 @@ Be sure to use the appropriate package name from the service table above for the
 ## Using the SDK
 For general SDK usage information, please see [this link](https://github.com/IBM/ibm-cloud-sdk-common/blob/main/README.md)
 
-## Questions
+## Authentication
+For types of Authentication supported in Go SDK, please refer [Authentication link](https://github.com/IBM/go-sdk-core/blob/main/Authentication.md)
 
+## Error Handling
+For information about how to deal with errors resulting from request invocations [Error handling link](https://github.com/IBM/ibm-cloud-sdk-common/blob/main/README.md#error-handling)
+
+## Questions
 If you are having difficulties using this SDK or have a question about the IBM Cloud services,
-please ask a question at 
+please ask a question at
 [Stack Overflow](http://stackoverflow.com/questions/ask?tags=ibm-cloud).
 
 ## Issues
