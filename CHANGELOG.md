@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v0.2.3
+### Features
+* Added New Functions like Put Autoscale, Post custom setting , GET tuneable param and GET backup along with integration tests ([#9](https://github.com/IBM/cloud-db2-go-sdk/pull/9))
+
 ## v0.2.2
 ### Features
 * Renamed function names of whitelist to allowlist ([#7](https://github.com/IBM/cloud-db2-go-sdk/pull/7))
