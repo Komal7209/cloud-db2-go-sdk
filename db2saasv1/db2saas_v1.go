@@ -213,12 +213,12 @@ func (db2saas *Db2saasV1) GetDb2SaasConnectionInfoWithContext(ctx context.Contex
 		return
 	}
 
-	for headerName, headerValue := range getDb2SaasConnectionInfoOptions.Headers {
+	sdkHeaders := common.GetSdkHeaders("db2saas", "V1", "GetDb2SaasConnectionInfo")
+	for headerName, headerValue := range sdkHeaders {
 		builder.AddHeader(headerName, headerValue)
 	}
 
-	sdkHeaders := common.GetSdkHeaders("db2saas", "V1", "GetDb2SaasConnectionInfo")
-	for headerName, headerValue := range sdkHeaders {
+	for headerName, headerValue := range getDb2SaasConnectionInfoOptions.Headers {
 		builder.AddHeader(headerName, headerValue)
 	}
 	builder.AddHeader("Accept", "application/json")
@@ -280,12 +280,12 @@ func (db2saas *Db2saasV1) PostDb2SaasAllowlistWithContext(ctx context.Context, p
 		return
 	}
 
-	for headerName, headerValue := range postDb2SaasAllowlistOptions.Headers {
+	sdkHeaders := common.GetSdkHeaders("db2saas", "V1", "PostDb2SaasAllowlist")
+	for headerName, headerValue := range sdkHeaders {
 		builder.AddHeader(headerName, headerValue)
 	}
 
-	sdkHeaders := common.GetSdkHeaders("db2saas", "V1", "PostDb2SaasAllowlist")
-	for headerName, headerValue := range sdkHeaders {
+	for headerName, headerValue := range postDb2SaasAllowlistOptions.Headers {
 		builder.AddHeader(headerName, headerValue)
 	}
 	builder.AddHeader("Accept", "application/json")
@@ -358,12 +358,12 @@ func (db2saas *Db2saasV1) GetDb2SaasAllowlistWithContext(ctx context.Context, ge
 		return
 	}
 
-	for headerName, headerValue := range getDb2SaasAllowlistOptions.Headers {
+	sdkHeaders := common.GetSdkHeaders("db2saas", "V1", "GetDb2SaasAllowlist")
+	for headerName, headerValue := range sdkHeaders {
 		builder.AddHeader(headerName, headerValue)
 	}
 
-	sdkHeaders := common.GetSdkHeaders("db2saas", "V1", "GetDb2SaasAllowlist")
-	for headerName, headerValue := range sdkHeaders {
+	for headerName, headerValue := range getDb2SaasAllowlistOptions.Headers {
 		builder.AddHeader(headerName, headerValue)
 	}
 	builder.AddHeader("Accept", "application/json")
@@ -425,12 +425,12 @@ func (db2saas *Db2saasV1) PostDb2SaasUserWithContext(ctx context.Context, postDb
 		return
 	}
 
-	for headerName, headerValue := range postDb2SaasUserOptions.Headers {
+	sdkHeaders := common.GetSdkHeaders("db2saas", "V1", "PostDb2SaasUser")
+	for headerName, headerValue := range sdkHeaders {
 		builder.AddHeader(headerName, headerValue)
 	}
 
-	sdkHeaders := common.GetSdkHeaders("db2saas", "V1", "PostDb2SaasUser")
-	for headerName, headerValue := range sdkHeaders {
+	for headerName, headerValue := range postDb2SaasUserOptions.Headers {
 		builder.AddHeader(headerName, headerValue)
 	}
 	builder.AddHeader("Accept", "application/json")
@@ -527,12 +527,12 @@ func (db2saas *Db2saasV1) GetDb2SaasUserWithContext(ctx context.Context, getDb2S
 		return
 	}
 
-	for headerName, headerValue := range getDb2SaasUserOptions.Headers {
+	sdkHeaders := common.GetSdkHeaders("db2saas", "V1", "GetDb2SaasUser")
+	for headerName, headerValue := range sdkHeaders {
 		builder.AddHeader(headerName, headerValue)
 	}
 
-	sdkHeaders := common.GetSdkHeaders("db2saas", "V1", "GetDb2SaasUser")
-	for headerName, headerValue := range sdkHeaders {
+	for headerName, headerValue := range getDb2SaasUserOptions.Headers {
 		builder.AddHeader(headerName, headerValue)
 	}
 	builder.AddHeader("Accept", "application/json")
@@ -704,15 +704,14 @@ func (db2saas *Db2saasV1) DeleteDb2SaasUserWithContext(ctx context.Context, dele
 		return
 	}
 
-	for headerName, headerValue := range deleteDb2SaasUserOptions.Headers {
-		builder.AddHeader(headerName, headerValue)
-	}
-
 	sdkHeaders := common.GetSdkHeaders("db2saas", "V1", "DeleteDb2SaasUser")
 	for headerName, headerValue := range sdkHeaders {
 		builder.AddHeader(headerName, headerValue)
 	}
-	builder.AddHeader("Accept", "application/json")
+
+	for headerName, headerValue := range deleteDb2SaasUserOptions.Headers {
+		builder.AddHeader(headerName, headerValue)
+	}
 	if deleteDb2SaasUserOptions.XDeploymentID != nil {
 		builder.AddHeader("x-deployment-id", fmt.Sprint(*deleteDb2SaasUserOptions.XDeploymentID))
 	}
@@ -766,12 +765,12 @@ func (db2saas *Db2saasV1) GetbyidDb2SaasUserWithContext(ctx context.Context, get
 		return
 	}
 
-	for headerName, headerValue := range getbyidDb2SaasUserOptions.Headers {
+	sdkHeaders := common.GetSdkHeaders("db2saas", "V1", "GetbyidDb2SaasUser")
+	for headerName, headerValue := range sdkHeaders {
 		builder.AddHeader(headerName, headerValue)
 	}
 
-	sdkHeaders := common.GetSdkHeaders("db2saas", "V1", "GetbyidDb2SaasUser")
-	for headerName, headerValue := range sdkHeaders {
+	for headerName, headerValue := range getbyidDb2SaasUserOptions.Headers {
 		builder.AddHeader(headerName, headerValue)
 	}
 	builder.AddHeader("Accept", "application/json")
@@ -833,12 +832,12 @@ func (db2saas *Db2saasV1) PutDb2SaasAutoscaleWithContext(ctx context.Context, pu
 		return
 	}
 
-	for headerName, headerValue := range putDb2SaasAutoscaleOptions.Headers {
+	sdkHeaders := common.GetSdkHeaders("db2saas", "V1", "PutDb2SaasAutoscale")
+	for headerName, headerValue := range sdkHeaders {
 		builder.AddHeader(headerName, headerValue)
 	}
 
-	sdkHeaders := common.GetSdkHeaders("db2saas", "V1", "PutDb2SaasAutoscale")
-	for headerName, headerValue := range sdkHeaders {
+	for headerName, headerValue := range putDb2SaasAutoscaleOptions.Headers {
 		builder.AddHeader(headerName, headerValue)
 	}
 	builder.AddHeader("Accept", "application/json")
@@ -923,12 +922,12 @@ func (db2saas *Db2saasV1) GetDb2SaasAutoscaleWithContext(ctx context.Context, ge
 		return
 	}
 
-	for headerName, headerValue := range getDb2SaasAutoscaleOptions.Headers {
+	sdkHeaders := common.GetSdkHeaders("db2saas", "V1", "GetDb2SaasAutoscale")
+	for headerName, headerValue := range sdkHeaders {
 		builder.AddHeader(headerName, headerValue)
 	}
 
-	sdkHeaders := common.GetSdkHeaders("db2saas", "V1", "GetDb2SaasAutoscale")
-	for headerName, headerValue := range sdkHeaders {
+	for headerName, headerValue := range getDb2SaasAutoscaleOptions.Headers {
 		builder.AddHeader(headerName, headerValue)
 	}
 	builder.AddHeader("Accept", "application/json")
@@ -990,12 +989,12 @@ func (db2saas *Db2saasV1) PostDb2SaasDbConfigurationWithContext(ctx context.Cont
 		return
 	}
 
-	for headerName, headerValue := range postDb2SaasDbConfigurationOptions.Headers {
+	sdkHeaders := common.GetSdkHeaders("db2saas", "V1", "PostDb2SaasDbConfiguration")
+	for headerName, headerValue := range sdkHeaders {
 		builder.AddHeader(headerName, headerValue)
 	}
 
-	sdkHeaders := common.GetSdkHeaders("db2saas", "V1", "PostDb2SaasDbConfiguration")
-	for headerName, headerValue := range sdkHeaders {
+	for headerName, headerValue := range postDb2SaasDbConfigurationOptions.Headers {
 		builder.AddHeader(headerName, headerValue)
 	}
 	builder.AddHeader("Accept", "application/json")
@@ -1069,12 +1068,12 @@ func (db2saas *Db2saasV1) GetDb2SaasTuneableParamWithContext(ctx context.Context
 		return
 	}
 
-	for headerName, headerValue := range getDb2SaasTuneableParamOptions.Headers {
+	sdkHeaders := common.GetSdkHeaders("db2saas", "V1", "GetDb2SaasTuneableParam")
+	for headerName, headerValue := range sdkHeaders {
 		builder.AddHeader(headerName, headerValue)
 	}
 
-	sdkHeaders := common.GetSdkHeaders("db2saas", "V1", "GetDb2SaasTuneableParam")
-	for headerName, headerValue := range sdkHeaders {
+	for headerName, headerValue := range getDb2SaasTuneableParamOptions.Headers {
 		builder.AddHeader(headerName, headerValue)
 	}
 	builder.AddHeader("Accept", "application/json")
@@ -1133,12 +1132,12 @@ func (db2saas *Db2saasV1) GetDb2SaasBackupWithContext(ctx context.Context, getDb
 		return
 	}
 
-	for headerName, headerValue := range getDb2SaasBackupOptions.Headers {
+	sdkHeaders := common.GetSdkHeaders("db2saas", "V1", "GetDb2SaasBackup")
+	for headerName, headerValue := range sdkHeaders {
 		builder.AddHeader(headerName, headerValue)
 	}
 
-	sdkHeaders := common.GetSdkHeaders("db2saas", "V1", "GetDb2SaasBackup")
-	for headerName, headerValue := range sdkHeaders {
+	for headerName, headerValue := range getDb2SaasBackupOptions.Headers {
 		builder.AddHeader(headerName, headerValue)
 	}
 	builder.AddHeader("Accept", "application/json")
@@ -1200,12 +1199,12 @@ func (db2saas *Db2saasV1) PostDb2SaasBackupWithContext(ctx context.Context, post
 		return
 	}
 
-	for headerName, headerValue := range postDb2SaasBackupOptions.Headers {
+	sdkHeaders := common.GetSdkHeaders("db2saas", "V1", "PostDb2SaasBackup")
+	for headerName, headerValue := range sdkHeaders {
 		builder.AddHeader(headerName, headerValue)
 	}
 
-	sdkHeaders := common.GetSdkHeaders("db2saas", "V1", "PostDb2SaasBackup")
-	for headerName, headerValue := range sdkHeaders {
+	for headerName, headerValue := range postDb2SaasBackupOptions.Headers {
 		builder.AddHeader(headerName, headerValue)
 	}
 	builder.AddHeader("Accept", "application/json")
