@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## v0.2.4
+### Features
+* Added PUT users endpoint
+* Updated delete and get users by id endpoints
+* All above are added with integration tests, examples
+* Changes are part of this PR: ([# ](https://github.com/IBM/cloud-db2-go-sdk/pull/))
+
 ## v0.2.3
 ### Features
 * Added New Functions like Put Autoscale, Post custom setting , GET tuneable param and GET backup along with integration tests ([#9](https://github.com/IBM/cloud-db2-go-sdk/pull/9))
