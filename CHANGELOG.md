@@ -5,7 +5,7 @@
 * Added PUT users endpoint
 * Updated delete and get users by id endpoints
 * All above are added with integration tests, examples
-* Changes are part of this PR: ([# ](https://github.com/IBM/cloud-db2-go-sdk/pull/))
+* Changes are part of this PR: ([#13 ](https://github.com/IBM/cloud-db2-go-sdk/pull/13))
 
 ## v0.2.3
 ### Features
